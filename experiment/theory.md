@@ -1,7 +1,8 @@
 # Introduction
 Turbine type flow meters are similar to a propeller held against the wind when we keep the propeller against wind it rotates, and if you observe carefully there exists a relation between velocity of wind and rotational speed of turbine, the rate of rotation increases as the wind velocity increases. These observations suggest that the flow velocity in a pipe can be measured by placing a freely rotating propeller inside a pipe section, but it needs calibration. These type of flow meters are more commonly known as "Turbine Type Flow meters". A cut section of the turbine type flow meter is as shown in figure 1 and 2. The construction is similar to a mini wind mill.
 
-![ *intro*](images\intro.png)
+![ *Turbine_intro*](images/Turbine_intro.png)
+![ *Turbine_read*](images/Turbine_read.png)
 
 Turbine flow meters are used in many industrial applications to measure the flow of liquid and gas. It consists of a multi-blade rotor mounted with a pipe perpendicular to the fluid flow. When the liquid passes through the blades, the rotor will spin. The speed of the rotor depends on the flow rate, the rotational movement can be measured either using gears or the opto-couplers. 
 This flow meter would convert the mechanical action of the turbine as the fluid flow rate. This device would rotate according to the flow in which it is placed, the number of revolutions is proportional to the flow.
@@ -28,7 +29,8 @@ Magnetic flux through the coil’s centre increases and decreases as the passing
 
 ## Working Principle
 A turbine flow meter unit is constructed of a multiple-bladed rotor installed (as shown in the simulator) with a pipe in a perpendicular direction to the fluid flow. As the liquid flows through the blades, the rotor rotates. The rotational speed of the rotor is correlated to the flow rate of the liquid. The speed of the rotor can be sensed by various mechanisms such as magnetic pick-up, photoelectric cell, or gears. After proper installation, turbine meters offer good accuracy, mainly with low-viscosity liquids. Hence, turbine meters are widely deployed in applications where accurate measurements are required. When a turbine flowmeter is calibrated (As shown the calibration set-up) and operated for a single fluid, constant conditions, its turndown ratio can go beyond 100:1. Moreover, accuracy of a turbine flowmeter can be as good as +/-0.1%. The major problem associated with the usage of turbine meters is bearing wear.
-![*working_principle* ](images\working_principle.png)
+
+![*working_priciple* ](images/working_priciple.png)
 
  To prevent this problem, a “bearing less” turbine meter design has been introduced recently. Various turbine flowmeter designs have been manufactured. However, they all operate on the same basic principle which says “If a fluid moves through a pipe and acts on the vanes of a turbine, the turbine will start to spin and rotate. The rate of spin is measured to calculate the flow”.
  
