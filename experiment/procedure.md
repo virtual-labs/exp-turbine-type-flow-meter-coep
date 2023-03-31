@@ -3,7 +3,7 @@
 
 #### Configuration:-
 - Configure your turbine flow meter by selecting fluid type, material type of blade, blade type , pipe size , time in sec and enter the meter constant. Below fig. shows the type of blade and number of blades. 
-![ *blades type and shape images*](images\blades_type.png)
+![ *blades type and shape images*](images/blades_type.png)
 -  Min and Max speed range will be displayed. Here, readings can be taken by changing speed of VFD that you have configured.
 - Observe the reading .
 - Plot the graph
