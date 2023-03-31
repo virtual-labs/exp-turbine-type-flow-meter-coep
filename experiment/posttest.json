@@ -2,38 +2,83 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": " How many parts does turbine flow meter consists of?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+         "a": "One",
+        "b": "  Two",
+        "c": "Three",
+        "d": "Four"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "a",
+      
+      "correctAnswer": "b",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "Which one of the following meter measures volumes in litres?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Rate of flow meters",
+        "b": "Quantity meters",
+        "c": "Both a and b",
+        "d": "None of the above"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+     
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "The turbine flow measurement technology accuracy is______ of reading?",
+      "answers": {
+        "a": "0.1 to 0.5%",
+        "b": "0.25 to 1%",
+        "c": "0.5 to 1%",
+        "d": "0.05 to 0.15%"
       },
-      "correctAnswer": "c",
+     
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+	{
+      "question": "The turn down ratio of turbine flow measurement technology is _________?",
+      "answers": {
+        "a": "5:1",
+        "b": "10:1",
+        "c": "100:1",
+        "d": "50:1"
+      },
+     
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+	
+	{
+      "question": "Turbine meters are generally preferred for.",
+      "answers": {
+        "a": "Low-viscosity and high flow measurements",
+        "b": "High viscosity and low flow measurements",
+        "c": "High viscosity and high flow measurements",
+        "d": "Low viscosity and low flow measurements"
+      },
+     
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+  
+  {
+      "question": "Which of the following represents the correct relation between flow rate and area of pipe?",
+      "answers": {
+        "a": "Direct proportionality",
+        "b": "Inverse proportionality",
+        "c": "Equal",
+        "d": "None of the above"
+      },
+     
+      "correctAnswer": "a",
       "difficulty": "beginner"
     }
+  
+  
+  
+  
+  
   ]
 }
