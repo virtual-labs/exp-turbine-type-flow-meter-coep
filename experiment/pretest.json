@@ -2,38 +2,72 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": " The linear resistance element flow meters principle is based on __________________ equation?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+         "a": "Hagen Poiseuille",
+        "b": "Faraday's Law",
+        "c": "Hall effect",
+        "d": "None of the above"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
+      
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "What is the necessity of flow measurement?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Drinking purpose",
+        "b": "Construction purpose",
+        "c": "Laboratory purpose",
+        "d": "All the above"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+     
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "The flow meters are classified based on ________________?",
+      "answers": {
+        "a": "Rate of flow",
+        "b": "Weight",
+        "c": "Volume",
+        "d": "All the above"
       },
+     
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+	{
+      "question": "Which one of the following meters is a type of mechanical flow meter?",
+      "answers": {
+        "a": "Hot wire",
+        "b": "Cup type",
+        "c": "Turbine",
+        "d": "None of the above"
+      },
+     
       "correctAnswer": "c",
       "difficulty": "beginner"
+    },
+	
+	{
+      "question": "Which one of the following is a type of flow encountered?",
+      "answers": {
+        "a": "Quantity meters",
+        "b": "Wet or dry",
+        "c": "Positive displacement meters",
+        "d": "None of the above"
+      },
+     
+      "correctAnswer": "b",
+      "difficulty": "beginner"
     }
+  
+  
+  
+  
+  
+  
+  
   ]
 }
