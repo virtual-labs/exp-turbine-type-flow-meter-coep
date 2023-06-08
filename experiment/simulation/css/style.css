@@ -222,3 +222,32 @@ background: linear-gradient(90deg, rgba(125,176,169,1) 0%, rgba(78,109,114,1) 31
 	height:50px;
 	color:#fff;
 }
+.Actual {
+  height: 100px;
+  width: 100px;
+  background-color: #69110a;
+  border-radius: 50%;
+  display: inline-block;
+}
+.Actual {
+  height:30px;
+  width: 30px;
+  background-color: #2ad352;
+  border-radius: 50%;
+  display: inline-block;
+}
+.ActualText{
+	margin:50px;
+	
+}
+.Expected {
+  height:30px;
+  width: 30px;
+  background-color: #25b7d3;
+  border-radius: 50%;
+  display: inline-block;
+}
+.ExpectedText{
+	margin:50px;
+	
+}

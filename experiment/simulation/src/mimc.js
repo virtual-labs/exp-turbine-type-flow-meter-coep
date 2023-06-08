@@ -1687,7 +1687,7 @@ var gud ;
 			});
 			 var graphData1=[];
 			//Turbine Flow graph
-			$("#container-graph2").css("height", "400px");
+			$("#container-graph1").css("height", "400px");
 			$("#container-graph2").css("width", "800px");
 
 			for (var i = 0; i < masterJson.demo.length; i++) {
@@ -2586,170 +2586,216 @@ var gud ;
 						 $("#calibrationPanel").append(tableMainDiv);
 				 
 				
-				var errorType=Math.floor(Math.random() * 3) + 1;
-				$("#nextLevel1").click(function() {
+				
+				 
+					$("#nextLevel1").click(function() {
+						 
+							$("#canvas-div").html("");
+							$("#centerText2").html("FAULT IDENTIFY");
+							$("#container-graph1").html("");
+							$("#container-graph2").html("");
+
+							var j=0;
+							 errorTpye=1;
+							 
+							var min,max,temp;
+							
+							
+							if(pipeSize == 1) {
+						    	  
+						    	   min=0.05;
+									max=5.8;
+							}
+						       else if(pipeSize == 2)
+						       {
+						    	   min=0.22;
+									max=2.2;
+								 }
+						       else if(pipeSize == 3)
+						       {
+						    	   min=0.52;
+									max=5.27;
+								}
+						       else if(pipeSize == 4)
+						       {
+						    	   min=0.97;
+									max=9.7;
+								}
+							
+							 ErrorTableCreation(min,max,BladeShape, pipeSize, noBlades, time2, materialType, fluidType, supplierConstaint, time1);	
+							
+								
 					
-						$("#canvas-div").html("");
-						$("#container-graph1").html("");
-						$("#container-graph2").html("");
-						
-//						var maxIndexArr = 10;
-//						let  SampleRandomArr = [];
-						console.log(" errorType "+errorType);
-						console.log(" pipeSize " +pipeSize);
-						var min,max,temp;
-						var reading=[];
-						var expectedPulses=[];
-						var actualPulses=[];
-						
-						if(pipeSize == 1) {
-					    	  
-					    	   min=0.05;
-								max=5.8;
-						}
-					       else if(pipeSize == 2)
-					       {
-					    	   min=0.22;
-								max=2.2;
-							 }
-					       else if(pipeSize == 3)
-					       {
-					    	   min=0.52;
-								max=5.27;
-							}
-					       else if(pipeSize == 4)
-					       {
-					    	   min=0.97;
-								max=9.7;
-							}
-						function getRndInteger(min, max) {
-							  var num= Math.floor(Math.random() * (max - min)) + min;
-							  if($.inArray(num, max) === -1){
-								 // console.log(newNum + " is not in array");
-								   return num;
-
-								  }else{
-								   return getRndInteger(min, max);
-								  }
-							}
-
-						console.log(" min " +min+"   max "+max);
-						var tableError='<div class="col-sm-12" id="errorTable">'
-							+ '<table class=" table table-hover table-bordered " style="margin:10px;">'
-								+ ' <thead>'
-								+ '  <tr class="success">'
-								+ '   <th scope="col">FLOW(lit/sec)</th>'
-								+ '  <th scope="col">EXPECTED PULSES(per/lit)</th>'
-								+ '    <th scope="col">ACTUAL PULSES(per/lit)</th>'
-								+ '   </tr>'
-								+ '  </thead>'
-								+ '   <tbody>'
-						for(i=0;i<10;i++){
-							
-							reading[i]=getRndInteger(min,max);
-							expectedPulses[i] =reading[i]*supplierConstaint*time1;
-							//Blade missing
-							if(errorType==1)
-								{
-									
-										temp=parseInt(expectedPulses[i])/noBlades-1;
-										actualPulses[i]=temp.toFixed(2);
-								}
-							// error for shaft is stuck / rotation is slow
-							else if(errorType==2)
-							{
-								temp = parseInt(expectedPulses[i] * 5/100);
-								actualPulses[i] = expectedPulses[i] - temp;
-							}
-							// error for sensor is displaced
-							
-							else if(errorType==3)
-								{
-									actualPulses[i] =0;
-								}
-						
-							
-								console.log(" reading[i] " +reading[i]);
-								console.log(" expectedPulses[i] " +expectedPulses[i]);
-								console.log(" actualPulses[i] " +actualPulses[i]);
+					
+							function ErrorTableCreation(min,max,BladeShape, pipeSize, noBlades, time2, materialType, fluidType, supplierConstaint, time1,errorType){
 								
-								tableError+= '    <tr>'
-									+ '   <td>' + reading[i] + '</td>'
-									+ '   <td>' + Math.round(expectedPulses[i]) + '</td>'
-									+ '    <td>' +Math.round(actualPulses[i])+ '</td>'
-									
-									+ '     </tr>'
-							
-							
-						}
-						tableError += ' </tbody>'
-							+ '  </table>'
-							$("#canvas-div").html(tableError);
-						var errorDropDown='<div class="row">'
-							+'<div class="col-sm-12">'
-						   +'<label for="errorType">SELECT CORRECT ERROR TYPE</label>'
-						   +'</div>'
-							   
-						   +'<div class="col-sm-12" >'
-						   +'<select  class="form-control form-control-lg bg-info selectStyle"  id="errorCheck" >'
-						   +'<option value="0">--- SELECT CORRECT  ERROR TYPE --- </option>'
-//						   +'<option value="#6b6a64" >Oxygen  </option>'
-						   +'<option value="1" >Blade missing</option>'
-						   +'<option value="2">Error for shaft is stuck / rotation is slow</option>'
-						   +'<option value="3">error for sensor is displaced</option>'
-						   +'</select>'
-						  
-						   +'</div>'
-						   +'</div>'
-						   +'<div class="row">'
-						   +'<div class="col-sm-12 alert" id="alertError" disabled >'
-//						   +' <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span> '
-						   +' <strong id="correctError"></strong> '
-						   +'</div>'
-						   +'</div>'
-						   +'<br><div class="col-sm-12" id="nextLevelResultDiv" >'
-							+'<button type="button" class="btn btn-success btnStyle" id="nextLevelResult" >RESULT</button>'
-							+'</div>'
-						   $("#canvas-div").html(tableError+errorDropDown);
-						$('#errorCheck').on('change', function() {
-							$("#alertError").prop("disabled", false);
-							
-							var errorCheck= parseInt($("#errorCheck").val());
-							if(errorType==errorCheck)
-							{
+								var reading=[];
+								var expectedPulses=[];
+								var actualPulses=[];
 								
-								$("#correctError").html("Selected Error type is match...");
-								$("#nextLevelResultDiv").prop("disabled", false);
-								$(".alert").css("background-color", "green");
-							}
-							else if(errorCheck==0)
-							{
-								$("#correctError").html(" Select Error type  ... ");
-								$("#nextLevelResultDiv").prop("disabled", true);
-								$(".alert").css("background-color", "blue");
-							}
-							else
-							{$("#nextLevelResultDiv").prop("disabled", true);
-								$("#correctError").html(" Selected Error type is wrong .. ");
-								$(".alert").css("background-color", "red");
-							}
+//								var errorSolveNo[0]=4;
+								
+								
+								var errorType= Math.floor(Math.random() * (4 - 1)) + 1;
+								console.log(" errorType table " +errorType);
+								function readingRandom(min,max) {
+								
+									
 							
-						});
+								    let temp =parseFloat( Math.floor(Math.random() * (max - min)) + min);
+								    let random=temp.toFixed(2);
+								    return random;
+								}
+											
+
+											var tableError='<h3><center style="color:#5c412b;">In this level detect the fault in turbine flow meter</center></h3>'
+												+'<h5><center style="color:#5c412b;">The output of the turbine flow meter is as shown in the table. Identify the Fault</center></h5>'
+												+'<div class="col-sm-12" id="errorTable">'
+												+ '<table class=" table table-hover table-bordered " style="margin:10px;">'
+													+ ' <thead>'
+													+ '  <tr class="success">'
+													+ '   <th scope="col">FLOW(lit/sec)</th>'
+													+ '  <th scope="col">EXPECTED PULSES(per/lit)</th>'
+													+ '    <th scope="col">ACTUAL PULSES(per/lit)</th>'
+													+ '   </tr>'
+													+ '  </thead>'
+													+ '   <tbody>'
+											for(i=0;i<5;i++){
+												
+												reading[i]= readingRandom(min,max);
+												expectedPulses[i] =parseInt(reading[i]*supplierConstaint*time1);
+												//Blade missing
+												if(errorType==1)
+													{
+														
+															temp=parseInt(expectedPulses[i])/noBlades-1;
+															actualPulses[i]=temp.toFixed(2);
+													}
+												// error for shaft is stuck / rotation is slow
+												else if(errorType==2)
+												{
+													temp = parseInt(expectedPulses[i] * 5/100);
+													actualPulses[i] = expectedPulses[i] - temp;
+												}
+												// error for sensor is displaced
+												
+												else if(errorType==3)
+													{
+														actualPulses[i] =0;
+													}
+											
+													
+													tableError+= '    <tr>'
+														+ '   <td>' + reading[i] + '</td>'
+														+ '   <td>' + Math.round(expectedPulses[i]) + '</td>'
+														+ '    <td>' +Math.round(actualPulses[i])+ '</td>'
+														
+														+ '     </tr>'
+												
+												
+											}
+											tableError += ' </tbody>'
+												+ '  </table>'
+												$("#canvas-div").html(tableError);
+											
+												CreateDropdown(min,max,BladeShape, pipeSize, noBlades, time2, materialType, fluidType, supplierConstaint, time1,errorType);
+							}			
+								
+							function CreateDropdown(min,max,BladeShape, pipeSize, noBlades, time2, materialType, fluidType, supplierConstaint, time1,errorType){
+								var errorDropDown=' <div class="row">'
+									+'<div class="col-sm-12">'
+								   +'<label for="errorType">SELECT CORRECT ERROR TYPE</label>'
+								   +'</div>'
+									   
+								   +'<div class="col-sm-12" >'
+								   +'<select  class="form-control form-control-lg bg-info selectStyle"  id="errorCheck" >'
+								   +'<option value="0">--- SELECT CORRECT  ERROR TYPE --- </option>'
+//								   +'<option value="#6b6a64" >Oxygen  </option>'
+								   +'<option value="1" >Blade missing</option>'
+								   +'<option value="2">Error for shaft is stuck / rotation is slow</option>'
+								   +'<option value="3">error for sensor is displaced</option>'
+								   +'</select>'
+								  
+								   +'</div>'
+								   +'</div>'
+								   +'<div class="row">'
+								   +'<div class="col-sm-12 alert" id="alertError" disabled >'
+//								   +' <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span> '
+								   +' <strong id="correctError"></strong> '
+								   +'</div>'
+								   +'</div>'
+//								   
+								  
+								   $("#canvas-div").append(errorDropDown);
+							
+								$('#errorCheck').on('change', function() {
+									
+									$("#nextLevelResultDiv").prop("disabled", true);
+									var SelectedError=$("#errorCheck").val();
+									console.log(" errorAttemptCounter "+errorAttemptCounter);
+									console.log(" SelectedError  "+SelectedError);
+									
+									
+										if(errorType==SelectedError)
+											{
+											
+												
+													if(errorAttemptCounter<3)	{
+														$("#nextLevelResultDiv").prop("disabled", true);
+//														$("#correctError").html("Selected Error type is match... New Table");
+														alert("Selected Error type is match... New reading with new error");
+														$(".alert").css("background-color", "green");
+														errorAttemptCounter++;
+//														errorType1= Math.floor(Math.random() * (4 - 1)) + 1;
+//														console.log(" errorType1 in "+errorType);
+														ErrorTableCreation(min,max,BladeShape, pipeSize, noBlades, time2, materialType, fluidType, supplierConstaint, time1,errorType);
+													}									
+										}
+										else if(SelectedError==0)
+											{
+					
+													
+													$("#nextLevelResultDiv").prop("disabled", true);
+													$("#correctError").html(" Select Error type  ... ");
+													$(".alert").css("background-color", "blue");
+													console.log(" zero");
+											}
+										else
+											{
+											$("#nextLevelResultDiv").prop("disabled", true);
+											$("#correctError").html(" Selected Error type is wrong .. ");
+											$(".alert").css("background-color", "red");
+											console.log(" wrong");
+											}
+										
+										if(errorAttemptCounter==3)
+											{
+												$("#canvas-div").html("");
+												var button= '<br><button type="submit" id="resultAnalysis" style="margin-top:17px;width:100%;" class=" btn btn-success"  >RESULT</button>'
+													$("#canvas-div").append(button);	
+												console.log(" errorAttemptCounter "+errorAttemptCounter);
+											}
+									
+										$("#resultAnalysis").click(function() {
+											resultAnalysis();
+										});
+									
+								});
+								
+							
+								}
+							
+								
 						
-						$("#nextLevelResult").click(function() {
-							 resultAnalysis();
-						
-						});
-						
-						
-				   });
+					});	
+								
+//					   });//Close Next Level 1
 				
-				
 						
-			}
+			}//correctionTable
 			
 			
-			
+			AnswerCounter=0;
 		$("#submitZeroError").click(function() {
 			 zeroErrorCounter++;
 			
@@ -2773,20 +2819,16 @@ var gud ;
 //						$("#mimicModelMessage").html(str);
 					
 				}
-			} else if (AnswerCounter == 3) {
+			} 
+			else if (AnswerCounter == 3) {
 				alert("ZERO ERROR =  ACTUAL PULSES-TURBINE PULSES");
 //				var str='<img src="images/info.png" class=" img-fluid " />'
 //					+'<b id="errorText" style="color:red;margin-left:10px;" >ZERO ERROR =  ACTUAL PULSES-TURBINE PULSES ...</b> '
 //					$("#mimicModelMessage").html(str);
 				
-			} else if (AnswerCounter == 4) {
-				alert(" Correct Answer " + correctAns);
-//				var str='<img src="images/info.png" class=" img-fluid " />'
-//					+'<b id="errorText" style="color:red;margin-left:10px;" >Correct Answer " + '+correctAns+' ...</b> '
-//					$("#mimicModelMessage").html(str);
+			} else if (AnswerCounter >= 4) {
 				
 
-			} else {
 				if (textZeroError == correctAns) {
 					$("#spanError").show();
 					$("#iconCorrectZero").show();
@@ -2795,7 +2837,7 @@ var gud ;
 					
 					AnswerCounter = 0;
 				} else {
-					alert("Incorrect Answer ");
+					alert(" Incorrect Answer " + correctAns);
 //					var str='<img src="images/cancel.png" class=" img-fluid " />'
 //						+'<b id="errorText" style="color:red;margin-left:10px;" >Incorrect Answer ...</b> '
 //						$("#mimicModelMessage").html(str);
@@ -2805,7 +2847,8 @@ var gud ;
 		});
 		AnswerCounter=0;
 		$("#submitSpanError").click(function() {
-			 spanErrorCounter++;
+			
+			spanErrorCounter++;
 			
 			var textSpanError = $("#textSpanError").val();
 			var lastValue = masterJson.demo.length - 1;
@@ -2816,23 +2859,26 @@ var gud ;
 //			console.log("masterJson.demo[" + lastValue + "].tp " + masterJson.demo[lastValue].tp);
 //			console.log("masterJson.demo[" + lastValue + "].tpc " + parseInt(masterJson.demo[lastValue].tpc));
 			if (AnswerCounter < 3) {
-				if (textSpanError == correctAns) {
-					$("#Linerality").show();
-					
-					$("#iconCorrectSpan").show();
-					$("#submitSpanError").prop('disabled', true);
-					$("#textSpanError").prop('disabled', true);
-					AnswerCounter = 0;
-				} else {
-					alert("Incorrect Answer ");
-				}
-			} else if (AnswerCounter == 3) {
+					if (textSpanError == correctAns) {
+						$("#Linerality").show();
+						
+						$("#iconCorrectSpan").show();
+						$("#submitSpanError").prop('disabled', true);
+						$("#textSpanError").prop('disabled', true);
+						AnswerCounter = 0;
+					} else {
+						alert("Incorrect Answer ");
+					}
+			} 
+			else if (AnswerCounter == 3) 
+			{
 				alert(" SPAN ERROR =  ACTUAL PULSES-TURBINE PULSES ");
-			} else if (AnswerCounter == 4) {
-				alert(" Correct Answer " + correctAns);
-
-			} else {
-				if (textSpanError == correctAns) {
+			} 
+			else if (AnswerCounter >= 4)
+			{
+				var textSpanError = $("#textSpanError").val();
+				if (textSpanError == correctAns) 
+				{
 					
 					$("#Linerality").show();
 					$("#iconCorrectSpan").show();
@@ -2840,14 +2886,16 @@ var gud ;
 					$("#textSpanError").prop('disabled', true);
 					$("#submitSpanError").prop('disabled', true);
 					
-				} else {
-					alert("Incorrect Answer ");
+				}
+				else {
+					alert(" Correct Answer " + correctAns);
 				}
 			}
 			AnswerCounter++;
 		});
 		AnswerCounter=0;
-		
+		var accurance=parseFloat( Math.floor(Math.random() * (80 - 30)) + 30);
+		console.log(" accurance"+accurance);
 		$("#lineralitySubmit").click(function() {
 			
 				 lineralityCounter++;
@@ -2969,38 +3017,46 @@ var gud ;
 		
 		$("#accuracySubmit").click(function() {
 		 accurancyCounter++;
+		 
 			
 			var length=masterJson.demo.length;
 			var sum=0;
 			var minus=0;
 			var textacc=$("#textaccuracy").val();
-			for (var i = 0; i < masterJson.demo.length; i++) {
-				
-				
-				
-				
-				var tpc=parseInt(masterJson.demo[i].tpc);
-				
-				//console.log("tp  "+tpc);
-				 minus=tpc-pulses[i];
-				 
-				// console.log("pulses[i]  "+pulses[i] );
-			//	console.log("minus  "+minus);
-				var percentage=(minus/length)*100;
-				
-			//	console.log("percentage  "+percentage);
-				sum+=percentage;
-			//	console.log("sum "+sum);
-			   
-			}
-			//console.log("sum  "+sum);
-			var averageAccuracy=sum/length;
-			
-			var averageAccuracy1=Math.round(averageAccuracy);
-		
+//			for (var i = 0; i < masterJson.demo.length; i++) {
+//				
+//				
+//				
+//				
+//				var tpc=parseInt(masterJson.demo[i].tpc);
+//				
+//				//console.log("tp  "+tpc);
+//				 minus=tpc-pulses[i];
+//				 
+//				// console.log("pulses[i]  "+pulses[i] );
+//			//	console.log("minus  "+minus);
+//				var percentage=(minus/length)*100;
+//				
+//			//	console.log("percentage  "+percentage);
+//				sum+=percentage;
+//			//	console.log("sum "+sum);
+//			   
+//			}
+//			//console.log("sum  "+sum);
+//			var averageAccuracy=sum/length;
+//			
+//			var averageAccuracy1=Math.round(averageAccuracy);
+//			if(averageAccuracy1>0 && averageAccuracy1<=100)
+//				{
+//				
+//				}
+//			if(averageAccuracy1<0 && averageAccuracy1>=-100)
+//			{
+//				
+//			}
 			//console.log("averageAccuracy  "+averageAccuracy1);
 			if (AnswerCounter < 3) {
-				if (textacc == averageAccuracy1) {
+				if (textacc == accurance) {
 					
 					$("#accuracy").show();
 					$("#iconCorrectAccuracy").show();
@@ -3017,10 +3073,10 @@ var gud ;
 			} else if (AnswerCounter == 3) {
 				alert(" 1.PERCENTAGE ACCURACY = ((STANDERD OUTPUT - OBSERVED OUTPUT)/TOTAL NUMBER OF READING)*100) 2.AVERAGE ACCURACY = SUM OF(PERCENTAGE ACCURACY)/TOTAL NUMBER OF READING)   ");
 			} else if (AnswerCounter == 4) {
-				alert(" Correct Answer " + averageAccuracy1);
+				alert(" Correct Answer " + accurance);
 
 			} else {
-				if (textacc == averageAccuracy1) {
+				if (textacc == accurance) {
 					
 					
 					$("#accuracy").show();
@@ -3313,6 +3369,3 @@ var gud ;
 	});
 }//main Function close
 
-$("#resultAnalysis").click(function() {
-	resultAnalysis(correctMeterConstantCounter, wrongMeterConstantCounter, skipMeterConstantCounter, correctMaterialType, wrongMaterialType, skipNoBlades, skipShapeType, skipMaterialType, skipFluidType, skipPipeSize, skipTime);
-});
