@@ -639,7 +639,7 @@ function pluseUnit(noBlades)
 //	  startImg = paper.image("images/start.png", 80, 50, 60, 60).attr({	"clip-rect" : "80,50,60,60"});
 //     startLabel=paper.text(100,30,'Start Process').attr({"font-size":20,"fill":"#ff2019","stroke-width":15,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 20});
 //				
-//	
+//	 
 //	
 //	 stopImg = paper.image("images/stop1.png", 600, 50, 70, 70).attr({"clip-rect" : "600,50,70,70"});
 //	 stopLabel=paper.text(630,30,'Stop Process').attr({"font-size":20,"fill":"#ff2019","stroke-width":15,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 20});
