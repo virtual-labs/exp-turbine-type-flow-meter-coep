@@ -190,9 +190,9 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
 
 	var img = paper.image("images/knob.png", (x+215), 560, 70, 70);
 
-	var plus = paper.image("images/plus.PNG", (x+300), 580, 30, 30);
+	var plus = paper.image("images/plus.png", (x+300), 580, 30, 30);
 
-	var minus = paper.image("images/minus.PNG", (x+170), 580, 30, 30);
+	var minus = paper.image("images/minus.png", (x+170), 580, 30, 30);
 
 	var reset_button = paper.image("images/Reset.png", (x+680), 400, 100, 100);
 
