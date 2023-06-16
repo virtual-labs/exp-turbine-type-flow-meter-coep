@@ -19,6 +19,12 @@
 {
 	font-size:20px;
 }
+
+@media screen and (min-width: 480px) {
+  .readingTable {
+    width: 50%;
+  }
+}
 footer {
 	background: rgb(125,176,169);
 background: linear-gradient(90deg, rgba(125,176,169,1) 0%, rgba(78,109,114,1) 31%, rgba(33,44,62,1) 100%);
@@ -250,4 +256,53 @@ background: linear-gradient(90deg, rgba(125,176,169,1) 0%, rgba(78,109,114,1) 31
 .ExpectedText{
 	margin:50px;
 	
+}
+.highcharts-title{
+	 font-size: 3.2em;
+}
+.highcharts-background{
+	fill:#e5e5e5;
+	fontsize:40rem;
+	color:#fff;
+	
+}
+.highcharts-title{
+	       font-size: 2.2em;
+    color:red;
+    font-weight: bold;
+    fill:red;
+}
+.highcharts-subtitle{
+	       font-size: 2.2em;
+    color: red;
+    font-weight: bold;
+    fill: red;
+}
+.highcharts-axis-title{
+
+        color: rgb(58 22 22);
+    font-size: 1.8em;
+    fill: rgb(112 37 37);
+}
+.highcharts-yaxis
+{
+	font-size: 2.0em;
+	fill:rgb(186 40 40);
+}
+.highcharts-xaxis
+{
+	font-size: 2.0em;
+	fill:rgb(186 40 40);
+}
+.highcharts-xaxis-labels
+{
+	font-size: 1.5em;
+}
+.highcharts-yaxis-labels
+{
+	font-size: 1.8em;
+}
+.highcharts-point 
+{
+	fill:red;
 }
