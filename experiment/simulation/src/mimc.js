@@ -50,12 +50,18 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
 	var pulses=[];
 	var resultJson = {};
 	var resultMasterJson = {};
-	var resultArrayJson = [];
+
 	var ActualAnsSubmit=0;
 	var zeroErrorCounter=0;
 	var spanErrorCounter=0;
 	var accurancyCounter=0;
 	var lineralityCounter=0;
+		
+	
+	resultJson = {};
+	var masterResultJson={};
+	var resultArrayJson = [];
+	var errorAttemptCounter=0;
 	var flg = 0;
     var tm=0, sec=time1, seconds = 0, minutes = 0, hours = 0,    h1= "00:00:00",RealTimer;
 //     console.log("SECONDS="+sec);
@@ -318,7 +324,7 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
 				water_weight_inc();
 			}
 		} else {
-			alert("Min limit");
+			alert("Minimum limit ");
 //			var str='<img src="images/info.png" class=" img-fluid " />'
 //				+'<b id="errorText" style="color:red;margin-left:10px;" >Min limit...</b> '
 //				$("#mimicModelMessage").html(str); 
@@ -616,6 +622,7 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
  							 array.splice(index, 1); 
 								}
 //							console.log("array value in else array"+array);	
+							
 							alert("There is not enough water to start the pump ... click on V2 and complete the process");
 //							var str='<img src="images/info.png" class=" img-fluid " />'
 //								+'<b id="errorText" style="color:red;margin-left:10px;" > There is not enough water to start the pump ... click on V2 and complete the process..</b> '
@@ -1123,8 +1130,8 @@ var gud ;
 		// CALCULATE FOR ACTUAL FLOW AFTER ADDING ERROR
 		ft = (xf * turbine_pulses) / turbine_pulses_corr;
 		wterr = (weight_correct * turbine_pulses  )/turbine_pulses_corr;
-		console.log("user flow "+ ft);
-		console.log("user weight "+ wterr);
+		//console.log("user flow "+ ft);
+		//console.log("user weight "+ wterr);
 
 		incFactor = turbine_pulses / time1;
 
@@ -1411,18 +1418,18 @@ var gud ;
 		wtJson.percent = pp;
 		wtJson.tpc = parseInt(turbine_pulses_corr);
 		wtJson.ef = p.toFixed(2);
-		console.log(" original Error "+ error);
+		//console.log(" original Error "+ error);
 		
 		if(error<0)
 		{
 			if(error % 2 !=0)
 			{
 				wtJson.err1 = error-1;
-				console.log("add wtJson.err1  "+ wtJson.err1 );
+				//console.log("add wtJson.err1  "+ wtJson.err1 );
 			}
 			else
 			{	wtJson.err1 = error;
-			console.log("wtJson.err1  "+ wtJson.err1 );
+			//console.log("wtJson.err1  "+ wtJson.err1 );
 			}
 				
 		}
@@ -1432,12 +1439,12 @@ var gud ;
 				if(error % 2 !=0)
 				{	
 					wtJson.err1 = error+1;
-					console.log("add wtJson.err1  "+ wtJson.err1 );
+					//console.log("add wtJson.err1  "+ wtJson.err1 );
 				}
 				else
 				{	
 					wtJson.err1 = error;	
-				console.log("wtJson.err1  "+ wtJson.err1 );
+				//console.log("wtJson.err1  "+ wtJson.err1 );
 				}
 			}
 		else if(error==0){
@@ -1515,7 +1522,7 @@ var gud ;
 			+ '</div>'
 
 		$("#tableDesign").append(submit);
-
+		
 		var read = "";
 		$("#showGraph").click(function() {
 			if (masterJson.demo.length >= 6) {
@@ -1567,11 +1574,17 @@ var gud ;
 	function graphCreation(masterJson){
 		
 			$("#canvas-div").html("");
-			$("#canvas-div").css("height", '');
-			$("#canvas-div").css("width", '');
+			$("#canvas-div").css("height", '10');
+			$("#canvas-div").css("width", '10');
+//			$("#container panel-body").html("");
+//			$('.container panel-body').removeAttr('width');
+//			$('.container panel-body').removeAttr('height');
+//			$("#container-graph1").css("height", '500');
+			$("#container-graph1").css("width", '800');
+//			$("#container-graph2").css("height", '500');
+			$("#container-graph2").css("width", '800');
 
-			$("#container-graph1").css("height", "400px");
-			$("#container-graph1").css("width", "800px");
+			
 
 			for (var i = 0; i < masterJson.demo.length; i++) {
 				xdata[i] = parseInt(masterJson.demo[i].wt);
@@ -1687,8 +1700,7 @@ var gud ;
 			});
 			 var graphData1=[];
 			//Turbine Flow graph
-			$("#container-graph1").css("height", "400px");
-			$("#container-graph2").css("width", "800px");
+		
 
 			for (var i = 0; i < masterJson.demo.length; i++) {
 				xdata[i] = parseFloat(masterJson.demo[i].flow);
@@ -1794,6 +1806,8 @@ var gud ;
 			+ '  </table>'
 		$("#main-div-conf").html(table);
 		calibration(masterJson);
+	
+		
 	}
 	var zeroErrorDiv="";
 	var flagZeroErrorAttend=0;
@@ -1803,7 +1817,32 @@ var gud ;
 			+ ' <label >ZERO ERROR<i class="fa fa-check" id="iconCorrectZero" aria-hidden="true" style="color:green;margin-left:10px;" ></i></label>'
 			+ ' <input type="text"  class="form-control" id="textZeroError" data-toggle="tooltip" title="Hooray!">'
 			+ '<br>'
-			+ '<button type="button"  class="btn btn-primary btnStyle" id="submitZeroError"  > SUBMIT</button>'
+			+ '<button type="button"  class="btn btn-primary btnStyle" id="submitZeroError" data-toggle="modal" data-target="#Errors" > SUBMIT</button>'
+//			 +'<div class="row">'
+//			   +'<div class="col-sm-12">'
+//			   +'<button type="button" class="btn btn-danger btnStyle" id="checkConfg" data-toggle="modal" data-target="#myModal" disabled>CHECK CONFIGURATION </button>'
+//			   +'<div class="modal fade" id="Errors" role="dialog">'
+//			   +'<div class="modal-dialog">'
+//			   +'<!-- Modal content-->'
+//			   +' <div class="modal-content">'
+//			   +'<div class="modal-header bg-info"  >'
+//			  
+//			   +'<h4 class="modal-title">Message box</h4>'
+//			   +'<button type="button" class="close" data-dismiss="modal" style="color:#fff;">&times;</button>'
+//			   +'</div>'
+//			   +'<div class="modal-body" id="ErrorsMsg" >'
+//			 
+//			   
+//			   +'</div>'
+//			   +'<div class="modal-footer">'
+//			   +'<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>'
+//			   +'</div>'
+//			   +'</div>'
+//			   +'</div>'
+//			   +'</div>'
+//			   +'</div>'
+//			   +'</div>'
+//			+'</div>'
 			+ '</div>'
 			+ '<div class=" col-sm-3" id="spanError" >'
 			+ ' <label >SPAN ERROR<i class="fa fa-check" id="iconCorrectSpan" aria-hidden="true" style="color:green;margin-left:10px;" ></i> </label>'
@@ -1812,10 +1851,10 @@ var gud ;
 			+ ' <button type="button" class="btn btn-primary btnStyle" id="submitSpanError">SUBMIT</button>'
 			+ '</div>'
 			+ '<div class=" col-sm-3"  id="Linerality">'
-			+ ' <label >LINERALITY <i class="fa fa-check" id="iconCorrectLinerality" aria-hidden="true" style="color:green;margin-left:10px;" ></i> </label>'
+			+ ' <label >LINEARITY <i class="fa fa-check" id="iconCorrectLinerality" aria-hidden="true" style="color:green;margin-left:10px;" ></i> </label>'
 			+ ' <input type="text"  class="form-control"  id="textLineralityeError" data-toggle="tooltip" title="Hooray!">'
 			+ '<br>'
-			+ ' <button type="button" class="btn btn-primary btnStyle" id="lineralitySubmit">SUBMIT</button>'
+			+ ' <button type="button" class="btn btn-primary btnStyle" id="lineralitySubmit" >SUBMIT</button>'
 			+ '</div>'
 			+ '<div class=" col-sm-3"  id="accuracy">'
 			+ ' <label >ACCURACY (%)<i class="fa fa-check" id="iconCorrectAccuracy" aria-hidden="true" style="color:green;margin-left:10px;" ></i></label>'
@@ -1956,7 +1995,7 @@ var gud ;
 							   $("#plusMinusCalibrationSpan").show();
 							   $("#errorZeroAlert").show();
 								$("#spanPanel").show();
-								
+								$(".highcharts-point").css("fill", "red");
 							 temp= parseInt(masterJson.demo[i].pulwt);
 							ydataPulse[i]=masterJson.demo[i].pulwt=temp;
 							
@@ -1985,8 +2024,8 @@ var gud ;
 			var TPC=parseInt(masterJson.demo[0].wtc);
 			var TP=parseInt(masterJson.demo[0].pulwt);
 	
-			console.log("TPC "+TPC);
-			console.log("TP "+TP);
+		//	console.log("TPC "+TPC);
+		//	console.log("TP "+TP);
 				
 			
 					for(i=0;i<masterJson.demo.length;i++){
@@ -2000,6 +2039,7 @@ var gud ;
 								$("#plusMinusCalibrationSpan").show();
 									flagZeroErrorAttend=2;
 									$("#spanPanel").show();
+									$(".highcharts-point").css("fill", "red");
 								 temp= parseInt(masterJson.demo[i].pulwt);
 								ydataPulse[i]=masterJson.demo[i].pulwt=temp;
 						 }
@@ -2027,17 +2067,17 @@ var gud ;
 			var ydataTurbine=[];
 			var length= masterJson.demo.length-1;
 			$("#canvas-div").html(" ");
-			$("#knobZero").css({ transform: 'rotate('+rotate+'deg)' });
+			$("#knobSpan").css({ transform: 'rotate('+rotate+'deg)' });
 			minusZeroValue=parseInt(masterJson.demo[length].err1/5);
 			var TPC=parseInt(masterJson.demo[length].wtc);
 			var TP=parseInt(masterJson.demo[length].pulwt);
-			console.log("TPC "+TPC+" plus minus");
-			console.log("TP "+TP+" plus minus");
+			//console.log("TPC "+TPC+" plus minus");
+			//console.log("TP "+TP+" plus minus");
 			 for(i=0;i< masterJson.demo.length;i++){
 				
 				 if(TP==TPC ||TP==TPC-1 || TP==TPC-2 || TP==TPC-3 || TP==TPC+4 ||TP==TPC+1 || TP==TPC+2 || TP==TPC+3|| TP==TPC-4)
 					 {
-					 console.log("TPC "+TPC+" TP "+TP);
+					 //console.log("TPC "+TPC+" TP "+TP);
 					    $("#plusMinusCalibrationSpan").hide();
 					    $("#zeroErrorAlert").hide();
 					    $("#errorZeroAlert").hide();
@@ -2075,12 +2115,12 @@ var gud ;
 					var ydataTurbine=[];
 					
 					$("#canvas-div").html(" ");
-					$("#knobZero").css({ transform: 'rotate('+rotate+'deg)' });
+					$("#knobZero2").css({ transform: 'rotate('+rotate+'deg)' });
 					
 					var TPC=parseInt(masterJson.demo[0].wtc);
 					var TP=parseInt(masterJson.demo[0].pulwt);
 					minusZeroValue=parseInt(masterJson.demo[0].err1/5);
-					 console.log("TPC "+TPC+" TP "+TP);
+					// console.log("TPC "+TPC+" TP "+TP);
 					for(i=0;i< masterJson.demo.length;i++){
 						 
 						if(masterJson.demo.length-1==i)
@@ -2123,7 +2163,7 @@ var gud ;
 					minusZeroValue=parseInt(masterJson.demo[0].err1/5);
 					 console.log("TPC "+TPC+" TP "+TP);
 					$("#canvas-div").html(" ");
-					$("#knobZero").css({ transform: 'rotate('+rotate+'deg)' });
+					$("#knobZero2").css({ transform: 'rotate('+rotate+'deg)' });
 					
 					var TPC=parseInt(masterJson.demo[0].wtc);
 					var TP=parseInt(masterJson.demo[0].pulwt);
@@ -2172,12 +2212,12 @@ var gud ;
 			var ydataTurbine=[];
 			var length= masterJson.demo.length-1;
 			$("#canvas-div").html(" ");
-			$("#knobZero").css({ transform: 'rotate('+rotate+'deg)' });
+			$("#knobSpan").css({ transform: 'rotate('+rotate+'deg)' });
 			
 			var TPC=parseInt(masterJson.demo[length].wtc);
 			var TP=parseInt(masterJson.demo[length].pulwt);
 			
-			 console.log("TPC "+TPC+" TP "+TP);
+			// console.log("TPC "+TPC+" TP "+TP);
 			 for(i=0;i< masterJson.demo.length;i++){
 				
 				
@@ -2215,7 +2255,7 @@ var gud ;
 			          $('#container-graph1').highcharts().redraw();
 
 			
-			 rotate-=10;
+			 rotate+=10;
 			 console.log(" After Span And Zero " +masterJson);
 				 
 			 
@@ -2306,7 +2346,7 @@ var gud ;
 				var TPC=parseInt(masterJson.demo[i].wtc);
 				var TP=parseInt(masterJson.demo[i].pulwt);
 				 var minusValue=parseInt(TP/50);
-				 console.log("algo 1 TPC "+TPC+" TP "+TP);
+				// console.log("algo 1 TPC "+TPC+" TP "+TP);
 				var error=parseInt(masterJson.demo[i].err1);
 
 				
@@ -2354,7 +2394,7 @@ var gud ;
 				var TPC=parseInt(masterJson.demo[i].wtc);
 				var TP=parseInt(masterJson.demo[i].pulwt);
 				 var minusValue=parseInt(TP/50);
-				 console.log(" algo 2 TPC "+TPC+" TP "+TP);
+				// console.log(" algo 2 TPC "+TPC+" TP "+TP);
 				var error=parseInt(masterJson.demo[i].err1);
 
 				
@@ -2414,7 +2454,7 @@ var gud ;
 				 TP=parseInt(masterJson.demo[i].pulwt);
 				 var minusValue=parseInt(TP/50);
 				 var error =parseInt(masterJson.demo[i].err1);
-				console.log("algo 1 TPC "+TPC+" TP "+TP);
+				//console.log("algo 1 TPC "+TPC+" TP "+TP);
 				if(i==0)
 				{
 					ydataPulse[i]=TP=TPC;
@@ -2488,7 +2528,7 @@ var gud ;
 				 TP=parseInt(masterJson.demo[i].pulwt);
 				 var minusValue=parseInt(TP/50);
 				 var error =parseInt(masterJson.demo[i].err1);
-				console.log("algo 1 TPC "+TPC+" TP "+TP);
+				//console.log("algo 1 TPC "+TPC+" TP "+TP);
 				if(i==0)
 				{
 					ydataPulse[i]=masterJson.demo[i].pulwt=TPC;
@@ -2581,17 +2621,50 @@ var gud ;
 						+ '  </table>'
 						+'<br><div classcol-sm-12">'
 						+'<b>After few months it is observed that Turbine flow meter is not working properly. As a maintenance engineer, please identify and rectify the fault.</b>'
-						+'<button type="button" class="btn btn-danger btnStyle" id="nextLevel1" >NEXT LEVEL </button>'
+						+'<button type="button" class="btn btn-danger btnStyle" id="ErrorFault" >NEXT LEVEL </button>'
 						+'</div>'
 						 $("#calibrationPanel").append(tableMainDiv);
 				 
 				
 				
 				 
-					$("#nextLevel1").click(function() {
-						 
+					$("#ErrorFault").click(function() {
+						//ResultJson
+						
+						resultJson.resetExptd = 1;
+						resultJson.resetActul = reset_btn_click_counter;
+						resultJson.V1Exptd = 1;
+						resultJson.V1Actual = V1_click_counter;
+						resultJson.V2Exptd = masterJson.demo.length;
+						resultJson.V2Actual = V2_click_counter;
+						resultJson.pumpExptd = masterJson.demo.length;
+						resultJson.pumpActual = pump_click_counter;
+						
+						resultJson.ExptAnsSubmit = masterJson.demo.length;
+						resultJson.ActualAnsSubmit = ActualAnsSubmit;
+						resultJson.actualZeroErrorCounter=zeroErrorCounter;
+						resultJson.ExptZeroErrorCounter=masterJson.demo.length;
+						resultJson.spanErrorCounter=spanErrorCounter;
+						resultJson.ExptspanErrorCounter=masterJson.demo.length;
+						resultJson.accurancyCounter=accurancyCounter;
+						resultJson.ExptAccurancyCounter=masterJson.demo.length;
+						resultJson.lineralityCounter=lineralityCounter;
+						resultJson.ExptlineralityCounter=masterJson.demo.length;
+						
+						resultArrayJson.push(resultJson);
+						masterResultJson.demo = resultArrayJson;
+						mainJson.mimic=resultJson;
+						console.log( masterResultJson);
+						//End ResultJson
+						
+						
+						
+						$("#centerText2").html("FAULT IDENTIFY");
+							
 							$("#canvas-div").html("");
-							$("#centerText2").html("FAULT IDENTIFY");
+							$("#canvas-div").css("height", '800');
+							$("#canvas-div").css("width", '800');
+							
 							$("#container-graph1").html("");
 							$("#container-graph2").html("");
 
@@ -2632,12 +2705,12 @@ var gud ;
 								var reading=[];
 								var expectedPulses=[];
 								var actualPulses=[];
-								
+								console.log( masterResultJson);
 //								var errorSolveNo[0]=4;
 								
 								
 								var errorType= Math.floor(Math.random() * (4 - 1)) + 1;
-								console.log(" errorType table " +errorType);
+							//	console.log(" errorType table " +errorType);
 								function readingRandom(min,max) {
 								
 									
@@ -2650,7 +2723,7 @@ var gud ;
 
 											var tableError='<h3><center style="color:#5c412b;">In this level detect the fault in turbine flow meter</center></h3>'
 												+'<h5><center style="color:#5c412b;">The output of the turbine flow meter is as shown in the table. Identify the Fault</center></h5>'
-												+'<div class="col-sm-12" id="errorTable">'
+												+'<div class="col-sm-12 col-lg-12 col-md-12 " id="errorTable">'
 												+ '<table class=" table table-hover table-bordered " style="margin:10px;">'
 													+ ' <thead>'
 													+ '  <tr class="success">'
@@ -2696,6 +2769,7 @@ var gud ;
 											}
 											tableError += ' </tbody>'
 												+ '  </table>'
+												+'<div>'
 												$("#canvas-div").html(tableError);
 											
 												CreateDropdown(min,max,BladeShape, pipeSize, noBlades, time2, materialType, fluidType, supplierConstaint, time1,errorType);
@@ -2715,15 +2789,16 @@ var gud ;
 								   +'<option value="2">Error for shaft is stuck / rotation is slow</option>'
 								   +'<option value="3">error for sensor is displaced</option>'
 								   +'</select>'
-								  
 								   +'</div>'
-								   +'</div>'
+//								   
+//								   +'</div>'
 								   +'<div class="row">'
 								   +'<div class="col-sm-12 alert" id="alertError" disabled >'
 //								   +' <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span> '
 								   +' <strong id="correctError"></strong> '
 								   +'</div>'
 								   +'</div>'
+								   +'</div>'//errorDropDown row end
 //								   
 								  
 								   $("#canvas-div").append(errorDropDown);
@@ -2732,8 +2807,8 @@ var gud ;
 									
 									$("#nextLevelResultDiv").prop("disabled", true);
 									var SelectedError=$("#errorCheck").val();
-									console.log(" errorAttemptCounter "+errorAttemptCounter);
-									console.log(" SelectedError  "+SelectedError);
+									//console.log(" errorAttemptCounter "+errorAttemptCounter);
+									//console.log(" SelectedError  "+SelectedError);
 									
 									
 										if(errorType==SelectedError)
@@ -2814,17 +2889,17 @@ var gud ;
 					AnswerCounter = 0;
 				} else {
 					alert("Incorrect Answer ");
-//					var str='<img src="images/cancel.png" class=" img-fluid " />'
-//						+'<b id="errorText" style="color:red;margin-left:10px;" > Incorrect Answer ...</b> '
-//						$("#mimicModelMessage").html(str);
+					var str='<img src="images/cancel.png" class=" img-fluid " />'
+						+'<b id="errorText" style="color:red;margin-left:10px;" > Incorrect Answer ...</b> '
+						$("#Errors").html(str);
 					
 				}
 			} 
 			else if (AnswerCounter == 3) {
 				alert("ZERO ERROR =  ACTUAL PULSES-TURBINE PULSES");
-//				var str='<img src="images/info.png" class=" img-fluid " />'
-//					+'<b id="errorText" style="color:red;margin-left:10px;" >ZERO ERROR =  ACTUAL PULSES-TURBINE PULSES ...</b> '
-//					$("#mimicModelMessage").html(str);
+				var str='<img src="images/info.png" class=" img-fluid " />'
+					+'<b id="errorText" style="color:red;margin-left:10px;" >ZERO ERROR =  ACTUAL PULSES-TURBINE PULSES ...</b> '
+					$("#Errors").html(str);
 				
 			} else if (AnswerCounter >= 4) {
 				
@@ -2837,10 +2912,10 @@ var gud ;
 					
 					AnswerCounter = 0;
 				} else {
-					alert(" Incorrect Answer " + correctAns);
-//					var str='<img src="images/cancel.png" class=" img-fluid " />'
-//						+'<b id="errorText" style="color:red;margin-left:10px;" >Incorrect Answer ...</b> '
-//						$("#mimicModelMessage").html(str);
+					alert(" Correct Answer " + correctAns);
+					var str='<img src="images/cancel.png" class=" img-fluid " />'
+						+'<b id="errorText" style="color:red;margin-left:10px;" >Incorrect Answer ...</b> '
+						$("#Errors").html(str);
 				}
 			}
 			AnswerCounter++;
@@ -2868,11 +2943,18 @@ var gud ;
 						AnswerCounter = 0;
 					} else {
 						alert("Incorrect Answer ");
+						var str='<img src="images/cancel.png" class=" img-fluid " />'
+							+'<b id="errorText" style="color:red;margin-left:10px;" >Incorrect Answer </b> '
+							$("#Errors").html(str);
+						
 					}
 			} 
 			else if (AnswerCounter == 3) 
 			{
 				alert(" SPAN ERROR =  ACTUAL PULSES-TURBINE PULSES ");
+				var str='<img src="images/info.png" class=" img-fluid " />'
+					+'<b id="errorText" style="color:red;margin-left:10px;" >SPAN ERROR =  ACTUAL PULSES-TURBINE PULSES </b> '
+					$("#Errors").html(str);
 			} 
 			else if (AnswerCounter >= 4)
 			{
@@ -2889,6 +2971,10 @@ var gud ;
 				}
 				else {
 					alert(" Correct Answer " + correctAns);
+					var str='<img src="images/info.png" class=" img-fluid " />'
+						+'<b id="errorText" style="color:red;margin-left:10px;" >Correct Answer  '+correctAns +'</b> '
+						$("#Errors").html(str);
+					
 				}
 			}
 			AnswerCounter++;
@@ -2981,17 +3067,12 @@ var gud ;
 //						$("#mimicModelMessage").html(str);
 				}
 			} else if (AnswerCounter == 3) {
-				alert(" A=sqrt(sum(x)) .......");
+				alert(" A=Sqrt (sum(x^2))-(sum(x))^2/N). B=Sqrt (sum(y^2))-(sum(y))^2/N). C=sum(xy)-(sum(y))/N  . linearity =C/AB ");
 				
 				
 				
-			} else if (AnswerCounter == 4) {
-				alert(" Correct Answer " + linearity1);
-//				var str='<img src="images/cancel.png" class=" img-fluid " />'
-//					+'<b id="errorText" style="color:red;margin-left:10px;" >Incorrect Answer ...</b> '
-//					$("#mimicModelMessage").html(str);
-
-			} else {
+			} else if (AnswerCounter >= 4) {
+				
 				if (textLineralityeError == linearity1) {
 					
 					AnswerCounter = 0;
@@ -3001,10 +3082,8 @@ var gud ;
 					
 					$("#lineralitySubmit").prop('disabled', true);
 				} else {
-					alert("Incorrect Answer ");
-//					var str='<img src="images/cancel.png" class=" img-fluid " />'
-//						+'<b id="errorText" style="color:red;margin-left:10px;" >Incorrect Answer ...</b> '
-//						$("#mimicModelMessage").html(str);
+					alert(" Correct Answer " + linearity1);
+
 				}
 			}
 			AnswerCounter++;
@@ -3072,10 +3151,8 @@ var gud ;
 				}
 			} else if (AnswerCounter == 3) {
 				alert(" 1.PERCENTAGE ACCURACY = ((STANDERD OUTPUT - OBSERVED OUTPUT)/TOTAL NUMBER OF READING)*100) 2.AVERAGE ACCURACY = SUM OF(PERCENTAGE ACCURACY)/TOTAL NUMBER OF READING)   ");
-			} else if (AnswerCounter == 4) {
-				alert(" Correct Answer " + accurance);
-
-			} else {
+			} else if (AnswerCounter >= 4) {
+				
 				if (textacc == accurance) {
 					
 					
@@ -3085,7 +3162,7 @@ var gud ;
 					$("#accuracySubmit").prop('disabled', true);
 					$("#CalibrateCheckbox").show();
 				} else {
-					alert("Incorrect Answer ");
+					alert(" Correct Answer " + accurance);
 				}
 			}
 			AnswerCounter++;
@@ -3105,6 +3182,7 @@ var gud ;
 			$("#container-graph2").hide();
 			$("#container-graph1").css("height", "800px");
 			$("#container-graph1").css("width", "1000px");
+		
 		});
 	}
 
@@ -3282,21 +3360,21 @@ var gud ;
 				checkAns = 1;
 				tableCreationOnSubmit();
 				$("#btnAnsCheck").prop("disabled", true);
-				alert("Click on V2 to drain the tank 2 and proceed for next reading ");
+//				alert("Click on V2 to drain the tank 2 and proceed for next reading ");
 				
 				
-//				var str='<img src="images/info.png" class=" img-fluid " />'
-//					+'<b id="errorText" style="color:red;margin-left:10px;" >Click on V2 to drain the tank 2 and proceed for next reading...</b> '
-//					$("#mimicModelMessage").html(str); 
+				var str='<img src="images/info.png" class=" img-fluid " />'
+					+'<b id="errorText" style="color:red;margin-left:10px;" >Click on V2 to drain the tank 2 and proceed for next reading...</b> '
+					$("#mimicModelMessage").html(str); 
 				
 				//event.stopPropagation();
 			} else if (flowAns != f) {
 				checkAns = 0;
-				alert("Entered value is incorrect.Try it again... ");
+//				alert("Entered value is incorrect.Try it again... ");
 				
-//				var str='<img src="images/cancel.png" class=" img-fluid " />'
-//					+'<b id="errorText" style="color:red;margin-left:10px;" >Entered value is incorrect.Try it again...</b> '
-//					$("#mimicModelMessage").html(str); 
+				var str='<img src="images/cancel.png" class=" img-fluid " />'
+					+'<b id="errorText" style="color:red;margin-left:10px;" >Entered value is incorrect.Try it again...</b> '
+					$("#mimicModelMessage").html(str); 
 //				
 				
 				
@@ -3306,13 +3384,13 @@ var gud ;
 
 		} else if (id == 4) {
 			checkAns = 0;
-			alert("formula :Instantaneous Flow = Pulses / Meter constant * Time");
+//			alert("formula :Instantaneous Flow = Pulses / Meter constant * Time ");
 		
 			
-//			var msg='<img src="images/info.png" class=" img-fluid " />'
-//				+'<b id="errorText1" style="color:blue;margin-left:10px;" >formula :Instantaneous Flow = Pulses / Meter constant * Time ."</b> '
-//				
-//				$("#mimicModelMessage").html(msg); 
+			var msg='<img src="images/info.png" class=" img-fluid " />'
+				+'<b id="errorText1" style="color:blue;margin-left:10px;" >formula :Instantaneous Flow = Pulses / Meter constant * Time .</b> '
+				
+				$("#mimicModelMessage").html(msg); 
 			
 		} else {
 			flowAns = $("#flowAns").val().trim();
@@ -3323,48 +3401,25 @@ var gud ;
 				tableCreationOnSubmit();
 				$("#btnAnsCheck").prop("disabled", true);
 				alert("Click on V2 to drain the tank 2 and proceed for next reading ");
-//				var msg='<img src="images/info.png" class=" img-fluid " />'
-//					+'<b id="errorText1" style="color:blue;margin-left:10px;" >Click on V2 to drain the tank 2 and proceed for next reading </b> '
-//					
-//					$("#mimicModelMessage").html(msg); 
+				var msg='<img src="images/info.png" class=" img-fluid " />'
+					+'<b id="errorText1" style="color:blue;margin-left:10px;" >Click on V2 to drain the tank 2 and proceed for next reading </b> '
+					
+					$("#mimicModelMessage").html(msg); 
 			
 			
 				event.stopPropagation();
 			} else {
 				checkAns = 0;
-				alert("correct answer is " + f);
-//				var msg='<img src="images/info.png" class=" img-fluid " />'
-//					+'<b id="errorText1" style="color:blue;margin-left:10px;" >Correct answer is '+f+'</b> '
-//					
-//					$("#mimicModelMessage").html(msg); 
+//				alert("correct answer is " + f);
+				var msg='<img src="images/info.png" class=" img-fluid " />'
+					+'<b id="errorText1" style="color:blue;margin-left:10px;" >Correct answer is '+f+'</b> '
+					
+					$("#mimicModelMessage").html(msg); 
 			}
 		}
 
 		id++;
-		resultJson = {};
-		resultJson.resetExptd = 1;
-		resultJson.resetActul = reset_btn_click_counter;
-		resultJson.V1Exptd = 1;
-		resultJson.V1Actual = V1_click_counter;
-		resultJson.V2Exptd = masterJson.demo.length;
-		resultJson.V2Actual = V2_click_counter;
-		resultJson.pumpExptd = masterJson.demo.length;
-		resultJson.pumpActual = pump_click_counter;
 		
-		resultJson.ExptAnsSubmit = masterJson.demo.length;
-		resultJson.ActualAnsSubmit = ActualAnsSubmit;
-		resultJson.actualZeroErrorCounter=zeroErrorCounter;
-		resultJson.ExptZeroErrorCounter=masterJson.demo.length;
-		resultJson.spanErrorCounter=spanErrorCounter;
-		resultJson.ExptspanErrorCounter=masterJson.demo.length;
-		resultJson.accurancyCounter=accurancyCounter;
-		resultJson.ExptAccurancyCounter=masterJson.demo.length;
-		resultJson.lineralityCounter=lineralityCounter;
-		resultJson.ExptlineralityCounter=masterJson.demo.length;
-		
-		resultArrayJson.push(resultJson);
-		console.log( resultJson);
-		console.log(resultArrayJson);
 
 	});
 }//main Function close
