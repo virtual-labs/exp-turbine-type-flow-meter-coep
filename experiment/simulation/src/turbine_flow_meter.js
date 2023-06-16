@@ -1,4 +1,5 @@
- var w = 1000;
+function turbineFlowMeter(){
+var w = 1000;
 var h = 800;
 
 var width = $(window).width();
@@ -132,4 +133,4 @@ if ($(window).width() < 500) {
 	  	var control_text = paper.text(x+400,y+700, "Control Valve").attr({'font-size': 20});
 	  	var text_VPLC = paper.text(x+250,y+230, "VPLC").attr({'font-size': 20});
 	  	}
-	  		
+}  		

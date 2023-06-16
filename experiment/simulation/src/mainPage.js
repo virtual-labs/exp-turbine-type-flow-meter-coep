@@ -1,13 +1,17 @@
-
+Questions();
+turbineFlowMeter();
 var masterJson = {};
+var mainJson = {};
 var JsonArr = [];
+function mainPage(){
+
 var t="";
 var min="";
 var max="";
 var supplierConstaint="";
 //var tableRecordCounter=0;
 var noBlades="";
-var  fluidType="";
+var fluidType="";
 var  materialType="" ;
 var BladeShape="";
 var pipeSize="";
@@ -18,14 +22,6 @@ var wrongMeterConstantCounter=0;
 var skipMeterConstantCounter=0;
 var correctMaterialType=0;
 var wrongMaterialType=0;
-//
-//var skipNoBlades=0;
-//var skipShapeType=0;
-//var skipMaterialType=0;
-//var skipFluidType=0;
-//var skipPipeSize=0;
-//var skipTime=0;
-//Errorvarible
 
 var noOfError=0;
 var errorAttemptCounter=0;
@@ -204,42 +200,43 @@ var htm1='<div class="col-sm-6">'
 	   +'<div class=" col-sm-11 panel panel-primary" id="rangePanel">'
 	   
 	   +' <div class="panel-heading bg-info" ><center id="setRangeText">Set flow according to pipe size(0.2 - 1.8 mtr)</center></div>'
-	   +'<br>'
-	   +'<input type="range" style="margin-left:10px;width:96%;" class="slider" value="0" min="0" max="10" step="0.01">'
-	   +'<b><p class="demo"> </p></b>'
-    +'<b><center class="ReadingError"> </center></b>'
-	   +'<br>'
-	   +'<div class="row">'
-	   
-	   +'<div class="col-sm-2">'
-	   +'<button type="button" class="btn btn-success " id="submit"  >SUBMIT</button>'
-	  
-	   +'</div>'
-	   +'<div class="col-sm-2">'
-	   +'<button type="button" class="btn btn-success " id="showGraph"   > GRAPH</button>'
-	   +'</div>'
-	   +'<div class="col-sm-2">'
-	   +'<button type="button" class="btn btn-success " id="animateSimulation"  >ANIMATION</button>'
-	   +'</div>'
-	   +'<div class="col-sm-2">'
-	   +'<button type="button" class="btn btn-success " id="armodel" >AR MODEL</button>'
-	   +'</div>'
-	   +'<div class="col-sm-2">'
-	   +'<button type="button" class="btn btn-success " id="nextLevelMimc"  >MIMIC</button>'
-	   +'</div>'
-	  
-	   +'<div class="col-sm-2">'
-//	   +'<button type="button" class="btn btn-success " id="armodel" >AR MODEL</button>'
-	   +'</div>'
-	   +'</div>'
-	   +'<br>'
-	  
+				   +'<br>'
+				   +'<input type="range" style="margin-left:10px;width:96%;" class="slider" value="0" min="0" max="10" step="0.01">'
+				   +'<b><p class="demo"> </p></b>'
+			        +'<b><center class="ReadingError"> </center></b>'
+				   +'<br>'
+					   +'<div class="row">'
+					   
+					   +'<div class="col-sm-2">'
+					   +'<button type="button" class="btn btn-primary " id="submit"  >SUBMIT</button>'
+					   +'</div>'
+					   +'<div class="col-sm-2">'
+					   +'<button type="button" class="btn btn-primary " id="showGraph"   > GRAPH</button>'
+					   +'</div>'
+					   +'<div class="col-sm-2">'
+					   +'<button type="button" class="btn btn-primary " id="animateSimulation"  >ANIMATION</button>'
+					   +'</div>'
+					   +'<div class="col-sm-2">'
+					   +'<button type="button" class="btn btn-primary " id="armodel" >AR MODEL</button>'
+					   +'</div>'
+					   +'<div class="col-sm-2">'
+					   +'<button type="button" class="btn btn-primary " id="nextLevelMimc"  >MIMIC</button>'
+					   +'</div>'
+				
+					   +'</div>'
+					   +'<br>'
+	 
 		+'</div>'
+		
 	    +'</div>'
 	    +'</div>'
-	
+	    +'</div>'
+	    +'</div>'
+	    +'</div>'
 	   $("#main-div-conf").html(htm+htm1);
-	   var table=' <table id="readingTable" class="table table-bordered "  >'
+	   var table=''
+		   +'<div class="row col-sm-12" style="overflow-x:auto;">'
+		   +'<table id="readingTable" class="table table-bordered "  >'
 	       +'<thead id="" disabled>'
            +'  <tr style="background-color:#000;color:#fff;">'
 		   +'    <th colspan="2"><center>Magnatic Flow Meter</center></th>'
@@ -254,12 +251,12 @@ var htm1='<div class="col-sm-6">'
 		   +'   </tr>'
 	       +'  </thead>'
 	       +' </table>'
-		
+//	       +'</div>'
 	    var id=0;
 	   var MgFlowPer=0;
 		var valArr=[];
 $( document ).ready(function() {
-			
+	
 			var flag=0;
 			$("#rangePanel").hide();
 			$('#readingTable').hide();
@@ -268,12 +265,15 @@ $( document ).ready(function() {
 //			$( "#readingTable" ).prop( "disabled", true );
 			 
 			$('#submit').on('click', function () {
+			if(flag==0){
 				
+			}	
 					 
 		   $("#ReadingError").html("");
                  t=$('#readingTable').DataTable({
-                 			
-//						 	scrollY: '100px',
+                 		
+//                	 scrollY: '200px',
+                	 responsive: true,
 						 	bDestroy: true,
 //					        scrollCollapse: true,
 					        paging: true,
@@ -352,7 +352,7 @@ $( document ).ready(function() {
 	    		 	tempJson.turbineFlowPercentage=MgFlowPer;
 	    		 	JsonArr.push(tempJson);
 	    		 	
-t.row.add(['<b>'+tempJson.reading+'</b>','<b>'+tempJson.flowPercentage+'</b>','<b>'+tempJson.turbineReading+'</b>','<b>'+tempJson.pulses+'</b>','<b>'+tempJson.turbineFlowPercentage+'</b>']).draw(false);
+	    		 		t.row.add(['<b>'+tempJson.reading+'</b>','<b>'+tempJson.flowPercentage+'</b>','<b>'+tempJson.turbineReading+'</b>','<b>'+tempJson.pulses+'</b>','<b>'+tempJson.turbineFlowPercentage+'</b>']).draw(false);
 		 
                 masterJson.demo = JsonArr;
             }	
@@ -507,17 +507,7 @@ t.row.add(['<b>'+tempJson.reading+'</b>','<b>'+tempJson.flowPercentage+'</b>','<
 	 			+   '</div>'
 	 			+'</div>'
 	 			+'<div class="container col-sm-8">'
-//				+  '<div class="panel-body" id="qrInstractions" >'
-//				+'<center><b style="font-size:30px;margin-top:400px;"><u> Instruction for Android Mobile</u>  </b></center>'
-//				+'<ol id="instractions"><li>Scan the QR code from the camera phone of your app. Click on the link ?</li>'
-//				+'<li> Click on view in the top right corner.</li>'
-//				+'<li>	Find a horizontal flat surface and click on "Tap to place your Jig" or the "+" sign.</li>'
-//				+'<li>Zoom out and adjust view of model.</li>'
-//				+'<li>Click on the Next arrow.</li>'
-//				+'<li>	https://apps.apple.com/in/app/jigspace/id1111193492 .</li>'
-//				+'<ol>'
-//				+'<br><b>Note : Please increase the volume of the device.</b>'
-//				+'</div>'
+
 				+  '<div class=" panel-body" id="qrInstractions" >'
 				+'<center><b style="font-size:30px;margin-top:400px;">  Instruction for App(Apple mobile) </b></center>'
 				+'<ol id="instractions"><li>Enable your internet connection .</li>'
@@ -703,6 +693,17 @@ t.row.add(['<b>'+tempJson.reading+'</b>','<b>'+tempJson.flowPercentage+'</b>','<
 						   $("#centerText1").html('CHARACTERISATION');
 						   $('#readingTable').show();
 							 $("#rangePanel").show();
+							 tempJson={};
+								  tempJson.MaterialExpectedclick=1;
+								  tempJson.MaterialActualclick=correctMaterialType;
+								  tempJson.ExpectedMeterConstantCounter=1;
+								  tempJson.ActualMeterConstantCounter=correctMeterConstantCounter;
+								  
+								
+								 	JsonArr.push(tempJson);
+								 	 masterJson.demo = JsonArr;
+								 	mainJson.config=tempJson;
+								 	console.log(masterJson);
 						
 						   return 1;
 					   }
@@ -750,7 +751,16 @@ t.row.add(['<b>'+tempJson.reading+'</b>','<b>'+tempJson.flowPercentage+'</b>','<
 						   $('#readingTable').show();
 							 $("#rangePanel").show();
 							   
-							 
+							 tempJson={};
+								  tempJson.MaterialExpectedclick=1;
+								  tempJson.MaterialActualclick=correctMaterialType;
+								  tempJson.ExpectedMeterConstantCounter=1;
+								  tempJson.ActualMeterConstantCounter=correctMeterConstantCounter;
+								  
+								
+								 	JsonArr.push(tempJson);
+								 	 masterJson.demo = JsonArr;
+								 	console.log(masterJson);
 							 
 						   return 1;
 					   }
@@ -870,7 +880,7 @@ function  GraphCreation(masterJson)
 //			   	$("#errorModel").html(str); 
 //			
 //		}
-
+	$("#canvas-div").html("");
 	$("#canvas-div").css("height","700px");
 	$("#canvas-div").css("width","800px");
 	var graphData=[];
@@ -884,8 +894,8 @@ function  GraphCreation(masterJson)
 	
 	   xdata.sort(function(a, b){return a - b});
 	   ydata.sort(function(a, b){return a - b});
-	   console.log(" xdata arr"+xdata);  
-	   console.log(" ydata arr"+ydata);  
+//	   console.log(" xdata arr"+xdata);  
+//	   console.log(" ydata arr"+ydata);  
 	   tempArr=[];
 		  tempArr[0]=1;
 		    tempArr[1]=1;
@@ -895,26 +905,34 @@ function  GraphCreation(masterJson)
 		   tempArr=[];
 		  tempArr[0]=xdata[j];
 		    tempArr[1]=ydata[j];
-		    console.log(" temp arr"+tempArr);
+//		    console.log(" temp arr"+tempArr);
 		   graphData.push(tempArr);
-		   console.log(" graph data"+graphData);
+//		   console.log(" graph data"+graphData);
 		}
 	 	 tempArr=[];
 		  tempArr[0]=100;
 		    tempArr[1]=100;
 	  graphData.push(tempArr);
 	  
-	    console.log(" graph data"+graphData);
+//	    console.log(" graph data"+graphData);
 	Highcharts.chart('canvas-div', {
+		
+//		 style: {
+//	            fontFamily: 'serif',
+//	            color:'red',
+//				fontsize:'3em'
+//	
+//	        },
+		
 	  title: {
 	   text: 'Standard graph of turbine flow meter',
 		   title: {
-		        style: {
-		            color: '#000',
-		            fontWeight: 'bold',
-		            font: 'Arial',
-		           // font-size:'15'
-		        }
+//		        style: {
+//		            color: '#000',
+//		            fontWeight: 'bold',
+//		            font: 'Arial',
+//		            fontsize:'2em'
+//		        }
 		    },
 	  },
 	  subtitle: {
@@ -924,14 +942,14 @@ function  GraphCreation(masterJson)
 	    min: 0.01,
 	    max: 100,
 	    title: {
-            text: 'Turbine flow meter'
+            text: 'Turbine flow meter(flow %)'
         }
 	  },
 	  yAxis: {
 	    min: 0.01,
 		max: 100,
 		 title: {
-	            text: 'Magnatic flow meter'
+	            text: 'Magnatic flow meter (flow %)'
 	        }
 		
 	  },
@@ -941,10 +959,10 @@ function  GraphCreation(masterJson)
 //	        }
 //	    },
 	  tooltip: {
-	        backgroundColor: 'blue',
+	        backgroundColor: 'black',
 	        	style: {
 	                color: '#fff',
-	                fontWeight: 'large'
+	                fontWeight: '60'
 	            }
 	    },
 	  series: [
@@ -982,13 +1000,13 @@ function  GraphCreation(masterJson)
 	   $("#animateSimulation").click(function() {
 		   $("#canvas-div").html('');
 
-		   $("#centerText2").html('Animation of turbine flow meter');
-		   console.log('fluidType'+fluidType);
-		   console.log('materialType'+materialType);
-		   console.log('BladeShape'+BladeShape);
-		   console.log('pipeSize'+pipeSize);
-		   console.log('noBlades'+noBlades);
-		   console.log('time'+time1);
+		   $("#centerText2").html('ANIMATION OF TURBINE FLOW METER');
+//		   console.log('fluidType'+fluidType);
+//		   console.log('materialType'+materialType);
+//		   console.log('BladeShape'+BladeShape);
+//		   console.log('pipeSize'+pipeSize);
+//		   console.log('noBlades'+noBlades);
+//		   console.log('time'+time1);
 		   var time2=time1*10;
 		   animateSimulation(BladeShape,pipeSize,noBlades,time2,materialType,fluidType,supplierConstaint );
 			 
@@ -1062,31 +1080,31 @@ function  GraphCreation(masterJson)
 	       +'</div>'
 	       +'<div class="col-sm-3">'
 	       +'<br><button type="submit" id="btnAnsCheck" style="margin-top:17px;width:100%;" class=" btn btn-primary" data-toggle="modal" data-target="#mimicModel" >Submit</button>'
-//	       +'<div class="row">'
-//		   +'<div class="col-sm-12">'
+	       +'<div class="row">'
+		   +'<div class="col-sm-12">'
 //		   +'<button type="button" class="btn btn-danger btnStyle" id="checkConfg" data-toggle="modal" data-target="#myModal" disabled>CHECK CONFIGURATION </button>'
-//		   +'<div class="modal fade" id="mimicModel" role="dialog">'
-//		   +'<div class="modal-dialog">'
-//		   +'<!-- Modal content-->'
-//		   +' <div class="modal-content">'
-//		   +'<div class="modal-header bg-info"  >'
-//		  
-//		   +'<h4 class="modal-title">Message box</h4>'
-//		   +'<button type="button" class="close" data-dismiss="modal" style="color:#fff;">&times;</button>'
-//		   +'</div>'
-//		   +'<div class="modal-body" id="mimicModelMessage" >'
-//		 
-//		   
-//		   +'</div>'
-//		   +'<div class="modal-footer">'
-//		   +'<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>'
-//		   +'</div>'
-//		   +'</div>'
-//		   +'</div>'
-//		   +'</div>'
-//		   +'</div>'
-//		   +'</div>'
-//	       +'</div>'
+		   +'<div class="modal fade" id="mimicModel" role="dialog">'
+		   +'<div class="modal-dialog">'
+		   +'<!-- Modal content-->'
+		   +' <div class="modal-content">'
+		   +'<div class="modal-header bg-info"  >'
+		  
+		   +'<h4 class="modal-title">Message box</h4>'
+		   +'<button type="button" class="close" data-dismiss="modal" style="color:#fff;">&times;</button>'
+		   +'</div>'
+		   +'<div class="modal-body" id="mimicModelMessage" >'
+		 
+		   
+		   +'</div>'
+		   +'<div class="modal-footer">'
+		   +'<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>'
+		   +'</div>'
+		   +'</div>'
+		   +'</div>'
+		   +'</div>'
+		   +'</div>'
+		   +'</div>'
+	       +'</div>'
 	      
 	       
            +'</div>'
@@ -1102,211 +1120,9 @@ function  GraphCreation(masterJson)
 			
 			
 	   });
-//	   var reading=[];
-//		var expectedPulses=[];
-//		var actualPulses=[];
-//		var errorType=1;
-//		var errorSolveNo=[];
-//		var j=0;
-//		errorSolveNo[0]=4;
-//		$("#nextLevel1").click(function() {
-//		
-//
-//				$("#canvas-div").html("");
-//			
-//				$("#container-graph1").html("");
-//				$("#container-graph2").html("");
-//				 var pipeSize=$("#pipeSize").val();
-//				 var supplierConstaint=$("#supplierConstaint").val();
-//				 var time1=$("#timer").val();
-//				 var noBlades=$("#noBlades").val();
-////				var maxIndexArr = 10;
-////				let  SampleRandomArr = [];
-//				
-//				console.log(" pipeSize " +pipeSize);
-//				console.log(" supplierConstaint "+supplierConstaint);
-//				console.log(" time1 " +time1);
-//				var min,max,temp;
-//				
-//				
-//				if(pipeSize == 1) {
-//			    	  
-//			    	   min=0.05;
-//						max=5.8;
-//				}
-//			       else if(pipeSize == 2)
-//			       {
-//			    	   min=0.22;
-//						max=2.2;
-//					 }
-//			       else if(pipeSize == 3)
-//			       {
-//			    	   min=0.52;
-//						max=5.27;
-//					}
-//			       else if(pipeSize == 4)
-//			       {
-//			    	   min=0.97;
-//						max=9.7;
-//					}
-//				
-//				 ErrorTableCreation(min,max,pipeSize,time1,noBlades,supplierConstaint,errorType);	
-//				
-//					
-//		});
-//		
-//				function ErrorTableCreation(min,max,pipeSize,time1,noBlades,supplierConstaint,errorType){
-//					errorType= Math.floor(Math.random() * (4 - 1)) + 1;
-//					console.log(" errorType table " +errorType);
-//					function readingRandom(min,max) {
-//					
-//				
-//					    let temp =parseFloat( Math.floor(Math.random() * (max - min)) + min);
-//					    let random=temp.toFixed(2);
-//					    return random;
-//					}
-//								
-//
-//								var tableError='<div class="col-sm-12" id="errorTable">'
-//									+ '<table class=" table table-hover table-bordered " style="margin:10px;">'
-//										+ ' <thead>'
-//										+ '  <tr class="success">'
-//										+ '   <th scope="col">FLOW(lit/sec)</th>'
-//										+ '  <th scope="col">EXPECTED PULSES(per/lit)</th>'
-//										+ '    <th scope="col">ACTUAL PULSES(per/lit)</th>'
-//										+ '   </tr>'
-//										+ '  </thead>'
-//										+ '   <tbody>'
-//								for(i=0;i<5;i++){
-//									
-//									reading[i]= readingRandom(min,max);
-//									expectedPulses[i] =parseInt(reading[i]*supplierConstaint*time1);
-//									//Blade missing
-//									if(errorType==1)
-//										{
-//											
-//												temp=parseInt(expectedPulses[i])/noBlades-1;
-//												actualPulses[i]=temp.toFixed(2);
-//										}
-//									// error for shaft is stuck / rotation is slow
-//									else if(errorType==2)
-//									{
-//										temp = parseInt(expectedPulses[i] * 5/100);
-//										actualPulses[i] = expectedPulses[i] - temp;
-//									}
-//									// error for sensor is displaced
-//									
-//									else if(errorType==3)
-//										{
-//											actualPulses[i] =0;
-//										}
-//								
-//										
-//										tableError+= '    <tr>'
-//											+ '   <td>' + reading[i] + '</td>'
-//											+ '   <td>' + Math.round(expectedPulses[i]) + '</td>'
-//											+ '    <td>' +Math.round(actualPulses[i])+ '</td>'
-//											
-//											+ '     </tr>'
-//									
-//									
-//								}
-//								tableError += ' </tbody>'
-//									+ '  </table>'
-//									$("#canvas-div").html(tableError);
-//								
-//									CreateDropdown(min,max,pipeSize,time1,noBlades,supplierConstaint);
-//				}			
-//					
-//				function CreateDropdown(min,max,pipeSize,time1,noBlades,supplierConstaint){
-//					var errorDropDown='<h4 id="ErrorHeadingMsg">You have to solve </h4> <div class="row">'
-//						+'<div class="col-sm-12">'
-//					   +'<label for="errorType">SELECT CORRECT ERROR TYPE</label>'
-//					   +'</div>'
-//						   
-//					   +'<div class="col-sm-12" >'
-//					   +'<select  class="form-control form-control-lg bg-info selectStyle"  id="errorCheck" >'
-//					   +'<option value="0">--- SELECT CORRECT  ERROR TYPE --- </option>'
-////					   +'<option value="#6b6a64" >Oxygen  </option>'
-//					   +'<option value="1" >Blade missing</option>'
-//					   +'<option value="2">Error for shaft is stuck / rotation is slow</option>'
-//					   +'<option value="3">error for sensor is displaced</option>'
-//					   +'</select>'
-//					  
-//					   +'</div>'
-//					   +'</div>'
-//					   +'<div class="row">'
-//					   +'<div class="col-sm-12 alert" id="alertError" disabled >'
-////					   +' <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span> '
-//					   +' <strong id="correctError"></strong> '
-//					   +'</div>'
-//					   +'</div>'
-////					   
-//					  
-//					   $("#canvas-div").append(errorDropDown);
-//				
-//					$('#errorCheck').on('change', function() {
-//						
-//						$("#nextLevelResultDiv").prop("disabled", true);
-//						var SelectedError=$("#errorCheck").val();
-//						console.log(" errorAttemptCounter "+errorAttemptCounter);
-//						console.log(" SelectedError  "+SelectedError);
-//						
-//						
-//							if(errorType==SelectedError)
-//								{
-//								
-//									
-//										if(errorAttemptCounter<3)	{
-//											$("#nextLevelResultDiv").prop("disabled", true);
-////											$("#correctError").html("Selected Error type is match... New Table");
-//											alert("Selected Error type is match... New reading with new error");
-//											$(".alert").css("background-color", "green");
-//											errorAttemptCounter++;
-////											errorType1= Math.floor(Math.random() * (4 - 1)) + 1;
-////											console.log(" errorType1 in "+errorType);
-//											ErrorTableCreation(min,max,pipeSize,time1,noBlades,supplierConstaint,errorType);
-//										}									
-//							}
-//							else if(SelectedError==0)
-//								{
-//		
-//										
-//										$("#nextLevelResultDiv").prop("disabled", true);
-//										$("#correctError").html(" Select Error type  ... ");
-//										$(".alert").css("background-color", "blue");
-//										console.log(" zero");
-//								}
-//							else
-//								{
-//								$("#nextLevelResultDiv").prop("disabled", true);
-//								$("#correctError").html(" Selected Error type is wrong .. ");
-//								$(".alert").css("background-color", "red");
-//								console.log(" wrong");
-//								}
-//							
-//							if(errorAttemptCounter==3)
-//								{
-////									$("#canvas-div").html("");
-//									var button= '<br><button type="submit" id="result" style="margin-top:17px;width:100%;" class=" btn btn-success"  >RESULT</button>'
-//										$("#canvas-div").append(button);	
-//									console.log(" errorAttemptCounter "+errorAttemptCounter);
-//								}
-//						
-//						
-//						
-//					});
-//					
-//				
-//					}
-//					
-			
-				
-					
-//		   });//Close Next Level 1
-		
+
 		 
-	  
+}  
 			
 	   
 	   
