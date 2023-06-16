@@ -2,7 +2,7 @@ var flag = true;
 var startLabel="";
 var startImg="";
 var fg = 0;
-
+var flg = 0;
 var animationStart=0;
 var animationEnd=0;
 var arrayJsonAnimation=[];
@@ -13,7 +13,7 @@ function animateSimulation(  BladeShape,  pipeSize, noBlades,  time2,  materialT
 //	$('#canvas-div').removeProp('width');
 //	
 //	$('#canvas-div').removeProp("height");
-	
+	$("#animateSimulation"). attr("disabled", true); 
 	
 	var w = 900;
 	var h = 700;
@@ -129,29 +129,28 @@ function animateSimulation(  BladeShape,  pipeSize, noBlades,  time2,  materialT
 
   }
   
-  
+ var st = 1; 
  startImg.click(function() {
-					console.log("hiii ");
-					start();
-					fg=0;
-//					animationStart++;
-////					animateSimulation(  BladeShape,  pipeSize, noBlades,  time1,  materialType,  fluidType) ;
-//					TempJsonAnimation= {};
-//					TempJsonAnimation.animationStart = animationStart;
-//					arrayJsonAnimation.push(TempJsonAnimation);
-//					masterJsonAnimation.demo = arrayJsonAnimation;
-//					console.log(masterJsonAnimation);
+	 flg = 0;
+		console.log("hiii ");
+		if(st == 1){
+		start();
+		st++;
+		}else{
+			alert("Animation in process first click stop...");
+		}
+//					console.log("hiii ");
+//					start();
+//					fg=0;
+
 			});
 
 
   function start(){
+	  flg = 0;
+	  $("#nextLevelMimc"). attr("disabled", true);
 	  animationStart++;
 //		animateSimulation(  BladeShape,  pipeSize, noBlades,  time1,  materialType,  fluidType) ;
-		TempJsonAnimation= {};
-		TempJsonAnimation.animationStart = animationStart;
-		arrayJsonAnimation.push(TempJsonAnimation);
-		masterJsonAnimation.demo = arrayJsonAnimation;
-		console.log(masterJsonAnimation);
 	  
 	  
 	fg = 1;
@@ -283,20 +282,28 @@ function animateSimulation(  BladeShape,  pipeSize, noBlades,  time2,  materialT
 			});
 			
 				var pulse=paper.rect(520,190,100,60).attr({"stroke-width": 2,"font-size":25,"font-weight":"bold"});
-				var n1=paper.text((x+520),(y+120),'PLUSE').attr({"font-size":20,"fill":"#000","stroke-width":10,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 20});
-				paper.text((x+520),(y+100),'Instantaneous Flow').attr({"font-size":20,"fill":"#000","stroke-width":10,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 20});
+				var n1=paper.text((x+420),(y+120),'PULSE').attr({"font-size":20,"fill":"#000","stroke-width":10,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 20});
+				paper.text((x+410),(y+100),'Instantaneous Flow').attr({"font-size":20,"fill":"#000","stroke-width":10,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 20});
 //				var t1=paper.text(623,218,'0').attr({"font-size":25,"fill":"#ff2019","stroke-width":15,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 30});
 				var unit1=paper.rect(700,190,80,60).attr({"stroke-width": 2,"font-size":25,"font-weight":"bold"});
 				var unit2=paper.rect(710,200,60,40).attr({"stroke-width": 2,"font-size":25,"font-weight":"bold","fill":"#000"});
-				paper.text((x+695),(y+120),'UNIT').attr({"font-size":20,"fill":"#000","stroke-width":10,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 20});
-				paper.text((x+690),(y+100),'Totalise Flow').attr({"font-size":20,"fill":"#000","stroke-width":10,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 20});
+				paper.text((x+595),(y+120),'UNIT').attr({"font-size":20,"fill":"#000","stroke-width":10,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 20});
+				paper.text((x+580),(y+100),'Totalise Flow').attr({"font-size":20,"fill":"#000","stroke-width":10,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 20});
 				var unitno=paper.text(740,218,'0').attr({"font-size":25,"fill":"#ff2019","stroke-width":15,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 30});
 				var r1=paper.rect(530,200,80,40).attr({"fill": "#000", "stroke-border":2,"stroke-width": 3});
                 var t1=paper.text(570,218,'0').attr({"font-size":25,"fill":"#ff2019","stroke-width":15,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 30});
 //Pluse Calculation
 function pluseUnit(noBlades)
 		{
-			
+			tempJson={};
+//			JsonArr = [];
+								  tempJson.ActualanimationStart=animationStart;
+								  tempJson.ExpectedanimationEnd=animationEnd;
+								 JsonArr.push(tempJson);
+//								 	 masterJson.demo = JsonArr;
+								 	mainJson.animation=tempJson;
+//								 	console.log(masterJson); 
+//								 	console.log(masterJson);
 			counter=0;
 			unitCounter=0;
 			myTimer = setInterval(function(){
@@ -304,7 +311,7 @@ function pluseUnit(noBlades)
 					counter=0;
 					unitCounter++;
 					unitno.attr('text',unitCounter);
-					console.log(" Units ="+unitCounter);
+					//console.log(" Units ="+unitCounter);
 				}
 				counter++;
 				t1.attr('text',counter);
@@ -331,8 +338,12 @@ function pluseUnit(noBlades)
 //			
 //		}
 		stopImg.click(function() {
-//		    counter=0;
-//		   unitcounter = 0;
+			flg = 1;
+		    counter=0;
+		   unitcounter = 0;
+		   
+			$("#nextLevelMimc"). attr("disabled", false);
+			clearInterval(myTimer);
 					stop();
 //					animationEnd++;
 //					TempJsonAnimation= {};
@@ -608,13 +619,7 @@ function pluseUnit(noBlades)
 		
 		 stop = function(){
 			 animationEnd++;
-				TempJsonAnimation= {};
 				
-				TempJsonAnimation.animationEnd = animationEnd;
-			
-				arrayJsonAnimation.push(TempJsonAnimation);
-				masterJsonAnimation.demo = arrayJsonAnimation;
-				console.log(masterJsonAnimation);
 			 flag=false;
 		   fg=0;
            console.log("sneha stop");
@@ -625,12 +630,12 @@ function pluseUnit(noBlades)
 	    	simuli = 0;
 	    	
 	    	var pulse=paper.rect(520,190,100,60).attr({"stroke-width": 2,"font-size":25,"font-weight":"bold"});
-				var n1=paper.text((x+520),(y+120),'PLUSE').attr({"font-size":20,"fill":"#000","stroke-width":10,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 20});
-				paper.text((x+520),(y+100),'Instantaneous Flow').attr({"font-size":20,"fill":"#000","stroke-width":10,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 20});
+				var n1=paper.text((x+420),(y+120),'PULSE').attr({"font-size":20,"fill":"#000","stroke-width":10,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 20});
+				paper.text((x+410),(y+100),'Instantaneous Flow').attr({"font-size":20,"fill":"#000","stroke-width":10,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 20});
 				var unit1=paper.rect(700,190,80,60).attr({"stroke-width": 2,"font-size":25,"font-weight":"bold"});
 				var unit2=paper.rect(710,200,60,40).attr({"stroke-width": 2,"font-size":25,"font-weight":"bold","fill":"#000"});
-				paper.text((x+695),(y+120),'UNIT').attr({"font-size":20,"fill":"#000","stroke-width":10,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 20});
-				paper.text((x+690),(y+100),'Totalize Flow').attr({"font-size":20,"fill":"#000","stroke-width":10,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 20});
+				paper.text((x+595),(y+120),'UNIT').attr({"font-size":20,"fill":"#000","stroke-width":10,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 20});
+				paper.text((x+580),(y+100),'Totalize Flow').attr({"font-size":20,"fill":"#000","stroke-width":10,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 20});
 				var unitno=paper.text(740,218,'0').attr({"font-size":25,"fill":"#ff2019","stroke-width":15,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 30});
 				var r1=paper.rect(530,200,80,40).attr({"fill": "#000", "stroke-border":2,"stroke-width": 3});
                t1= paper.text(570,218,'0').attr({"font-size":25,"fill":"#ff2019","stroke-width":15,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 30});
@@ -701,9 +706,17 @@ function pluseUnit(noBlades)
 	 stopLabel=paper.text(250,30,'Stop Process').attr({"font-size":20,"fill":"#ff2019","stroke-width":15,"font-weight":"bold",'font-family':'digital-clock-font','font-size': 20});
 	  
         startImg.click(function() {
-					console.log("hiii ");
-//					counter = 0;
-					start();
+        	
+        	if(flg == 1)
+            {
+				start();
+		      }else{
+			alert("Animation in process first click stop...");
+		}
+        	
+//					console.log("hiii ");
+////					counter = 0;
+//					start();
 				
 //					animateSimulation(  BladeShape,  pipeSize, noBlades,  time1,  materialType,  fluidType) ;
 			});
