@@ -341,7 +341,7 @@ function pluseUnit(noBlades)
 			flg = 1;
 		    counter=0;
 		   unitcounter = 0;
-		   
+		      $("#nextLevelMimc").prop("disabled",false);
 			$("#nextLevelMimc"). attr("disabled", false);
 			clearInterval(myTimer);
 					stop();
