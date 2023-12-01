@@ -1,0 +1,94 @@
+	$('#errorCheck').on('change', function() {
+						
+						console.log(" New Table Created.. first call ");
+						console.log("errorAttemptCounter    "+errorAttemptCounter);
+						
+
+												if(errorAttemptCounter<2)
+												{
+													$("#alertError").prop("disabled", false);
+													
+													var errorCheck= parseInt($("#errorCheck").val());
+													if(errorType==errorCheck)
+													{
+														errorSolveNo[j]=errorType;
+														j++;
+														//console.log("errorSolveNo <2 "+j);
+														//$("#ErrorHeadingMsg").html(''+j);
+														$("#correctError").html("Selected Error type is match...");
+														$("#nextLevelResultDiv").prop("disabled", false);
+														$(".alert").css("background-color", "green");
+//														errorType= Math.floor(Math.random() * (4 - 1)) + 1 ;
+														
+														
+														ErrorTableCreation(min,max,pipeSize,time1,noBlades,supplierConstaint,errorType);
+														console.log(" Successfully");
+														errorAttemptCounter=0;
+														
+													}
+													else if(errorCheck==0)
+													{
+														$("#correctError").html(" Select Error type  ... ");
+														$("#nextLevelResultDiv").prop("disabled", true);
+														$(".alert").css("background-color", "blue");
+														errorAttemptCounter++;
+													}
+													else
+													{
+														
+														if(errorAttemptCounter!=1)
+															{
+																	
+																			var errorCheck= parseInt($("#errorCheck").val());
+																			if(errorType==errorCheck)
+																			{
+																				errorSolveNo[j]=errorType;
+																				j++;
+																				//console.log("errorSolveNo in  "+j);
+																				//$("#ErrorHeadingMsg").html(''+j);
+																				$("#correctError").html("Selected Error type is match...");
+																				$("#nextLevelResultDiv").prop("disabled", false);
+																				$(".alert").css("background-color", "green");
+				//																errorType= Math.floor(Math.random() * (4 - 1)) + 1 ;
+																				ErrorTableCreation(min,max,pipeSize,time1,noBlades,supplierConstaint,errorType);
+																				console.log(" Successfully ");
+																				errorAttemptCounter=0;
+																				
+																			}
+																			else if(errorCheck==0)
+																			{
+																				$("#correctError").html(" Select Error type  ... ");
+																				$("#nextLevelResultDiv").prop("disabled", true);
+																				$(".alert").css("background-color", "blue");
+																				errorAttemptCounter++;
+																			}	
+																			else{
+																				$("#nextLevelResultDiv").prop("disabled", true);
+																				$("#correctError").html(" Selected Error type is wrong .. ");
+																				$(".alert").css("background-color", "red");
+																				errorAttemptCounter++;
+																		
+																			}
+															}else
+																{
+//																errorType= Math.floor(Math.random() * (4 - 1)) + 1 ;
+																ErrorTableCreation(min,max,pipeSize,time1,noBlades,supplierConstaint,errorType);
+																//console.log(" New Table Created.. in error check elseerrorAttemptCounter ==1 ");
+																
+																}
+												 }
+											 }
+												
+											else
+											{
+//												errorType= Math.floor(Math.random() * (4 - 1)) + 1 ;
+												ErrorTableCreation(min,max,pipeSize,time1,noBlades,supplierConstaint,errorType);
+												console.log(" New Table Created.. in error check elseerrorAttemptCounter >2 ");
+											}
+												console.log(errorSolveNo);
+												
+											
+											
+												
+												
+							});
