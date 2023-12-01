@@ -384,7 +384,7 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
 	}
 
 	function pumpStatusOn(event) {
-
+        $("#flowAns").val("");
 		id = 1;
 		var c = paper.circle(x + 250, y + 600, 10);
 		c.animate({ 'fill': 'green', 'stroke': 'green', opacity: 1 }, (time1 + 100), "bounce");
@@ -486,8 +486,7 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
 //			add();
 			pump.animate({ 'cx': x + 250, 'cy': y + 600, "fill": "#fff", "r": 30, 'stroke': '#000', 'stroke-width': 3 }, 6000, function() { })
 
-			keepRotating = Raphael.animation({ 'transform': 'r360' }, time1 + 1000).repeat('Infinity');
-			b1.animate(keepRotating);
+			
 			if (pp == 0){
 				ht = ht1 * 1;
 //				console.log("height" + ht);	
@@ -584,7 +583,8 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
 		if (flag == 0) {
 				
 			if 	( checkAlert == 0){
-				
+				keepRotating = Raphael.animation({ 'transform': 'r360' }, time1 + 1000).repeat('Infinity');
+			b1.animate(keepRotating);
 				pumpStatusOn();
 				if (control_flag == 1) {
 				
@@ -645,11 +645,16 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
 //						+'<b id="errorText" style="color:red;margin-left:10px;" > Turn on the SV valve..</b> '
 //						$("#mimicModelMessage").html(str);
 				}
+				add();
+				
 			}
-			add();
+			
 		}
 		else{
-			checkAlert = 0;
+			checkAlert = 1;
+			keepRotating = Raphael.animation({ 'transform': 'r360' }, time1 + 1000).repeat(0);
+			b1.animate(keepRotating);
+			
 		}
 			
 			
@@ -866,7 +871,7 @@ var gud ;
 	var p2;
 	var txt12;
 	var txt13;
-
+var intFact3 = 0;
 	function LT_percent(x, y) {
 //		console.log("value of pp is" + pp);
 
@@ -875,13 +880,20 @@ var gud ;
 
 //		p2 = p1;
 		if (perc < 100) {
-			        perc1 = perc;
-
-			perc12 = perc1 - pp;
 			
+			 
+			        perc1 = perc;
+            if(pp == 0)
+              {
+			perc12 = perc1 - 1;
+			intFact3 = 1 / time1;
+			  }else{
+				perc12 = perc1 - pp; 
+               intFact3 = pp / time1;				
+			  }
 //			console.log("value of perc1 is " + perc1);
-			intFact3 = 0;
-			intFact3 = pp / time1;
+			
+			//intFact3 = pp / time1;
 			lt_int = setInterval(function() {
 				if (perc12 < perc) {
 					perc = perc - intFact3;
@@ -936,31 +948,33 @@ var gud ;
 	var p3;
 	var px;
 	function LT_V2(x, y) {
-
+       var p4= perc.toFixed(0);
+	       p1 = parseInt(p4);
+		 
 		if (p1 < 100) {
 			px = Math.round(p1);
-			intF1 = 0;
+			intFac1 = 0;
 
 			if(pp == 0)
 			 {
 			  x2 = perc1 - 1;
-			  intF1 = 1/time1;
+			  intFac1 = 1/time1;
 			  yx = 1 + x2;
 
 			}else
 			  {
 			x2 = perc1 - pp;
-			intF1 = pp/time1;
+			intFac1 = pp/time1;
 			yx = pp + x2;
 			  }
 			
 			p3 = yx;
 //			intF1 = 0;
-            intF1 = pp/time1;
+           
 			LT_dec_res = setInterval(function() {
 				if (p3 < 100) {
 
-					p3 = p3 + intF1;
+					p3 = p3 + intFac1;
 					paper.rect(x + 600, y + 405, 70, 40).attr({ 'stroke-width': '2', 'fill': 'pink' }).toFront();
 					paper.text(x + 635, y + 425, Math.round(p3) + '%').attr({ 'font-size': 20 });
 //					console.log("value of p3 is :" + p3);
@@ -973,40 +987,7 @@ var gud ;
 			}, 500);
 		}
 
-		if (p2 < 100) {
-			px = Math.round(p2);
-			if(pp == 0)
-			 {
-			  x2 = perc1 - 1;
-			  intF1 = 1/time1;
-			  yx = 1 + x2;
 
-			}else
-			  {
-			x2 = perc1 - pp;
-			intF1 = pp/time1;
-			yx = pp + x2;
-			  }
-//			x2 = perc1 - px;
-//			yx = px + x2;
-			p3 = yx;
-//            intF2 = 0
-//            intF2 = pp/time1;
-			LT_dec_res1 = setInterval(function() {
-				if (p3 < 100) {
-
-					p3 = p3 + intF2;
-					paper.rect(x + 600, y + 405, 70, 40).attr({ 'stroke-width': '2', 'fill': 'pink' }).toFront();
-					paper.text(x + 635, y + 425, Math.round(p3) + '%').attr({ 'font-size': 20 });
-//					console.log("value of p3 is :" + p3);
-				} else {
-					clearInterval(LT_dec_res1);
-					 paper.text(x + 635, y + 425, ' ').attr({ 'font-size': 20 });
-			 paper.rect(x + 600, y + 405, 70, 40).attr({ 'stroke-width': '2', 'fill': 'pink' }).toFront();
-			paper.text(x + 635, y + 425, '100 %').attr({ 'font-size': 20 });
-				}
-			}, 500);
-		}
 		p1 = 100, perc = 100;
 	}
 
@@ -1152,7 +1133,7 @@ var gud ;
 		}, 1000);
 	};
 
-	flowU = $("#flowAns").val().trim();
+	flowU = parseFloat($("#flowAns").val().trim());
 	//console.log("in Flow user " + flowU);
 
 	var res_after;
@@ -3346,7 +3327,7 @@ var gud ;
 	$("#btnAnsCheck").click(function() {
 		
 		ActualAnsSubmit++;
-		var flowAns = $("#flowAns").val().trim();
+		var flowAns = parseFloat($("#flowAns").val().trim());
 		
 		var f = ft.toFixed(3);
 //		if(isNaN(flowAns)){
@@ -3393,7 +3374,7 @@ var gud ;
 				$("#mimicModelMessage").html(msg); 
 			
 		} else {
-			flowAns = $("#flowAns").val().trim();
+			flowAns = parseFloat($("#flowAns").val().trim());
 
 			if (flowAns == f) {
 				checkAns = 1;

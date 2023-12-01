@@ -207,20 +207,18 @@ var htm1='<div class="col-sm-6">'
 				   +'<br>'
 					   +'<div class="row">'
 					   
-					   +'<div class="col-sm-2">'
+					   +'<div class="col-sm-3">'
 					   +'<button type="button" class="btn btn-primary " id="submit"  >SUBMIT</button>'
 					   +'</div>'
-					   +'<div class="col-sm-2">'
+					   +'<div class="col-sm-3">'
 					   +'<button type="button" class="btn btn-primary " id="showGraph"   > GRAPH</button>'
 					   +'</div>'
-					   +'<div class="col-sm-2">'
+					   +'<div class="col-sm-3">'
 					   +'<button type="button" class="btn btn-primary " id="animateSimulation"  >ANIMATION</button>'
 					   +'</div>'
-					   +'<div class="col-sm-2">'
-					   +'<button type="button" class="btn btn-primary " id="armodel" >AR MODEL</button>'
-					   +'</div>'
-					   +'<div class="col-sm-2">'
-					   +'<button type="button" class="btn btn-primary " id="nextLevelMimc"  >MIMIC</button>'
+					  
+					   +'<div class="col-sm-3">'
+					   +'<button type="button" class="btn btn-primary " id="nextLevelMimc"  disabled>MIMIC</button>'
 					   +'</div>'
 				
 					   +'</div>'
@@ -678,7 +676,7 @@ $( document ).ready(function() {
 					   {
 							$("#errorMsg").hide(); 
 						   str='<img src="images/checked.png" class=" img-fluid " />'
-						    +'<b id="errorText" style="color:green;" >Configuration done successfully ...  </b> '
+						    +'<b id="errorText" style="color:green;" >Configured successfully ...  </b> '
 						    
 						    
 						    
@@ -738,7 +736,7 @@ $( document ).ready(function() {
 						   
 							$("#errorMsg").hide(); 
 						   str='<img src="images/checked.png" class=" img-fluid " />'
-						    +'<b id="errorText" style="color:green;" >Configuration done successfully ...  </b> '
+						    +'<b id="errorText" style="color:green;" >Configured successfully ...  </b> '
 						  $("#meterCon").html("METER CONSTANT VALUE IS "+supplierConstaint+" PULSES per/ltr");
 						   	$("#errorModel").html(str); 
 						   	correctMeterConstantCounter++;
@@ -793,7 +791,7 @@ $( document ).ready(function() {
 						   
 							$("#errorMsg").hide(); 
 						   str='<img src="images/checked.png" class=" img-fluid " />'
-						    +'<b id="errorText" style="color:green;" >Configuration done successfully ...  </b> '
+						    +'<b id="errorText" style="color:green;" >Configured successfully ...  </b> '
 						  $("#meterCon").html("METER CONSTANT IS "+supplierConstaint+" PULSES per/ltr");
 						   	$("#errorModel").html(str);
 							correctMeterConstantCounter++;
