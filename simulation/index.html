@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title> Turbine flow meter  </title>
+<meta charset="ISO-8859-1">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" > -->
+    <link rel="stylesheet" href=" https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/mainPage.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/header.css">
+</head>
+
+<style>
+@font-face{
+ font-family:'digital-clock-font';
+ src: url('font/digital-7.ttf');
+}
+
+.blink {
+            animation: blinker 1.5s linear infinite;
+            color: #fff;
+            font-family: sans-serif;
+			font-weight: bold;
+			background: green;
+			padding: 7px 20px;
+			border-radius: 15px;
+        }
+        @keyframes blinker {
+            70% {
+                opacity: 0.2;
+            }
+        }
+
+
+
+</style>
+<body >
+
+	<header>
+		<img class="COEPLogo" src='images/COEPlogo1.png' />
+		<img class="VlabLogo" src='images/vlablogo.jpg' />
+		<span id="colgName"><b id="colgNamebold">COEP Technological University</b></span>		
+	</header>
+
+
+
+	
+	
+	
+	<div  class="row container-fluid" id="mainDiv" style="overflow-y : auto;">
+	<div class="col-lg-5" id="main-div">
+				<div class="panel panel-primary">
+	      			<div class="panel-heading bg-info" id="panelHeading1"><center id="centerText1">CONFIGURATION OF TURBINE FLOW METER</center>
+	      			</div>
+	     			<div class="panel-body" id="main-div-conf">
+	     			
+	     			</div>
+
+<!-- <br><button type="submit" id="result" style="margin-top:17px;width:100%;" class=" btn btn-success"  >RESULT</button> -->
+										
+					
+	   			</div>
+	</div>
+	        <div class="col-lg-7" id="canvas">
+	             <div class="panel panel-primary">
+	      			<div class="panel-heading bg-info" id="panelHeading2"><center id="centerText2">TURBINE FLOW METER DIAGRAM</center>
+	      			</div>
+	      			
+	      			<div class="container panel-body" id="canvas-div"  >
+	      			
+	      			</div>
+<!-- 	      			<hr> -->
+	      			
+	      			<div class="container" id="container-graph1" >
+					</div>
+	      			<br>
+	      			<div class="container" id="container-graph2" >
+					</div>
+	   			</div>
+	       </div>
+	        
+	</div>
+
+<footer>
+Copyrights &copy; COEP - Virtual Lab
+</footer>
+
+<script src="../assets/js/iframeResize.js"></script></body>
+
+<!-- https://code.jquery.com/jquery-3.5.1.js -->
+
+
+
+
+<script type="text/javascript" src="lib/jquery.js"></script>
+
+
+<script type="text/javascript" src="lib/googlechart.js"></script>
+<script type="text/javascript" src="lib/raphael.js"></script>
+<script type="text/javascript" src="lib/raphael.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+
+
+
+<script src="src/QuestionJson.js"></script>
+<script src="src/Questions.js"></script>
+<script type="text/javascript" src="src/turbine_flow_meter.js"></script>
+<script type="text/javascript" src="src/mainPage.js"></script>
+
+<script type="text/javascript" src="src/mimc.js"></script>
+<script type="text/javascript" src="src/animate.js"></script>
+<script type="text/javascript" src="src/resultAnalysis.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
+
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
+
+
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+</html>
