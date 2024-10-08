@@ -2,48 +2,48 @@
   "version": 2.0,
   "questions": [
     {
-      "question": " The linear resistance element flow meters principle is based on __________________ equation?",
+      "question": "What is the working principle of a turbine flow meter?",
       "answers": {
-         "a": "Hagen Poiseuille",
-        "b": "Faraday's Law",
-        "c": "Hall effect",
-        "d": "None of the above"
+         "a": "Electromagnetic induction",
+        "b": "Pressure drop",
+        "c": "Measurement of rotational speed of a rotor",
+        "d": " Thermal expansion"
       },
       
-      "correctAnswer": "a",
+      "correctAnswer": "c",
       "difficulty": "beginner"
     },
     {
-      "question": "What is the necessity of flow measurement?",
+      "question": "Which type of fluid is best suited for a turbine flow meter?",
       "answers": {
-        "a": "Drinking purpose",
-        "b": "Construction purpose",
-        "c": "Laboratory purpose",
-        "d": "All the above"
+        "a": "Highly viscous fluids",
+        "b": "Gases only",
+        "c": "Clean, low-viscosity liquids",
+        "d": "Slurry"
       },
      
-      "correctAnswer": "d",
+      "correctAnswer": "c",
       "difficulty": "beginner"
     },
     {
-      "question": "The flow meters are classified based on ________________?",
+      "question": "What component of the turbine flow meter rotates due to the fluid flow?",
       "answers": {
-        "a": "Rate of flow",
-        "b": "Weight",
-        "c": "Volume",
-        "d": "All the above"
+        "a": "Diaphragm",
+        "b": "Rotor",
+        "c": "Valve",
+        "d": "Piston"
       },
      
-      "correctAnswer": "d",
+      "correctAnswer": "b",
       "difficulty": "beginner"
     },
 	{
-      "question": "Which one of the following meters is a type of mechanical flow meter?",
+      "question": "In a turbine flow meter, the frequency of the output signal is directly proportional to what?",
       "answers": {
-        "a": "Hot wire",
-        "b": "Cup type",
-        "c": "Turbine",
-        "d": "None of the above"
+        "a": "Pressure of the fluid",
+        "b": "Density of the fluid",
+        "c": "Flow rate of the fluid",
+        "d": "Temperature of the fluid"
       },
      
       "correctAnswer": "c",
@@ -51,12 +51,12 @@
     },
 	
 	{
-      "question": "Which one of the following is a type of flow encountered?",
+      "question": "What is the primary factor that affects the accuracy of a turbine flow meter?",
       "answers": {
-        "a": "Quantity meters",
-        "b": "Wet or dry",
-        "c": "Positive displacement meters",
-        "d": "None of the above"
+        "a": "Fluid temperature",
+        "b": "Fluid viscosity",
+        "c": "Pipe size",
+        "d": "Power supply voltage"
       },
      
       "correctAnswer": "b",
