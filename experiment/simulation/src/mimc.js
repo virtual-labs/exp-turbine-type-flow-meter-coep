@@ -258,6 +258,7 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
 	// set flow 	 
 	plus.click(function(event) {st.remove();st1.remove();
 		$("#btnAnsCheck").prop("disabled", true);
+		$("#flowAns").prop("disabled", true);
 		
 		std = paper.text(x + 350, y + 640, "(V1)").attr({ 'font-size': 20, 'font-weight': 'Bold' });
 			std.animateWith(control_button2, null, { "font-size": 20, "fill": "#000" }, 500);
@@ -312,6 +313,7 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
 
 	minus.click(function(event) {
 		$("#btnAnsCheck").prop("disabled", true);
+		$("#flowAns").prop("disabled", true);
 //			st2.hide();
 			st2.remove();
 		if (r > 0) {
@@ -467,6 +469,7 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
 		event.preventDefault();
 //		if(checkAns == 0){
 		$("#btnAnsCheck").prop("disabled", false);
+		$("#flowAns").prop("disabled", false);
 		if (checkDrain == 1) {
 			pumpStatusOff();
 			if(v2Check == 0){ 
@@ -1283,6 +1286,7 @@ var intFact3 = 0;
 		if(checkAns == 1){
 			
 		$("#btnAnsCheck").prop("disabled", true);
+		$("#flowAns").prop("disabled", true);
 		checkAns = 0;
 		//	v2_t.hide();
 		$("#flowAns").val("");
@@ -1796,9 +1800,9 @@ var intFact3 = 0;
 		var error = '<div class="row " >'
 			+ '<div class=" col-sm-3" id="zeroError">'
 			+ ' <label >ZERO ERROR<i class="fa fa-check" id="iconCorrectZero" aria-hidden="true" style="color:green;margin-left:10px;" ></i></label>'
-			+ ' <input type="text"  class="form-control" id="textZeroError" data-toggle="tooltip" title="Hooray!">'
+			+ ' <input type="number"  class="form-control" id="textZeroError" data-toggle="tooltip" title="Hooray!">'
 			+ '<br>'
-			+ '<button type="button"  class="btn btn-primary btnStyle" id="submitZeroError" data-toggle="modal" data-target="#Errors" > SUBMIT</button>'
+			+ '<button type="button"  class="btn btn-primary btnStyle" id="submitZeroError" data-toggle="modal" data-target="#myModal" > SUBMIT</button>'
 //			 +'<div class="row">'
 //			   +'<div class="col-sm-12">'
 //			   +'<button type="button" class="btn btn-danger btnStyle" id="checkConfg" data-toggle="modal" data-target="#myModal" disabled>CHECK CONFIGURATION </button>'
@@ -1827,21 +1831,21 @@ var intFact3 = 0;
 			+ '</div>'
 			+ '<div class=" col-sm-3" id="spanError" >'
 			+ ' <label >SPAN ERROR<i class="fa fa-check" id="iconCorrectSpan" aria-hidden="true" style="color:green;margin-left:10px;" ></i> </label>'
-			+ ' <input type="text"  class="form-control" id="textSpanError" data-toggle="tooltip" title="Hooray!">'
+			+ ' <input type="number"  class="form-control" id="textSpanError"  title="Hooray!">'
 			+ '<br>'
-			+ ' <button type="button" class="btn btn-primary btnStyle" id="submitSpanError">SUBMIT</button>'
+			+ ' <button type="button" class="btn btn-primary btnStyle" id="submitSpanError" data-toggle="modal" data-target="#myModal">SUBMIT</button>'
 			+ '</div>'
 			+ '<div class=" col-sm-3"  id="Linerality">'
 			+ ' <label >LINEARITY <i class="fa fa-check" id="iconCorrectLinerality" aria-hidden="true" style="color:green;margin-left:10px;" ></i> </label>'
-			+ ' <input type="text"  class="form-control"  id="textLineralityeError" data-toggle="tooltip" title="Hooray!">'
+			+ ' <input type="text"  class="form-control"  id="textLineralityeError"  title="Hooray!">'
 			+ '<br>'
-			+ ' <button type="button" class="btn btn-primary btnStyle" id="lineralitySubmit" >SUBMIT</button>'
+			+ ' <button type="button" class="btn btn-primary btnStyle" id="lineralitySubmit" data-toggle="modal" data-target="#myModal" >SUBMIT</button>'
 			+ '</div>'
 			+ '<div class=" col-sm-3"  id="accuracy">'
 			+ ' <label >ACCURACY (%)<i class="fa fa-check" id="iconCorrectAccuracy" aria-hidden="true" style="color:green;margin-left:10px;" ></i></label>'
-			+ ' <input type="text"  class="form-control"  id="textaccuracy" data-toggle="tooltip" title="Hooray!">'
+			+ ' <input type="text"  class="form-control"  id="textaccuracy"  title="Hooray!">'
 			+ '<br>'
-			+ ' <button type="button" class="btn btn-primary btnStyle" id="accuracySubmit">SUBMIT</button>'
+			+ ' <button type="button" class="btn btn-primary btnStyle" id="accuracySubmit" data-toggle="modal" data-target="#myModal">SUBMIT</button>'
 			+ '</div>'
 			
 			+ '</div>'
@@ -2767,7 +2771,7 @@ var intFact3 = 0;
 								   +'<option value="0">--- SELECT CORRECT  ERROR TYPE --- </option>'
 //								   +'<option value="#6b6a64" >Oxygen  </option>'
 								   +'<option value="1" >Blade missing</option>'
-								   +'<option value="2">Error for shaft is stuck / rotation is slow</option>'
+								   +'<option value="2">Error for blade jam / rotation is slow</option>'
 								   +'<option value="3">error for sensor is displaced</option>'
 								   +'</select>'
 								   +'</div>'
@@ -2858,9 +2862,18 @@ var intFact3 = 0;
 			var textZeroError = $("#textZeroError").val();
 			var zeroValueY = graphData[0];
 			var correctAns = masterJson.demo[0].err1;
+			correctAns = correctAns.toFixed(2);
+			
 //			console.log("correctAns " + correctAns);
 //			console.log("masterJson.demo[0].tp " + masterJson.demo[0].tp);
 //			console.log("masterJson.demo[0].tpc " + parseInt(masterJson.demo[0].tpc));
+            if(textZeroError==""){
+	         $(".modal-header").html("Error Message");
+			$(".modal-header").css("background","#9c1203b0");
+			$("#btnModal").removeClass("btn-success").addClass("btn-danger");
+			$("#MsgModal").html("Enter the value");
+             }else{
+	        correctAns = parseFloat(correctAns);
 			if (AnswerCounter < 3) {
 				if (textZeroError == correctAns) {
 					$("#spanError").show();
@@ -2869,18 +2882,31 @@ var intFact3 = 0;
 					$("#submitZeroError").prop('disabled', true);
 					AnswerCounter = 0;
 				} else {
-					alert("Incorrect Answer ");
-					var str='<img src="images/cancel.png" class=" img-fluid " />'
-						+'<b id="errorText" style="color:red;margin-left:10px;" > Incorrect Answer ...</b> '
-						$("#Errors").html(str);
+			$(".modal-header").html("Error Message");
+			$(".modal-header").css("background","#9c1203b0");
+			$("#btnModal").removeClass("btn-success").addClass("btn-danger");
+			$("#MsgModal").html("Incorrect Answer");
+//					alert("Incorrect Answer ");
+//					var str='<img src="images/cancel.png" class=" img-fluid " />'
+//						+'<b id="errorText" style="color:red;margin-left:10px;" > Incorrect Answer ...</b> '
+//						$("#Errors").html(str);
 					
 				}
 			} 
 			else if (AnswerCounter == 3) {
-				alert("ZERO ERROR =  ACTUAL PULSES-TURBINE PULSES");
-				var str='<img src="images/info.png" class=" img-fluid " />'
-					+'<b id="errorText" style="color:red;margin-left:10px;" >ZERO ERROR =  ACTUAL PULSES-TURBINE PULSES ...</b> '
-					$("#Errors").html(str);
+				 
+				  $(".modal-header").html("Error Message");
+//			$(".modal-header").css("background","#23435c");
+           $(".modal-header").css({
+    "background": "#23435c",  // sets the background color
+    "color": "#fff"           // sets the text color to white
+});
+			$("#btnModal").removeClass("btn-success").addClass("btn-danger");
+			$("#MsgModal").html("<b>Formula : ZERO ERROR =  ACTUAL PULSES-TURBINE PULSES</b>");
+//				alert("ZERO ERROR =  ACTUAL PULSES-TURBINE PULSES");
+//				var str='<img src="images/info.png" class=" img-fluid " />'
+//					+'<b id="errorText" style="color:red;margin-left:10px;" >ZERO ERROR =  ACTUAL PULSES-TURBINE PULSES ...</b> '
+//					$("#Errors").html(str);
 				
 			} else if (AnswerCounter >= 4) {
 				
@@ -2893,13 +2919,18 @@ var intFact3 = 0;
 					
 					AnswerCounter = 0;
 				} else {
-					alert(" Correct Answer " + correctAns);
-					var str='<img src="images/cancel.png" class=" img-fluid " />'
-						+'<b id="errorText" style="color:red;margin-left:10px;" >Incorrect Answer ...</b> '
-						$("#Errors").html(str);
+					$("#btnModal").removeClass("btn-danger").addClass("btn-success");
+	        $(".modal-header").html("Success Message");
+            $(".modal-header").css("background","#5cb85c");
+			$("#MsgModal").html("Correct Answer is  : " + correctAns);
+//					alert(" Correct Answer " + correctAns);
+//					var str='<img src="images/cancel.png" class=" img-fluid " />'
+//						+'<b id="errorText" style="color:red;margin-left:10px;" >Incorrect Answer ...</b> '
+//						$("#Errors").html(str);
 				}
 			}
 			AnswerCounter++;
+			}
 		});
 		AnswerCounter=0;
 		$("#submitSpanError").click(function() {
@@ -2911,9 +2942,24 @@ var intFact3 = 0;
 			var zeroValueY = graphData[lastValue];
 
 			var correctAns = masterJson.demo[lastValue].err1;
+			correctAns = correctAns.toFixed(2);
 //			console.log("correctAns " + correctAns);
 //			console.log("masterJson.demo[" + lastValue + "].tp " + masterJson.demo[lastValue].tp);
 //			console.log("masterJson.demo[" + lastValue + "].tpc " + parseInt(masterJson.demo[lastValue].tpc));
+ 
+           if(correctAns==""){
+	         $(".modal-header").html("Error Message");
+//			$(".modal-header").css("background","#9c1203b0");
+            
+            $(".modal-header").css({
+    "background": "#9c1203b0",  // sets the background color
+    "color": "#fff"           // sets the text color to white
+});
+            
+			$("#btnModal").removeClass("btn-success").addClass("btn-danger");
+			$("#MsgModal").html("Enter the value");
+          }else{
+            correctAns = parseFloat(correctAns);
 			if (AnswerCounter < 3) {
 					if (textSpanError == correctAns) {
 						$("#Linerality").show();
@@ -2923,19 +2969,40 @@ var intFact3 = 0;
 						$("#textSpanError").prop('disabled', true);
 						AnswerCounter = 0;
 					} else {
-						alert("Incorrect Answer ");
-						var str='<img src="images/cancel.png" class=" img-fluid " />'
-							+'<b id="errorText" style="color:red;margin-left:10px;" >Incorrect Answer </b> '
-							$("#Errors").html(str);
+						
+						$(".modal-header").html("Error Message");
+						
+						 $(".modal-header").css({
+    "background": "#9c1203b0",  // sets the background color
+    "color": "#fff"           // sets the text color to white
+});
+//			$(".modal-header").css("background","#9c1203b0");
+			$("#btnModal").removeClass("btn-success").addClass("btn-danger");
+			$("#MsgModal").html("Incorrect Answer");
+						
+//						alert("Incorrect Answer ");
+//						var str='<img src="images/cancel.png" class=" img-fluid " />'
+//							+'<b id="errorText" style="color:red;margin-left:10px;" >Incorrect Answer </b> '
+//							$("#Errors").html(str);
 						
 					}
 			} 
 			else if (AnswerCounter == 3) 
 			{
-				alert(" SPAN ERROR =  ACTUAL PULSES-TURBINE PULSES ");
-				var str='<img src="images/info.png" class=" img-fluid " />'
-					+'<b id="errorText" style="color:red;margin-left:10px;" >SPAN ERROR =  ACTUAL PULSES-TURBINE PULSES </b> '
-					$("#Errors").html(str);
+				
+				 $(".modal-header").html("Error Message");
+//			$(".modal-header").css("background","#23435c");
+			$(".modal-header").css({
+    "background": "#23435c",  // sets the background color
+    "color": "#fff"           // sets the text color to white
+});
+			$("#btnModal").removeClass("btn-success").addClass("btn-danger");
+			$("#MsgModal").html("<b>Formula : SPAN ERROR =  ACTUAL PULSES-TURBINE PULSES </b>");
+				
+//				alert(" SPAN ERROR =  ACTUAL PULSES-TURBINE PULSES ");
+//				var str='<img src="images/info.png" class=" img-fluid " />'
+//					+'<b id="errorText" style="color:red;margin-left:10px;" >SPAN ERROR =  ACTUAL PULSES-TURBINE PULSES </b> '
+//					$("#Errors").html(str);
 			} 
 			else if (AnswerCounter >= 4)
 			{
@@ -2951,18 +3018,26 @@ var intFact3 = 0;
 					
 				}
 				else {
-					alert(" Correct Answer " + correctAns);
-					var str='<img src="images/info.png" class=" img-fluid " />'
-						+'<b id="errorText" style="color:red;margin-left:10px;" >Correct Answer  '+correctAns +'</b> '
-						$("#Errors").html(str);
+					
+					$("#btnModal").removeClass("btn-danger").addClass("btn-success");
+	        $(".modal-header").html("Success Message");
+            $(".modal-header").css("background","#5cb85c");
+			$("#MsgModal").html("Correct Answer is : " + correctAns);
+					
+//					alert(" Correct Answer " + correctAns);
+//					var str='<img src="images/info.png" class=" img-fluid " />'
+//						+'<b id="errorText" style="color:red;margin-left:10px;" >Correct Answer  '+correctAns +'</b> '
+//						$("#Errors").html(str);
 					
 				}
 			}
 			AnswerCounter++;
+			}
 		});
 		AnswerCounter=0;
 		var accurance=parseFloat( Math.floor(Math.random() * (80 - 30)) + 30);
 		console.log(" accurance"+accurance);
+		
 		$("#lineralitySubmit").click(function() {
 			
 				 lineralityCounter++;
@@ -3032,7 +3107,15 @@ var intFact3 = 0;
 			//console.log(" linearity    " +linearity1);
 			
 			var textLineralityeError=$("#textLineralityeError").val();
-			if (AnswerCounter < 3) {
+			
+			
+			if(textLineralityeError==""){
+				$(".modal-header").html("Error Message");
+			$(".modal-header").css("background","#9c1203b0");
+			$("#btnModal").removeClass("btn-success").addClass("btn-danger");
+			$("#MsgModal").html("Enter the value");
+			}
+			if (AnswerCounter <= 3) {
 				if (textLineralityeError == linearity1) {
 					
 					$("#accuracy").show();
@@ -3042,14 +3125,26 @@ var intFact3 = 0;
 					
 					AnswerCounter = 0;
 				} else {
-					alert("Incorrect Answer ");
+					$(".modal-header").html("Error Message");
+			$(".modal-header").css("background","#9c1203b0");
+			$("#btnModal").removeClass("btn-success").addClass("btn-danger");
+			$("#MsgModal").html("Incorrect Answer");
+//					alert("Incorrect Answer ");
 //					var str='<img src="images/cancel.png" class=" img-fluid " />'
 //						+'<b id="errorText" style="color:red;margin-left:10px;" >Incorrect Answer ...</b> '
 //						$("#mimicModelMessage").html(str);
 				}
-			} else if (AnswerCounter == 3) {
-				alert(" A=Sqrt (sum(x^2))-(sum(x))^2/N). B=Sqrt (sum(y^2))-(sum(y))^2/N). C=sum(xy)-(sum(y))/N  . linearity =C/AB ");
-				
+			} else if (AnswerCounter == 4) {
+//				alert(" A=Sqrt (sum(x^2))-(sum(x))^2/N). B=Sqrt (sum(y^2))-(sum(y))^2/N). C=sum(xy)-(sum(y))/N  . linearity =C/AB ");
+			$(".modal-header").html("Error Message");
+//			$(".modal-header").css("background","#23435c");
+            $(".modal-header").css({
+    "background": "#23435c",  // sets the background color
+    "color": "#fff"           // sets the text color to white
+});
+			$("#btnModal").removeClass("btn-success").addClass("btn-danger");
+			var modelI = '<img src="images/linearity.png" class="img-responsive" alt="Cinque Terre">'
+			$("#MsgModal").html(modelI);
 				
 				
 			} else if (AnswerCounter >= 4) {
@@ -3063,7 +3158,11 @@ var intFact3 = 0;
 					
 					$("#lineralitySubmit").prop('disabled', true);
 				} else {
-					alert(" Correct Answer " + linearity1);
+			$("#btnModal").removeClass("btn-danger").addClass("btn-success");
+	        $(".modal-header").html("Success Message");
+            $(".modal-header").css("background","#5cb85c");
+			$("#MsgModal").html("Correct Answer is : " + linearity1);
+//					alert(" Correct Answer " + linearity1);
 
 				}
 			}
@@ -3083,39 +3182,17 @@ var intFact3 = 0;
 			var sum=0;
 			var minus=0;
 			var textacc=$("#textaccuracy").val();
-//			for (var i = 0; i < masterJson.demo.length; i++) {
-//				
-//				
-//				
-//				
-//				var tpc=parseInt(masterJson.demo[i].tpc);
-//				
-//				//console.log("tp  "+tpc);
-//				 minus=tpc-pulses[i];
-//				 
-//				// console.log("pulses[i]  "+pulses[i] );
-//			//	console.log("minus  "+minus);
-//				var percentage=(minus/length)*100;
-//				
-//			//	console.log("percentage  "+percentage);
-//				sum+=percentage;
-//			//	console.log("sum "+sum);
-//			   
-//			}
-//			//console.log("sum  "+sum);
-//			var averageAccuracy=sum/length;
-//			
-//			var averageAccuracy1=Math.round(averageAccuracy);
-//			if(averageAccuracy1>0 && averageAccuracy1<=100)
-//				{
-//				
-//				}
-//			if(averageAccuracy1<0 && averageAccuracy1>=-100)
-//			{
-//				
-//			}
-			//console.log("averageAccuracy  "+averageAccuracy1);
-			if (AnswerCounter < 3) {
+           
+//           textacc = textacc.toFixed(2);
+           
+           if(textacc==""){
+	        $(".modal-header").html("Error Message");
+			$(".modal-header").css("background","#9c1203b0");
+			$("#btnModal").removeClass("btn-success").addClass("btn-danger");
+			$("#MsgModal").html("Entered the value");
+     }else{  
+             textacc = parseFloat(textacc);
+			if (AnswerCounter <= 3) {
 				if (textacc == accurance) {
 					
 					$("#accuracy").show();
@@ -3125,13 +3202,29 @@ var intFact3 = 0;
 					$("#CalibrateCheckbox").show();
 					
 				} else {
-					alert("Incorrect Answer ");
+					
+			$(".modal-header").html("Error Message");
+			$(".modal-header").css("background","#9c1203b0");
+			$("#btnModal").removeClass("btn-success").addClass("btn-danger");
+			$("#MsgModal").html("Incorrect Answer");
+					
+//					alert("Incorrect Answer ");
 //					var str='<img src="images/cancel.png" class=" img-fluid " />'
 //						+'<b id="errorText" style="color:red;margin-left:10px;" >Incorrect Answer ...</b> '
 //						$("#mimicModelMessage").html(str);
 				}
-			} else if (AnswerCounter == 3) {
-				alert(" 1.PERCENTAGE ACCURACY = ((STANDERD OUTPUT - OBSERVED OUTPUT)/TOTAL NUMBER OF READING)*100) 2.AVERAGE ACCURACY = SUM OF(PERCENTAGE ACCURACY)/TOTAL NUMBER OF READING)   ");
+			} else if (AnswerCounter == 4) {
+				
+				$(".modal-header").html("Error Message");
+$(".modal-header").css({
+    "background": "#23435c",  // sets the background color
+    "color": "#fff"           // sets the text color to white
+});			$("#btnModal").removeClass("btn-success").addClass("btn-danger");
+			var model12 = '<img src="images/accuracy.png" class="img-responsive" alt="Cinque Terre">'
+			$("#MsgModal").html(model12);
+				
+				
+//				alert(" 1.PERCENTAGE ACCURACY = ((STANDERD OUTPUT - OBSERVED OUTPUT)/TOTAL NUMBER OF READING)*100) 2.AVERAGE ACCURACY = SUM OF(PERCENTAGE ACCURACY)/TOTAL NUMBER OF READING)   ");
 			} else if (AnswerCounter >= 4) {
 				
 				if (textacc == accurance) {
@@ -3143,13 +3236,19 @@ var intFact3 = 0;
 					$("#accuracySubmit").prop('disabled', true);
 					$("#CalibrateCheckbox").show();
 				} else {
-					alert(" Correct Answer " + accurance);
+//					alert(" Correct Answer " + accurance);
+
+                   $("#btnModal").removeClass("btn-danger").addClass("btn-success");
+	        $(".modal-header").html("Success Message");
+            $(".modal-header").css("background","#5cb85c");
+			$("#MsgModal").html("Correct Answer is : " + accurance);
+
 				}
 			}
 			AnswerCounter++;
 			
 			
-			
+		}	
 			
 		});
 		
@@ -3324,38 +3423,82 @@ var intFact3 = 0;
 		keepRotating = Raphael.animation({ 'transform': 'r360' }, time1 + 500).repeat('Infinity');
 	}
 
+
+
 	$("#btnAnsCheck").click(function() {
 		
 		ActualAnsSubmit++;
 		var flowAns = parseFloat($("#flowAns").val().trim());
 		
 		var f = ft.toFixed(3);
+		f = parseFloat(f);
 //		if(isNaN(flowAns)){
 //			var str='<img src="images/info.png" class=" img-fluid " />'
 //				+'<b id="errorText" style="color:red;margin-left:10px;" >Please enter  answer...</b> '
 //				$("#mimicModelMessage").html(str); 
 //			
 //		}
+
+        if(flowAns==""){
+	
+	    $(".modal-header").html("Error Message");
+//			$(".modal-header").css("background","#9c1203b0");
+               $(".modal-header").css({
+    "background": "#9c1203b0",  // sets the background color
+    "color": "#fff"           // sets the text color to white
+});
+			$("#btnModal").removeClass("btn-success").addClass("btn-danger");
+			$("#MsgModal").html("Enter the value");
+	
+}else{
 		if (id <= 3) {
 			if (flowAns == f) {
 				checkAns = 1;
-				tableCreationOnSubmit();
-				$("#btnAnsCheck").prop("disabled", true);
-//				alert("Click on V2 to drain the tank 2 and proceed for next reading ");
 				
 				
-				var str='<img src="images/info.png" class=" img-fluid " />'
-					+'<b id="errorText" style="color:red;margin-left:10px;" >Click on V2 to drain the tank 2 and proceed for next reading...</b> '
-					$("#mimicModelMessage").html(str); 
-				
-				//event.stopPropagation();
+			$("#btnModal").removeClass("btn-danger").addClass("btn-success");
+    $(".modal-header").html("Message");
+//    $(".modal-header").css("background", "#5cb85c");
+  $(".modal-header").css({
+    "background": "#5cb85c",  // sets the background color
+    "color": "#fff"           // sets the text color to white
+});
+    $("#MsgModal").html("Click on V2 to drain the tank 2 and proceed for next reading");
+
+    // Call the function for table creation
+    tableCreationOnSubmit();
+   alert("Click on V2 to drain the tank 2 and proceed for next reading");
+    // Disable the button and the flow answer field
+    $("#btnAnsCheck").prop("disabled", true);
+    $("#flowAns").prop("disabled", true);
+//    $("#myModal").modal('show');
+//    $('#myModal').on('hidden.bs.modal', function () {
+//    document.querySelector('#btnAnsCheck').disabled = true;
+//});
+    
+//      $("#myModal").modal('show');
+//
+        // Disable the button after clicking
+         
+//        $(this).prop('disabled', true);
+//     console.log("Showing modal...");
+//         $("#btnAnsCheck").prop("disabled",true);
+//      document.querySelector('btnAnsCheck').disabled = true;
+    // Show the modal popup
+//    $("#myModal").modal('show');
+    event.stopPropagation();
 			} else if (flowAns != f) {
 				checkAns = 0;
 //				alert("Entered value is incorrect.Try it again... ");
 				
-				var str='<img src="images/cancel.png" class=" img-fluid " />'
-					+'<b id="errorText" style="color:red;margin-left:10px;" >Entered value is incorrect.Try it again...</b> '
-					$("#mimicModelMessage").html(str); 
+				 $(".modal-header").html("Error Message");
+//			$(".modal-header").css("background","#9c1203b0");
+               $(".modal-header").css({
+    "background": "#9c1203b0",  // sets the background color
+    "color": "#fff"           // sets the text color to white
+});
+			$("#btnModal").removeClass("btn-success").addClass("btn-danger");
+			$("#MsgModal").html("Incorrect Answer");
 //				
 				
 				
@@ -3367,11 +3510,23 @@ var intFact3 = 0;
 			checkAns = 0;
 //			alert("formula :Instantaneous Flow = Pulses / Meter constant * Time ");
 		
+			 $(".modal-header").html("Error Message");
+//			$(".modal-header").css("background","#23435c");
+$(".modal-header").html("Error Message");
+//			$(".modal-header").css("background","#9c1203b0");
+               $(".modal-header").css({
+    "background": "#23435c",  // sets the background color
+    "color": "#fff"           // sets the text color to white
+});
+			$("#btnModal").removeClass("btn-success").addClass("btn-danger");
+			$("#MsgModal").html("<b>Formula : Instantaneous Flow = Pulses / (Meter constant &times; Time)</b>");
+	 
 			
-			var msg='<img src="images/info.png" class=" img-fluid " />'
-				+'<b id="errorText1" style="color:blue;margin-left:10px;" >formula :Instantaneous Flow = Pulses / Meter constant * Time .</b> '
-				
-				$("#mimicModelMessage").html(msg); 
+			
+//			var msg='<img src="images/info.png" class=" img-fluid " />'
+//				+'<b id="errorText1" style="color:blue;margin-left:10px;" >formula :Instantaneous Flow = Pulses / (Meter constant &times; Time) .</b> '
+//				
+//				$("#mimicModelMessage").html(msg); 
 			
 		} else {
 			flowAns = parseFloat($("#flowAns").val().trim());
@@ -3379,28 +3534,60 @@ var intFact3 = 0;
 			if (flowAns == f) {
 				checkAns = 1;
 				
-				tableCreationOnSubmit();
-				$("#btnAnsCheck").prop("disabled", true);
-				alert("Click on V2 to drain the tank 2 and proceed for next reading ");
-				var msg='<img src="images/info.png" class=" img-fluid " />'
-					+'<b id="errorText1" style="color:blue;margin-left:10px;" >Click on V2 to drain the tank 2 and proceed for next reading </b> '
-					
-					$("#mimicModelMessage").html(msg); 
+				
+                 $("#btnModal").removeClass("btn-danger").addClass("btn-success");
+    $(".modal-header").html("Message");
+//    $(".modal-header").css("background", "#9c1203b0");
+  $(".modal-header").css({
+    "background": "#5cb85c",  // sets the background color
+    "color": "#fff"           // sets the text color to white
+});
+//    $("#MsgModal").html("Click on V2 to drain the tank 2 and proceed for next reading");
+
+alert("Click on V2 to drain the tank 2 and proceed for next reading");
+
+    // Call the function for table creation
+    tableCreationOnSubmit();
+// $("#myModal").modal('show');
+    // Disable the button and the flow answer field
+    $("#btnAnsCheck").prop("disabled", true);
+    $("#flowAns").prop("disabled", true);
+    
+//    $('#myModal').on('hidden.bs.modal', function () {
+//    document.querySelector('#btnAnsCheck').disabled = true;
+//});
+    
+  
+//
+//        // Disable the button after clicking
+//        $(this).prop('disabled', true);
+//        $("#btnAnsCheck").prop("disabled",true);
+//        document.querySelector('btnAnsCheck').disabled = true;
+//   console.log("Showing modal...");
+    // Show the modal popup
+//    $("#myModal").modal('show');
 			
 			
 				event.stopPropagation();
 			} else {
 				checkAns = 0;
+				
+				
+				$("#btnModal").removeClass("btn-danger").addClass("btn-success");
+	        $(".modal-header").html("Success Message");
+            $(".modal-header").css("background","#5cb85c");
+			$("#MsgModal").html("Correct Answer is " + f);
+				
 //				alert("correct answer is " + f);
-				var msg='<img src="images/info.png" class=" img-fluid " />'
-					+'<b id="errorText1" style="color:blue;margin-left:10px;" >Correct answer is '+f+'</b> '
-					
-					$("#mimicModelMessage").html(msg); 
+//				var msg='<img src="images/info.png" class=" img-fluid " />'
+//					+'<b id="errorText1" style="color:blue;margin-left:10px;" >Correct answer is '+f+'</b> '
+//					
+//					$("#mimicModelMessage").html(msg); 
 			}
 		}
 
 		id++;
-		
+		}
 
 	});
 }//main Function close
