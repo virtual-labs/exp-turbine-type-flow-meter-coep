@@ -15,6 +15,20 @@ if ($(window).width() < 500) {
 	paper.setSize('85%', '95%');
 }
 
+//$("#canvas-div").html('');
+// paper = new Raphael(document.getElementById('canvas-div'));
+//if ($(window).width() < 600) {
+//		width = $(this).width();
+//
+//		paper.setViewBox(0, 0, w, h, true);
+//		paper.setSize('90%', '90%');
+//	} else {
+//
+//		paper.setViewBox(0, 0, w, h, true);
+//		paper.setSize('90%', '90%');
+//	}
+
+
  x = 150;
  y = 50;
 // $('#canvas-div').removeAttr('width');

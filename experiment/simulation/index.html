@@ -37,8 +37,18 @@
                 opacity: 0.2;
             }
         }
-
-
+.modal-header1{
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+     background-color: #001f3f; /* Navy blue background */
+    color: white; /* White text color */
+   
+    }
+#canvas-div {
+      width: 100%;
+/*       height: 100vh; */
+    }
 
 </style>
 <body >
@@ -51,11 +61,23 @@
 
 
 
+	<div  class="row " >
+	   <div class="col-lg-6" >
+	</div>
+	 <div class="col-lg-3" >
+	</div>
+	 <div class="col-sm-3" >
+	 <button type="button" class="btn btn-danger btnMarin" data-toggle="modal" style="margin-top:10px;width:30%;margin-bottom:-12px;" data-target="#exampleModal1" id = "btnForModal">
+	  Procedure
+	</button>
+	 
+	</div>
+	</div>
+	
+	<div  class="row container-fluid" id="mainDiv" >
 	
 	
-	
-	<div  class="row container-fluid" id="mainDiv" style="overflow-y : auto;">
-	<div class="col-lg-5" id="main-div">
+	<div class="col-lg-5" id="main-div" style="margin-top:-20px;width:100%;">
 				<div class="panel panel-primary">
 	      			<div class="panel-heading bg-info" id="panelHeading1"><center id="centerText1">CONFIGURATION OF TURBINE FLOW METER</center>
 	      			</div>
@@ -87,6 +109,55 @@
 	       </div>
 	        
 	</div>
+
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header1" >
+        <h3 class="modal-title1" id="exampleModalLabel">Procedure</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body11" style="    overflow-y: scroll;height:600px;margin-left:10px; ">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+<!--         <button type="button" class="btn btn-primary">OK</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- 	Model Start -->
+	<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+		<h4 class="modal-title" style="font-weight: 600;"></h4>
+          <button type="button" class="close" data-dismiss="modal" style="color: black;">&times;</button>
+          
+        </div>
+        <div class="modal-body">
+          <p id="MsgModal"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="btnModal" class="btn" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+<!--   Model end -->
+
+
+
 
 <footer>
 Copyrights &copy; COEP - Virtual Lab
@@ -139,4 +210,77 @@ Copyrights &copy; COEP - Virtual Lab
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+
+<script>
+var htm = '';
+htm += '<ol>'
+ 
+  +'<h1>Procedure</h1>'
+  +'  <h3>Basic Knowledge</h3>'
+  +'  <ul>'
+  +'      <li>Answer all the questions and click on "Submit Test" button.</li>'
+  +'  </ul>'
+  
+ 
+  +' <h3>Configuration:</h3>'
+  +'  <ul>'
+  +'      <li>Configure your turbine flow meter by selecting fluid type, material type of blade, blade type, pipe size, time in sec and enter the meter constant. Below fig. shows the type of blade and number of blades.</li>'
+  +'     <img src="images/blades_type.png" class="img-responsive" alt="Cinque Terre">'
+  +'      <li>Min and Max speed range will be displayed. Here, readings can be taken by changing speed of VFD that you have configured.</li>'
+  +'      <li>Observe the reading.</li>'
+  +'      <li>Plot the graph.</li>'
+  +'     <li>After this click on the next simulation step.</li>'
+  +'  </ul>'
+  
+  
+  +' <h3>Simulation:</h3>'
+  +' <h4>Standard Table and Graph:</h4>'
+  +' <ul>'
+  +'    <li>Select any Random range and click on submit.</li>'
+  +'    <li>Take at least 5 readings and click on Graph.</li>'
+  +' </ul>'
+
+  +'  <h4>Animation:</h4>'
+  +'  <ul>'
+  +'     <li>Click on Start process.</li>'
+  +'     <li>Instantaneous flow observed by total pulses.</li>'
+  +' </ul>'
+
+  +'<h4>Mimic:</h4>'
+  +' <ul>'
+  +' <li>First step is to reset the tare weight.</li>'
+  +'  <li>Adjust the VFD speed by clicking on plus and minus buttons. Select minimum and maximum speed of flow.</li>'
+  +'    <li>Click on the suction valve(V1), after clicking its color turns to green which indicates it is ON and liquid supply to pump.</li>'
+  +'   <li>To start the pump, click on the pump, it turns green and liquid flow through pump with selected speed for sec of time which is configured in earlier stage.</li>'
+  +'    <li>Observe the reading of LT weight, Turbine flow meter, Magnetic flow meter, and WT weight.</li>'
+  +'     <li>After the process, the pump will stop, then you must click on V2 valve, it will turn green to drain tank 2 and fill tank 1.</li>'
+  +'      <li>Follow the same process for at least 10 times and note all readings including speed range in min and max flow.</li>'
+  +'      <li>After completing all processes, click on V3 drain valve to drain tank 1.</li>'
+  +'    <li>The simulation is finished, and you can click on next for Calibration.</li>'
+  +' </ul>'
+
+  
+  +'<h3>Calibration:</h3>'
+  +'<ul>'
+  +' <li>Observe the Minimum reading and calculate zero error and submit the answer.</li>'
+  +'  <li>Observe Maximum reading and calculate span error and submit the answer.</li>'
+  +'   <li>Similarly, observe all the intermediate points on the graph and calculate Linearity and Accuracy.</li>'
+  +'    <li>Click on Calibrate and calibrate points on graph (using plus and minus buttons).</li>'
+  +'    <li>Follow the instructions and adjust the points on the graph to make it linear.</li>'
+  +' </ul>'
+ 
+  
+  +' <h3>Fault Finding:</h3>'
+  +'<ul>'
+  +'   <li>Observe the shown table and select the fault accordingly.</li>'
+  +'   <li>After selecting the correct fault, the result will be displayed.</li>'
+  +'</ul>'
+  
+  +'</ol>'
+
+  $(".modal-body11").html(htm);
+  $(".modal-title1").html("Procedure");
+
+</script>
+
 </html>

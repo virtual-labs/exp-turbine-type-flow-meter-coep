@@ -158,7 +158,7 @@ var htm1='<div class="col-sm-6">'
 	   +'<label >Enter meter constant value (pulses) </label>'
 	   +'</div>'
 	   +'<div class="col-sm-6">'
-	   +'<input type="text" class="form-control" id="supplierConstaint" value="" placeholder="Enter meter constant value">'
+	   +'<input type="number" class="form-control" id="supplierConstaint" value="" placeholder="Enter meter constant value">'
 	   +'<div class="alert alert-success" id="errorMsg">'
 	   +'</div>'
 	   +'</div>'
@@ -233,8 +233,8 @@ var htm1='<div class="col-sm-6">'
 	    +'</div>'
 	   $("#main-div-conf").html(htm+htm1);
 	   var table=''
-		   +'<div class="row col-sm-12" style="overflow-x:auto;">'
-		   +'<table id="readingTable" class="table table-bordered "  >'
+		   +'<div class="row col-sm-12 table-responsive" >'
+		   +'<table id="readingTable" class="table table-bordered table-responsive"  >'
 	       +'<thead id="" disabled>'
            +'  <tr style="background-color:#000;color:#fff;">'
 		   +'    <th colspan="2"><center>Magnatic Flow Meter</center></th>'
@@ -721,7 +721,7 @@ $( document ).ready(function() {
 				   else
 				   {
 					   $("#errorMsg").addClass("alert alert-danger");
-					   $("#errorMsg").html("Inputed value is not in range (Enter a figure between 100 and 400 in the meter constaint.)"); 
+					   $("#errorMsg").html("The input value is out of range. Please enter a number between 100 and 400 for the meter constant."); 
 					   str='<img src="images/cancel.png" class=" img-fluid " />'
 						    +'<b id="errorText" style="color:red;" >Enter a figure between 100 and 400 in the meter constant</b> '
 						   	$("#errorModel").html(str); 
@@ -1021,7 +1021,7 @@ function  GraphCreation(masterJson)
            var add='<h3><center style="color:blue;">Meter constant value '+supplierConstaint+' Pulses per/ltr</center></h3>'
            +'<div class="row container">'
 	           +'<div class="col-sm-12">'
-	           +'<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">'
+	           +'<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" hidden>'
 	           +'READ PROCEDURE '
 	           +'</button>'
 	         
@@ -1074,10 +1074,10 @@ function  GraphCreation(masterJson)
 	       +'<label  id=""  class="" style="font-size:16px;margin-top:35px;">Actual instantaneous flow of turbine flow meter is :</label>'
 	       +'</div>'
            +'<div class="col-sm-3">'
-	       +'<input type="text" id="flowAns" style="margin-top:35px;width:100%;"  class=" form-control"/>'
+	       +'<input type="number" id="flowAns" style="margin-top:35px;width:100%;"  class=" form-control"/>'
 	       +'</div>'
 	       +'<div class="col-sm-3">'
-	       +'<br><button type="submit" id="btnAnsCheck" style="margin-top:17px;width:100%;" class=" btn btn-primary" data-toggle="modal" data-target="#mimicModel" >Submit</button>'
+	       +'<br><button type="submit" id="btnAnsCheck" style="margin-top:17px;width:100%;" class=" btn btn-primary" data-toggle="modal" data-target="#myModal" >Submit</button>'
 	       +'<div class="row">'
 		   +'<div class="col-sm-12">'
 //		   +'<button type="button" class="btn btn-danger btnStyle" id="checkConfg" data-toggle="modal" data-target="#myModal" disabled>CHECK CONFIGURATION </button>'

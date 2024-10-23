@@ -133,7 +133,7 @@ background: linear-gradient(90deg, rgba(125,176,169,1) 0%, rgba(78,109,114,1) 31
 }
 
 #mainDiv {
-	height: 1000px;
+	height: auto;
 	overflow: hidden;
 }
 
@@ -195,8 +195,8 @@ background: linear-gradient(90deg, rgba(125,176,169,1) 0%, rgba(78,109,114,1) 31
 }
 #rangePanel
 {
-	margin:25px 10px 10px 10px;
-	border-color:black;
+/* 	margin:25px 10px 10px 10px; */
+/* 	border-color:black; */
 }
 /* #canvasMainDiv{height:700px ; overflow-x:scroll} */
 #container {
