@@ -2,7 +2,6 @@
 Turbine type flow meters are similar to a propeller held against the wind when we keep the propeller against wind it rotates, and if you observe carefully there exists a relation between velocity of wind and rotational speed of turbine, the rate of rotation increases as the wind velocity increases. These observations suggest that the flow velocity in a pipe can be measured by placing a freely rotating propeller inside a pipe section, but it needs calibration. These type of flow meters are more commonly known as "Turbine Type Flow meters". A cut section of the turbine type flow meter is as shown in figure 1 and 2. The construction is similar to a mini wind mill.
 
 ![ *Turbine_intro*](images/Turbine_intro.png)
-
 ![ *Turbine_read*](images/Turbine_read.png)
 
 Turbine flow meters are used in many industrial applications to measure the flow of liquid and gas. It consists of a multi-blade rotor mounted with a pipe perpendicular to the fluid flow. When the liquid passes through the blades, the rotor will spin. The speed of the rotor depends on the flow rate, the rotational movement can be measured either using gears or the opto-couplers. 
