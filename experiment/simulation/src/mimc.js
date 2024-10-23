@@ -2806,7 +2806,7 @@ var intFact3 = 0;
 													if(errorAttemptCounter<3)	{
 														$("#nextLevelResultDiv").prop("disabled", true);
 //														$("#correctError").html("Selected Error type is match... New Table");
-														alert("Selected Error type is match... New reading with new error");
+														alert("The selected error type matches...");
 														$(".alert").css("background-color", "green");
 														errorAttemptCounter++;
 //														errorType1= Math.floor(Math.random() * (4 - 1)) + 1;
@@ -3117,7 +3117,8 @@ var intFact3 = 0;
 			$(".modal-header").css("background","#9c1203b0");
 			$("#btnModal").removeClass("btn-success").addClass("btn-danger");
 			$("#MsgModal").html("Enter the value");
-			}
+			}else{
+				 linearity1 = parseFloat(linearity1);
 			if (AnswerCounter <= 3) {
 				if (textLineralityeError == linearity1) {
 					
@@ -3171,7 +3172,7 @@ var intFact3 = 0;
 			}
 			AnswerCounter++;
 			
-			
+			}
 			
 			
 		});
