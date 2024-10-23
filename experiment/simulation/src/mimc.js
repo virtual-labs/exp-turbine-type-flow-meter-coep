@@ -512,6 +512,9 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
 					//alert that duplicate is present
 //					console.log("Duplicate values present in array..");
 					alert("Please provide unique percent values !!");
+					pumpStatusOff();
+						keepRotating = Raphael.animation({ 'transform': 'r0' }, time1 + 1000);
+			b1.animate(keepRotating);
 //					var str='<img src="images/info.png" class=" img-fluid " />'
 //						+'<b id="errorText" style="color:red;margin-left:10px;" >Please provide unique percent values ...</b> '
 //						$("#mimicModelMessage").html(str);	
