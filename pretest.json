@@ -1,0 +1,73 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "What is the working principle of a turbine flow meter?",
+      "answers": {
+         "a": "Electromagnetic induction",
+        "b": "Pressure drop",
+        "c": "Measurement of rotational speed of a rotor",
+        "d": " Thermal expansion"
+      },
+      
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which type of fluid is best suited for a turbine flow meter?",
+      "answers": {
+        "a": "Highly viscous fluids",
+        "b": "Gases only",
+        "c": "Clean, low-viscosity liquids",
+        "d": "Slurry"
+      },
+     
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What component of the turbine flow meter rotates due to the fluid flow?",
+      "answers": {
+        "a": "Diaphragm",
+        "b": "Rotor",
+        "c": "Valve",
+        "d": "Piston"
+      },
+     
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+	{
+      "question": "In a turbine flow meter, the frequency of the output signal is directly proportional to what?",
+      "answers": {
+        "a": "Pressure of the fluid",
+        "b": "Density of the fluid",
+        "c": "Flow rate of the fluid",
+        "d": "Temperature of the fluid"
+      },
+     
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+	
+	{
+      "question": "What is the primary factor that affects the accuracy of a turbine flow meter?",
+      "answers": {
+        "a": "Fluid temperature",
+        "b": "Fluid viscosity",
+        "c": "Pipe size",
+        "d": "Power supply voltage"
+      },
+     
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    }
+  
+  
+  
+  
+  
+  
+  
+  ]
+}

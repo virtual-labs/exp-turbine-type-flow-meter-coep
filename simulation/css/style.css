@@ -1,0 +1,322 @@
+
+.font-style{
+	font-size:15px;
+}
+.p-style{
+	padding:20px 20px 20px 20px;
+}
+.info
+{
+	color:#362512;
+}
+.slidecontainer {
+	width: 100%;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	border: 2px solid #666;
+}
+#centerText1,#centerText2
+{
+	font-size:20px;
+}
+
+@media screen and (min-width: 480px) {
+  .readingTable {
+    width: 50%;
+  }
+}
+footer {
+	background: rgb(125,176,169);
+background: linear-gradient(90deg, rgba(125,176,169,1) 0%, rgba(78,109,114,1) 31%, rgba(33,44,62,1) 100%);
+	padding: 2px 10px;
+	border-top: 5px solid #2a333c;
+	text-align: center;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.slider {
+	-webkit-appearance: none;
+	width: 100%;
+	height: 10px;
+	border-radius: 5px;
+	background: #d3d3d3;
+	outline: none;
+	opacity: 0.7;
+	-webkit-transition: .2s;
+	transition: opacity .2s;
+}
+
+.slider:hover {
+	opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	background: rgb(42, 51, 60);
+	background: linear-gradient(90deg, rgba(42, 51, 60, 1) 0%,
+		rgba(88, 110, 140, 1) 51%, rgba(42, 51, 60, 1) 100%);
+	cursor: pointer;
+	background: linear-gradient(90deg, rgba(42, 51, 60, 1) 0%,
+		rgba(88, 110, 140, 1) 51%, rgba(42, 51, 60, 1) 100%);
+}
+
+#modelBTn {
+	color: #fff;
+	background: rgb(42, 51, 60);
+	/* 	background: linear-gradient(90deg, rgba(42, 51, 60, 1) 0%, */
+	/* 		rgba(88, 110, 140, 1) 51%, rgba(42, 51, 60, 1) 100%); */
+}
+
+.slider::-moz-range-thumb {
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	background: #4CAF50;
+	cursor: pointer;
+}
+
+#MEFMainDiv h1 {
+	border-radius: 10px;
+	padding: 5px;
+	color: #fff;
+	font-size: 22px;
+	font-weight: bold;
+	text-align: center;
+	background: rgb(42, 51, 60);
+	background: linear-gradient(90deg, rgba(42, 51, 60, 1) 0%,
+		rgba(88, 110, 140, 1) 51%, rgba(42, 51, 60, 1) 100%);
+}
+
+#EMFDataTableDisplay h1 {
+	border-radius: 10px;
+	padding: 5px;
+	color: #fff;
+	font-size: 22px;
+	font-weight: bold;
+	text-align: center;
+	background: rgb(42, 51, 60);
+	background: linear-gradient(90deg, rgba(42, 51, 60, 1) 0%,
+		rgba(88, 110, 140, 1) 51%, rgba(42, 51, 60, 1) 100%);
+}
+
+#EMFDataTableDisplayM h1 {
+	border-radius: 10px;
+	padding: 5px;
+	color: #fff;
+	font-size: 22px;
+	font-weight: bold;
+	text-align: center;
+	background: rgb(42, 51, 60);
+	background: linear-gradient(90deg, rgba(42, 51, 60, 1) 0%,
+		rgba(88, 110, 140, 1) 51%, rgba(42, 51, 60, 1) 100%);
+}
+
+.slidecontainer h2 {
+	color: #232226;
+	font-size: 17px;
+	font-weight: bold;
+	padding-bottom: 10px;
+	border-bottom: 2px solid #666;
+}
+
+.slidecontainer h3 {
+	color: #232226;
+	font-size: 17px;
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+
+#mainDiv {
+	height: auto;
+	overflow: hidden;
+}
+
+.dataTables_length {
+	dispaky: none
+}
+
+.dataTables_filter {
+	dispaky: none
+}
+
+.greenBg {
+	background: #bfc0c182;
+}
+
+.fa-exclamation-triangle {
+	color: yellow;
+	background: #000;
+	padding: 2px;
+	margin: 5px;
+	font-size: 19px;
+	border-radius: 6px;
+}
+
+.tableimg {
+	top: 66px;
+    position: absolute;
+    right: 0;
+}
+.tableimg2{top: 146px;
+    position: absolute;
+    right: 283px;}
+.modal-dialog {
+    width: 673px;
+    margin: 30px auto;
+}
+#mineral
+{
+	margin:0px 0px 20px 0px;
+}
+#errorMsg{
+	 margin-top:10px;
+	 font-size:15px;
+}
+#errorText
+{
+	margin-left:40px;
+}
+/* .selectStyle */
+/* { */
+/* 	color:#fff; */
+	
+/* } */
+#fluidType,#materialType,#bladeShape,#pipeSize,#noBlades,#timer
+{
+	color:#fff;
+	font-size:15px;
+	margin-bottom:10px;
+}
+#rangePanel
+{
+/* 	margin:25px 10px 10px 10px; */
+/* 	border-color:black; */
+}
+/* #canvasMainDiv{height:700px ; overflow-x:scroll} */
+#container {
+    height: 600px;
+}
+.imgPlusMinus{
+	    HEIGHT: 85PX;
+    WIDTH: 85PX;
+}
+.imgPlusMinus1{
+	    width: 30px;
+    height: 30px;
+}
+#algorithmAlert1,#algorithmAlert2,#algorithmAlert3,#errorZeroAlert,#spanErrorAlert,#zeroErrorAlert2,#algorithmAlertDanger2{
+	padding :15px ;
+	margin-top:40px;
+	margin:5px;
+	font-size:15px;
+}
+
+#alertError {
+  padding: 20px;
+  margin-top:50px;
+/* // background-color: #f44336; */
+  color: white;
+ 
+}
+
+#alertError1 {
+  padding: 20px;
+  margin-top:50px;
+/* // background-color: #f44336; */
+  color: white;
+  margin-left: 30px;
+}
+
+
+#errorCheck{
+	height:50px;
+	color:#fff;
+}
+.Actual {
+  height: 100px;
+  width: 100px;
+  background-color: #69110a;
+  border-radius: 50%;
+  display: inline-block;
+}
+.Actual {
+  height:30px;
+  width: 30px;
+  background-color: #2ad352;
+  border-radius: 50%;
+  display: inline-block;
+}
+.ActualText{
+	margin:50px;
+	
+}
+.Expected {
+  height:30px;
+  width: 30px;
+  background-color: #25b7d3;
+  border-radius: 50%;
+  display: inline-block;
+}
+.ExpectedText{
+	margin:50px;
+	
+}
+.highcharts-title{
+	 font-size: 3.2em;
+}
+.highcharts-background{
+	fill:#e5e5e5;
+	fontsize:40rem;
+	color:#fff;
+	
+}
+.highcharts-title{
+	       font-size: 2.2em;
+    color:red;
+    font-weight: bold;
+    fill:red;
+}
+.highcharts-subtitle{
+	       font-size: 2.2em;
+    color: red;
+    font-weight: bold;
+    fill: red;
+}
+.highcharts-axis-title{
+
+        color: rgb(58 22 22);
+    font-size: 1.8em;
+    fill: rgb(112 37 37);
+}
+.highcharts-yaxis
+{
+	font-size: 2.0em;
+	fill:rgb(186 40 40);
+}
+.highcharts-xaxis
+{
+	font-size: 2.0em;
+	fill:rgb(186 40 40);
+}
+.highcharts-xaxis-labels
+{
+	font-size: 1.5em;
+}
+.highcharts-yaxis-labels
+{
+	font-size: 1.8em;
+}
+.highcharts-point 
+{
+/* 	fill:red; */
+}
