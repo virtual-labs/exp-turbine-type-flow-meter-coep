@@ -56,7 +56,7 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
 	var spanErrorCounter=0;
 	var accurancyCounter=0;
 	var lineralityCounter=0;
-		
+	var faultCnt = 0;		
 	
 	resultJson = {};
 	var masterResultJson={};
@@ -358,7 +358,9 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
 	// pump on off functions
 	var vt_text;
 	function pumpStatusOff(event) {
+//		 RealTimer.remove();
 //       add1();
+       capFlg = 0;
 		var c = paper.circle(x + 250, y + 600, 10);
 		c.animate({ 'fill': 'red', 'stroke': 'red', opacity: 1 }, 1000, "bounce");
 
@@ -462,7 +464,10 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
 //   		console.log("REALTIME:"+hours+" : "+minutes+" : "+seconds); 
 //   		RealTimer.remove();
 //}
-	// pump click function	
+	// pump click function
+	
+   var capFlg = 0;
+		
 	pump.click(function(event) {
 		st2.remove();
 		st8.remove();
@@ -474,6 +479,8 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
 			pumpStatusOff();
 			if(v2Check == 0){ 
 			alert("Tank is empty ");
+			$("#btnAnsCheck").prop("disabled", true);
+		$("#flowAns").prop("disabled", true);
 //			var str='<img src="images/info.png" class=" img-fluid " />'
 //				+'<b id="errorText" style="color:red;margin-left:10px;" >Tank is empty ...</b> '
 //				$("#mimicModelMessage").html(str);
@@ -515,6 +522,8 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
 					pumpStatusOff();
 						keepRotating = Raphael.animation({ 'transform': 'r0' }, time1 + 1000);
 			b1.animate(keepRotating);
+//			  $("#flowAns").prop("disabled",true);
+//				   $("#btnAnsCheck").prop("disabled",true);
 //					var str='<img src="images/info.png" class=" img-fluid " />'
 //						+'<b id="errorText" style="color:red;margin-left:10px;" >Please provide unique percent values ...</b> '
 //						$("#mimicModelMessage").html(str);	
@@ -535,6 +544,8 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
 				if (array[0] != 0) {
 					//alert user to provide 1 as one of the remaining 2 values
 					alert(" You need to provide one of the remaining input value as 1 !! ");
+					 $("#flowAns").prop("disabled",true);
+				   $("#btnAnsCheck").prop("disabled",true);
 //					var str='<img src="images/info.png" class=" img-fluid " />'
 //						+'<b id="errorText" style="color:red;margin-left:10px;" >You need to provide one of the remaining input value as 1 ...</b> '
 //						$("#mimicModelMessage").html(str);	
@@ -628,8 +639,11 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
  							 array.splice(index, 1); 
 								}
 //							console.log("array value in else array"+array);	
-							
-							alert("There is not enough water to start the pump ... click on V2 and complete the process");
+							pumpStatusOff();
+							keepRotating = Raphael.animation({ 'transform': 'r0' }, time1 + 1000);
+							b1.animate(keepRotating);
+							capFlg = 1;
+							alert("There is not enough water to start the pump, click on V2 and complete the process");
 //							var str='<img src="images/info.png" class=" img-fluid " />'
 //								+'<b id="errorText" style="color:red;margin-left:10px;" > There is not enough water to start the pump ... click on V2 and complete the process..</b> '
 //								$("#mimicModelMessage").html(str);
@@ -651,8 +665,12 @@ function nextLevelMimc(BladeShape, pipeSize, noBlades, time2, materialType, flui
 //						+'<b id="errorText" style="color:red;margin-left:10px;" > Turn on the SV valve..</b> '
 //						$("#mimicModelMessage").html(str);
 				}
-				add();
-				
+				if(capFlg == 0){
+					add();
+				}else{
+				   $("#flowAns").prop("disabled",true);
+				   $("#btnAnsCheck").prop("disabled",true);
+			     }	
 			}
 			
 		}
@@ -1379,7 +1397,7 @@ var intFact3 = 0;
 		countwt = countwt + 1;
 		V2_click_counter++;
 		}else{
-			  alert("check answer first ...");
+			  alert("check answer first");
 			  
 			}
 
@@ -1548,7 +1566,7 @@ var intFact3 = 0;
 				$("#success").hide();
 			}
 		 else {
-			alert("take at list 6 readings...");
+			alert("Take atleast 6 readings.");
 		}
 			
 			
@@ -1568,9 +1586,9 @@ var intFact3 = 0;
 //			$('.container panel-body').removeAttr('width');
 //			$('.container panel-body').removeAttr('height');
 //			$("#container-graph1").css("height", '500');
-			$("#container-graph1").css("width", '800');
+			$("#container-graph1").css("width", 'auto');
 //			$("#container-graph2").css("height", '500');
-			$("#container-graph2").css("width", '800');
+			$("#container-graph2").css("width", 'auto');
 
 			
 
@@ -1640,7 +1658,8 @@ var intFact3 = 0;
 //			    chart: {
 //			      type: 'bar'
 //			    },
-			
+			    exporting: { enabled: false },
+				credits: { enabled: false},
 				title: {
 					text: ' Graph of Weight(Gram) & pulses of turbine flow meter '
 				},
@@ -1713,6 +1732,8 @@ var intFact3 = 0;
 			Ymax = parseFloat(ydata[ydata.length - 1]);
 			//console.log(" turbine flow meter & magnatic flow meter  " + graphData1);
 			Highcharts.chart('container-graph2', {
+				exporting: { enabled: false },
+				credits: { enabled: false},
 				title: {
 					text: ' Graph of turbine flow meter & magnatic flow meter '
 				},
@@ -1852,7 +1873,6 @@ var intFact3 = 0;
 			+ '</div>'
 			
 			+ '</div>'
-			+'<br>'
 			+ '<div class=" col-sm-4" id="CalibrateCheckbox">'
 			+ '<div class=" form-check">'
 			+ '  <label class=" form-check-label" for="flexRadioDefault1">'
@@ -1884,7 +1904,7 @@ var intFact3 = 0;
 							+'<img src="images/plus.png" class="imgPlusMinus1 img-fluid" id="plusZero"></img>'
 						 +'</div>'
 						 +'<div class="alert alert-success" role="alert"  id="errorZeroAlert">'
-							+' <b id="errorZeroText">Zero Adjusted Successfully ...</b>'
+							+' <b id="errorZeroText">Zero Adjusted Successfully </b>'
 						+'</div>'
 					 +'</div>'
 			 +'</div>'
@@ -1897,10 +1917,10 @@ var intFact3 = 0;
 							+'<img src="images/plus.png"  class="imgPlusMinus1 img-fluid" id="plusMax"></img>'
 						+'</div>'
 						+'<div class="alert alert-success" role="alert"  id="spanErrorAlert" >'
-							+' <b id="spanErrorText">Span Adjusted Successfully ...</b>'
+							+' <b id="spanErrorText">Span Adjusted Successfully</b>'
 						+'</div>'
 						+'<div class="alert alert-danger" role="alert"  id="zeroErrorAlert2">'
-							+' <b id="zeroErrorText2">But zero disturbs ...</b>'
+							+' <b id="zeroErrorText2">But zero disturbs</b>'
 						+'</div>'
 				     +'</div>'
 			+'</div>'
@@ -1913,7 +1933,7 @@ var intFact3 = 0;
 							+'<img src="images/plus.png"  class="imgPlusMinus1 img-fluid" id="plusLinearAlgo1"></img>'
 						+'</div>'
 						+'<div class="alert alert-success" role="alert"  id="algorithmAlert1">'
-						+' <b id="algorithmText1">Algorithm - 1 Adjusted Successfully ...</b>'
+						+' <b id="algorithmText1">Algorithm - 1 Adjusted Successfully</b>'
 						+'</div>'
 			       +'</div>'
 			+'</div>'
@@ -1929,10 +1949,10 @@ var intFact3 = 0;
 							+'<img src="images/plus.png"  class="imgPlusMinus1 img-fluid" id="plusLinearAlgo2"></img>'
 						+'</div>'
 						+'<div class="alert alert-success" role="alert"  id="algorithmAlert2">'
-						+' <b id="errorZeroText2">Algorithm - 2 Adjusted Successfully ...</b>'
+						+' <b id="errorZeroText2">Algorithm - 2 Adjusted Successfully</b>'
 						+'</div>'
 						+'<div class="alert alert-danger" role="alert"  id="algorithmAlertDanger2">'
-						+' <b id="zeroErrorText2">But Algorithm -1 is disturbs set all point into 3 Algorithm...</b>'
+						+' <b id="zeroErrorText2">But Algorithm -1 is disturbs set all point into 3 Algorithm</b>'
 					+'</div>'
 					+'</div>'
 			    +'</div>'
@@ -1946,7 +1966,7 @@ var intFact3 = 0;
 								+'<img src="images/plus.png"  class="imgPlusMinus1 img-fluid" id="plusLinearAlgo3"></img>'
 							+'</div>'
 							+'<div class="alert alert-success" role="alert"  id="algorithmAlert3">'
-							+' <b id="spanErrorText2">Algorithm - 3 Adjusted Successfully ...</b>'
+							+' <b id="spanErrorText2">Algorithm - 3 Adjusted Successfully</b>'
 							+'</div>'
 					+'</div>'
 				+'</div>'
@@ -1983,7 +2003,7 @@ var intFact3 = 0;
 							   $("#plusMinusCalibrationSpan").show();
 							   $("#errorZeroAlert").show();
 								$("#spanPanel").show();
-								$(".highcharts-point").css("fill", "red");
+//								$(".highcharts-point").css("fill", "red");
 							 temp= parseInt(masterJson.demo[i].pulwt);
 							ydataPulse[i]=masterJson.demo[i].pulwt=temp;
 							
@@ -2027,7 +2047,7 @@ var intFact3 = 0;
 								$("#plusMinusCalibrationSpan").show();
 									flagZeroErrorAttend=2;
 									$("#spanPanel").show();
-									$(".highcharts-point").css("fill", "red");
+//									$(".highcharts-point").css("fill", "red");
 								 temp= parseInt(masterJson.demo[i].pulwt);
 								ydataPulse[i]=masterJson.demo[i].pulwt=temp;
 						 }
@@ -2579,14 +2599,14 @@ var intFact3 = 0;
 				$("#CalibrateCheckbox").hide();
 				$("#algo2Panel").hide();
 				$("#algo3Panel").hide();
-				var blink='<div class="row col-sm-12 blink" style="margin:10px;"><center> Zero , Span & Linearity Adjusted successfully   !!!</center> </div>'
+				var blink='<div class="row col-sm-12 blink" style="margin:0px; margin-bottom: 10px;"><center> Zero , Span & Linearity Adjusted successfully   !!!</center> </div>'
 				 $("#calibrationPanel").html(blink);
 				var tableMainDiv = '<br>'
 					
 					+'<br>'
 					
 					+'<div class="col-sm-12" id="tableDesign">'
-					+ '<table class=" table table-dark" style="margin:10px;">'
+					+ '<table class=" table table-dark" style="margin:0px;">'
 						+ ' <thead>'
 						+ '  <tr>'
 						+ '   <th scope="col">Magnetic Standard Flow(lit/sec)</th>'
@@ -2619,30 +2639,30 @@ var intFact3 = 0;
 					$("#ErrorFault").click(function() {
 						//ResultJson
 						
-						resultJson.resetExptd = 1;
-						resultJson.resetActul = reset_btn_click_counter;
-						resultJson.V1Exptd = 1;
-						resultJson.V1Actual = V1_click_counter;
-						resultJson.V2Exptd = masterJson.demo.length;
-						resultJson.V2Actual = V2_click_counter;
-						resultJson.pumpExptd = masterJson.demo.length;
-						resultJson.pumpActual = pump_click_counter;
-						
-						resultJson.ExptAnsSubmit = masterJson.demo.length;
-						resultJson.ActualAnsSubmit = ActualAnsSubmit;
-						resultJson.actualZeroErrorCounter=zeroErrorCounter;
-						resultJson.ExptZeroErrorCounter=masterJson.demo.length;
-						resultJson.spanErrorCounter=spanErrorCounter;
-						resultJson.ExptspanErrorCounter=masterJson.demo.length;
-						resultJson.accurancyCounter=accurancyCounter;
-						resultJson.ExptAccurancyCounter=masterJson.demo.length;
-						resultJson.lineralityCounter=lineralityCounter;
-						resultJson.ExptlineralityCounter=masterJson.demo.length;
-						
-						resultArrayJson.push(resultJson);
-						masterResultJson.demo = resultArrayJson;
-						mainJson.mimic=resultJson;
-						console.log( masterResultJson);
+//						resultJson.resetExptd = 1;
+//						resultJson.resetActul = reset_btn_click_counter;
+//						resultJson.V1Exptd = 1;
+//						resultJson.V1Actual = V1_click_counter;
+//						resultJson.V2Exptd = masterJson.demo.length;
+//						resultJson.V2Actual = V2_click_counter;
+//						resultJson.pumpExptd = masterJson.demo.length;
+//						resultJson.pumpActual = pump_click_counter;
+//						
+//						resultJson.ExptAnsSubmit = masterJson.demo.length;
+//						resultJson.ActualAnsSubmit = ActualAnsSubmit;
+//						resultJson.actualZeroErrorCounter=zeroErrorCounter;
+//						resultJson.ExptZeroErrorCounter=masterJson.demo.length;
+//						resultJson.spanErrorCounter=spanErrorCounter;
+//						resultJson.ExptspanErrorCounter=masterJson.demo.length;
+//						resultJson.accurancyCounter=accurancyCounter;
+//						resultJson.ExptAccurancyCounter=masterJson.demo.length;
+//						resultJson.lineralityCounter=lineralityCounter;
+//						resultJson.ExptlineralityCounter=masterJson.demo.length;
+//						resultJson.faultFinding = faultCnt;
+//						resultArrayJson.push(resultJson);
+//						masterResultJson.demo = resultArrayJson;
+//						mainJson.mimic=resultJson;
+//						console.log( masterResultJson);
 						//End ResultJson
 						
 						
@@ -2651,7 +2671,7 @@ var intFact3 = 0;
 							
 							$("#canvas-div").html("");
 							$("#canvas-div").css("height", '800');
-							$("#canvas-div").css("width", '800');
+							$("#canvas-div").css("width", 'auto');
 							
 							$("#container-graph1").html("");
 							$("#container-graph2").html("");
@@ -2762,9 +2782,9 @@ var intFact3 = 0;
 											
 												CreateDropdown(min,max,BladeShape, pipeSize, noBlades, time2, materialType, fluidType, supplierConstaint, time1,errorType);
 							}			
-								
+							
 							function CreateDropdown(min,max,BladeShape, pipeSize, noBlades, time2, materialType, fluidType, supplierConstaint, time1,errorType){
-								var errorDropDown=' <div class="row">'
+								var errorDropDown=' <div class="">'
 									+'<div class="col-sm-12">'
 								   +'<label for="errorType">SELECT CORRECT ERROR TYPE</label>'
 								   +'</div>'
@@ -2780,12 +2800,12 @@ var intFact3 = 0;
 								   +'</div>'
 //								   
 //								   +'</div>'
-								   +'<div class="row">'
-								   +'<div class="col-sm-12 alert" id="alertError" disabled >'
+								   +'<div class="">'
+								   +'<div class="col-sm-6 alert" id="alertError1" disabled >'
 //								   +' <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span> '
-								   +' <strong id="correctError"></strong> '
+								   +' <strong id="correctError" style = ""></strong> '
 								   +'</div>'
-								   +'</div>'
+								   
 								   +'</div>'//errorDropDown row end
 //								   
 								  
@@ -2806,7 +2826,7 @@ var intFact3 = 0;
 													if(errorAttemptCounter<3)	{
 														$("#nextLevelResultDiv").prop("disabled", true);
 //														$("#correctError").html("Selected Error type is match... New Table");
-														alert("The selected error type matches...");
+														alert("The selected error type matches");
 														$(".alert").css("background-color", "green");
 														errorAttemptCounter++;
 //														errorType1= Math.floor(Math.random() * (4 - 1)) + 1;
@@ -2819,16 +2839,19 @@ var intFact3 = 0;
 					
 													
 													$("#nextLevelResultDiv").prop("disabled", true);
-													$("#correctError").html(" Select Error type  ... ");
+													$("#correctError").html(" Select Error type");
 													$(".alert").css("background-color", "blue");
 													console.log(" zero");
+													
 											}
 										else
 											{
 											$("#nextLevelResultDiv").prop("disabled", true);
-											$("#correctError").html(" Selected Error type is wrong .. ");
+											$("#correctError").html(" Selected Error type is wrong ");
 											$(".alert").css("background-color", "red");
 											console.log(" wrong");
+											faultCnt++;
+											
 											}
 										
 										if(errorAttemptCounter==3)
@@ -2836,10 +2859,36 @@ var intFact3 = 0;
 												$("#canvas-div").html("");
 												var button= '<br><button type="submit" id="resultAnalysis" style="margin-top:17px;width:100%;" class=" btn btn-success"  >RESULT</button>'
 													$("#canvas-div").append(button);	
-												console.log(" errorAttemptCounter "+errorAttemptCounter);
+//												console.log(" errorAttemptCounter "+errorAttemptCounter);
 											}
 									
 										$("#resultAnalysis").click(function() {
+											
+											resultJson.resetExptd = 1;
+						resultJson.resetActul = reset_btn_click_counter;
+						resultJson.V1Exptd = 1;
+						resultJson.V1Actual = V1_click_counter;
+						resultJson.V2Exptd = masterJson.demo.length;
+						resultJson.V2Actual = V2_click_counter;
+						resultJson.pumpExptd = masterJson.demo.length;
+						resultJson.pumpActual = pump_click_counter;
+						
+						resultJson.ExptAnsSubmit = masterJson.demo.length;
+						resultJson.ActualAnsSubmit = ActualAnsSubmit;
+						resultJson.actualZeroErrorCounter=zeroErrorCounter;
+						resultJson.ExptZeroErrorCounter=1;
+						resultJson.spanErrorCounter=spanErrorCounter;
+						resultJson.ExptspanErrorCounter=1;
+						resultJson.accurancyCounter=accurancyCounter;
+						resultJson.ExptAccurancyCounter=1;
+						resultJson.lineralityCounter=lineralityCounter;
+						resultJson.ExptlineralityCounter=1;
+						resultJson.faultFinding = faultCnt;
+						resultArrayJson.push(resultJson);
+						masterResultJson.demo = resultArrayJson;
+						mainJson.mimic=resultJson;
+						console.log( masterResultJson);
+											
 											resultAnalysis();
 										});
 									
@@ -3265,7 +3314,7 @@ $(".modal-header").css({
 			$("#zeroPanel").show();
 			$("#container-graph2").hide();
 			$("#container-graph1").css("height", "800px");
-			$("#container-graph1").css("width", "1000px");
+			$("#container-graph1").css("width", "auto");
 		
 		});
 	}

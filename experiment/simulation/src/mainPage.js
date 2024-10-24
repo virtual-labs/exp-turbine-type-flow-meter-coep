@@ -4,7 +4,17 @@ var masterJson = {};
 var mainJson = {};
 var JsonArr = [];
 function mainPage(){
-
+                        tempJson={};
+ 
+ 
+                        var wrongAns = 6-ansCount;
+                        var tempCountJson ={};
+						tempCountJson.correctAnswer = ansCount; 
+						tempCountJson.wrongAnswer = wrongAns; 
+						masterJson.questionary = tempCountJson;
+						
+ 
+								 
 var t="";
 var min="";
 var max="";
@@ -208,17 +218,17 @@ var htm1='<div class="col-sm-6">'
 					   +'<div class="row">'
 					   
 					   +'<div class="col-sm-3">'
-					   +'<button type="button" class="btn btn-primary " id="submit"  >SUBMIT</button>'
+					   +'<button type="button" class="btn btn-primary responsive-button" id="submit"  >SUBMIT</button>'
 					   +'</div>'
 					   +'<div class="col-sm-3">'
-					   +'<button type="button" class="btn btn-primary " id="showGraph"   > GRAPH</button>'
+					   +'<button type="button" class="btn btn-primary responsive-button" id="showGraph"   > GRAPH</button>'
 					   +'</div>'
 					   +'<div class="col-sm-3">'
-					   +'<button type="button" class="btn btn-primary " id="animateSimulation"  >ANIMATION</button>'
+					   +'<button type="button" class="btn btn-primary responsive-button" id="animateSimulation"  >ANIMATION</button>'
 					   +'</div>'
 					  
 					   +'<div class="col-sm-3">'
-					   +'<button type="button" class="btn btn-primary " id="nextLevelMimc"  disabled>MIMIC</button>'
+					   +'<button type="button" class="btn btn-primary responsive-button" id="nextLevelMimc"  disabled>MIMIC</button>'
 					   +'</div>'
 				
 					   +'</div>'
@@ -372,7 +382,7 @@ $( document ).ready(function() {
 		 if(bladeShape==5 && noblade==6){
 			 $('#errorMsg').css("color","red");
 //				console.log("error in");
-//				$('#errorMsg').html("this blade no avalible please contact to dhanashree - 9529252351");
+
 				alert("this blade is not avalible ");
 			}
 		 
@@ -406,7 +416,7 @@ $( document ).ready(function() {
 				if(materialType!='2' && materialType!='5')
 				{
 				$("#errorMsgFluidType").addClass("alert alert-danger");
-				$('#errorMsgFluidType').html(" Select proper material  ...");
+				$('#errorMsgFluidType').html(" Select proper material");
 				$("#checkConfg").prop('disabled',true);
 				wrongMaterialType++;
 				
@@ -429,7 +439,7 @@ $( document ).ready(function() {
 				if(materialType!='1'){
 				
 					$("#errorMsgFluidType").addClass("alert alert-danger");
-				$('#errorMsgFluidType').html(" Select proper material type ...");
+				$('#errorMsgFluidType').html(" Select proper material type");
 				$("#checkConfg").prop('disabled',true);
 				wrongMaterialType++;
 				}
@@ -451,7 +461,7 @@ $( document ).ready(function() {
 				if( materialType!='1' && materialType!='3' && materialType!='4')
 				{
 					$("#errorMsgFluidType").addClass("alert alert-danger");
-					$('#errorMsgFluidType').html(" Select proper material type ...");
+					$('#errorMsgFluidType').html(" Select proper material type");
 					$("#checkConfg").prop('disabled',true);
 					wrongMaterialType++;
 				}
@@ -473,7 +483,7 @@ $( document ).ready(function() {
 			{	
 				if(materialType!='3' && materialType!='4'){
 				$("#errorMsgFluidType").addClass("alert alert-danger");
-				$('#errorMsgFluidType').html(" Select proper material type ...");
+				$('#errorMsgFluidType').html(" Select proper material type");
 				$("#checkConfg").prop('disabled',true);
 				wrongMaterialType++;
 				}
@@ -483,7 +493,7 @@ $( document ).ready(function() {
 //					$('#errorMsgFluidType').html("Correct  ...");
 //					$('#errorMsgFluidType').fadeOut(1000);
 					$("#checkConfg").prop('disabled',false);
-					correctMaterialType++;
+//					correctMaterialType++;
 				}
 			
 			}	
@@ -676,7 +686,7 @@ $( document ).ready(function() {
 					   {
 							$("#errorMsg").hide(); 
 						   str='<img src="images/checked.png" class=" img-fluid " />'
-						    +'<b id="errorText" style="color:green;" >Configured successfully ...  </b> '
+						    +'<b id="errorText" style="color:green;" >Configured successfully </b> '
 						    
 						    
 						    
@@ -688,14 +698,14 @@ $( document ).ready(function() {
                             $("#main-div-conf").append(table);
 						 
 						   $("#rowfluidType,#rowMaterialType,#rowBladeShape,#rowPipeSize,#rowBlades,#rowTimer,#rowSupplierConstaint").html('');
-						   $("#centerText1").html('CHARACTERISATION');
+						   $("#centerText1").html('CHARACTERIZATION');
 						   $('#readingTable').show();
 							 $("#rangePanel").show();
 							 tempJson={};
 								  tempJson.MaterialExpectedclick=1;
-								  tempJson.MaterialActualclick=correctMaterialType;
+								  tempJson.MaterialActualclick=wrongMaterialType;
 								  tempJson.ExpectedMeterConstantCounter=1;
-								  tempJson.ActualMeterConstantCounter=correctMeterConstantCounter;
+								  tempJson.ActualMeterConstantCounter=wrongMeterConstantCounter;
 								  
 								
 								 	JsonArr.push(tempJson);
@@ -721,7 +731,7 @@ $( document ).ready(function() {
 				   else
 				   {
 					   $("#errorMsg").addClass("alert alert-danger");
-					   $("#errorMsg").html("The input value is out of range. Please enter a number between 100 and 400 for the meter constant."); 
+					   $("#errorMsg").html("The input value is out of range. Enter a number between 100 and 400 for the meter constant."); 
 					   str='<img src="images/cancel.png" class=" img-fluid " />'
 						    +'<b id="errorText" style="color:red;" >Enter a figure between 100 and 400 in the meter constant</b> '
 						   	$("#errorModel").html(str); 
@@ -736,7 +746,7 @@ $( document ).ready(function() {
 						   
 							$("#errorMsg").hide(); 
 						   str='<img src="images/checked.png" class=" img-fluid " />'
-						    +'<b id="errorText" style="color:green;" >Configured successfully ...  </b> '
+						    +'<b id="errorText" style="color:green;" >Configured successfully </b> '
 						  $("#meterCon").html("METER CONSTANT VALUE IS "+supplierConstaint+" PULSES per/ltr");
 						   	$("#errorModel").html(str); 
 						   	correctMeterConstantCounter++;
@@ -751,9 +761,9 @@ $( document ).ready(function() {
 							   
 							 tempJson={};
 								  tempJson.MaterialExpectedclick=1;
-								  tempJson.MaterialActualclick=correctMaterialType;
+								  tempJson.MaterialActualclick=wrongMaterialType;
 								  tempJson.ExpectedMeterConstantCounter=1;
-								  tempJson.ActualMeterConstantCounter=correctMeterConstantCounter;
+								  tempJson.ActualMeterConstantCounter=wrongMeterConstantCounter;
 								  
 								
 								 	JsonArr.push(tempJson);
@@ -776,9 +786,9 @@ $( document ).ready(function() {
 				   else
 				   {
 					   $("#errorMsg").addClass("alert alert-danger");
-					   $("#errorMsg").html("Inputed value is not in range (Enter a figure between 400 and 800 in the meter constant.)"); 
+					   $("#errorMsg").html("The entered value is out of range. Enter a number between 400 and 800 for the meter constant."); 
 					   str='<img src="images/cancel.png" class=" img-fluid " />'
-						    +'<b id="errorText" style="color:red;" >Enter a figure between 400 and 800 in the meter constant.</b> '
+						    +'<b id="errorText" style="color:red;" >Enter a number between 400 and 800 for the meter constant.</b> '
 						   	$("#errorModel").html(str); 
 				   }
 			   }
@@ -791,7 +801,7 @@ $( document ).ready(function() {
 						   
 							$("#errorMsg").hide(); 
 						   str='<img src="images/checked.png" class=" img-fluid " />'
-						    +'<b id="errorText" style="color:green;" >Configured successfully ...  </b> '
+						    +'<b id="errorText" style="color:green;" >Configured successfully</b> '
 						  $("#meterCon").html("METER CONSTANT IS "+supplierConstaint+" PULSES per/ltr");
 						   	$("#errorModel").html(str);
 							correctMeterConstantCounter++;
@@ -804,9 +814,9 @@ $( document ).ready(function() {
                           // $("#main-div-conf").append(table);
 								tempJson={};
 								  tempJson.MaterialExpectedclick=1;
-								  tempJson.MaterialActualclick=correctMaterialType;
+								  tempJson.MaterialActualclick=wrongMaterialType;
 								  tempJson.ExpectedMeterConstantCounter=1;
-								  tempJson.ActualMeterConstantCounter=correctMeterConstantCounter;
+								  tempJson.ActualMeterConstantCounter=wrongMeterConstantCounter;
 								  
 								
 								 	JsonArr.push(tempJson);
@@ -829,7 +839,7 @@ $( document ).ready(function() {
 				   else
 				   {
 					   $("#errorMsg").addClass("alert alert-danger");
-					   $("#errorMsg").html("Inputed value is not in range (Enter a figure between 600 and 900 in the meter constant.)"); 
+					   $("#errorMsg").html("The entered value is out of range. Enter a number between 600 and 900 for the meter constant."); 
 					   str='<img src="images/cancel.png" class=" img-fluid " />'
 						    +'<b id="errorText" style="color:red;" >input value is wrong.</b> '
 						   	$("#errorModel").html(str); 
@@ -880,7 +890,7 @@ function  GraphCreation(masterJson)
 //		}
 	$("#canvas-div").html("");
 	$("#canvas-div").css("height","700px");
-	$("#canvas-div").css("width","800px");
+	$("#canvas-div").css("width","auto");
 	var graphData=[];
 	var xdata=[];
 	var ydata=[];
@@ -921,7 +931,8 @@ function  GraphCreation(masterJson)
 //				fontsize:'3em'
 //	
 //	        },
-		
+		exporting: { enabled: false },
+				credits: { enabled: false},
 	  title: {
 	   text: 'Standard graph of turbine flow meter',
 		   title: {
@@ -1077,7 +1088,7 @@ function  GraphCreation(masterJson)
 	       +'<input type="number" id="flowAns" style="margin-top:35px;width:100%;"  class=" form-control"/>'
 	       +'</div>'
 	       +'<div class="col-sm-3">'
-	       +'<br><button type="submit" id="btnAnsCheck" style="margin-top:17px;width:100%;" class=" btn btn-primary" data-toggle="modal" data-target="#myModal" >Submit</button>'
+	       +'<br><button type="submit" id="btnAnsCheck" style="margin-top:17px;width:100%;" class=" btn btn-primary" data-toggle="modal" data-target="#myModal" >SUBMIT</button>'
 	       +'<div class="row">'
 		   +'<div class="col-sm-12">'
 //		   +'<button type="button" class="btn btn-danger btnStyle" id="checkConfg" data-toggle="modal" data-target="#myModal" disabled>CHECK CONFIGURATION </button>'

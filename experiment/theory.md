@@ -43,12 +43,12 @@ A turbine flow meter unit is constructed of a multiple-bladed rotor installed (a
  
  Below table shows standard range of flow rate according to pipe size in Litre Per Hour (l/h):
  
- | Pipe size(mm) | 15 | 25 | 40 | 50 | 
+ | Pipe size (mm) | 15 | 25 | 40 | 50 | 
 | ------- | -- | --| -- | -- | 
 | Min | 200 | 800 | 1900 | 3500 | 
 | Max | 2100 | 8000 | 19000 | 3500 | 
  
-## General Specifications (Take it form Vatturkar’s website)
+## General Specifications 
 
 ##### Services: 
  

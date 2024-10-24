@@ -1,3 +1,4 @@
+var ansCount = 0;
 function Questions(){
 			var flag = false;
 			var myRadio = null;
@@ -103,7 +104,7 @@ function Questions(){
 						});
 					}
 
-					var ansCount = 0;
+					
 
 					if (myRadio != null) {
 						for (var i = 0; i < arr.length; i++) {
