@@ -31,6 +31,9 @@ if ($(window).width() < 500) {
 
  x = 150;
  y = 50;
+ 
+ 
+ 
 // $('#canvas-div').removeAttr('width');
 // $('#canvas-div').removeAttr('height');
 // $("#canvas-div").css("width","1000px");
@@ -45,6 +48,10 @@ if ($(window).width() < 500) {
   	paper.path('M'+(x+450)+' '+(y+50)+'l 100 0 l 0 50 l 10 -10 l -10 10 l -10 -10 l 10 10').attr({'stroke':'black', 'stroke-width':'1'});
   	
   	 window.onload = function()  {
+	 
+	var lt_txtLabel = paper.text(x+680,y+430, "Level Transmitter").attr({'font-size': 20});
+	var wt_txtLabel = paper.text(x+720,y+300, "Weight Transmitter").attr({'font-size': 20});
+	
 		var tank1 = tank(x,y);
 		var tank2 = tank(x,y+310);
 		Terbine_flow_Meter(x-50,y);
