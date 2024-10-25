@@ -661,10 +661,10 @@ $( document ).ready(function() {
 		   		{
 		   			
 		   		$("#rangePanel").show();
-			     console.log(" correctMeterConstantCounter "+correctMeterConstantCounter);
-			     console.log(" wrongMeterConstantCounter "+wrongMeterConstantCounter);
-			     console.log(" correctMaterialType "+correctMaterialType);
-			     console.log(" wrongMaterialType "+wrongMaterialType);
+//			     console.log(" correctMeterConstantCounter "+correctMeterConstantCounter);
+//			     console.log(" wrongMeterConstantCounter "+wrongMeterConstantCounter);
+//			     console.log(" correctMaterialType "+correctMaterialType);
+//			     console.log(" wrongMaterialType "+wrongMaterialType);
 		   	
 		   	    }
 		
@@ -711,7 +711,7 @@ $( document ).ready(function() {
 								 	JsonArr.push(tempJson);
 								 	 masterJson.demo = JsonArr;
 								 	mainJson.config=tempJson;
-								 	console.log(masterJson);
+//								 	console.log(masterJson);
 						
 						   return 1;
 					   }
@@ -768,7 +768,7 @@ $( document ).ready(function() {
 								
 								 	JsonArr.push(tempJson);
 								 	 masterJson.demo = JsonArr;
-								 	console.log(masterJson);
+//								 	console.log(masterJson);
 							 
 						   return 1;
 					   }
@@ -821,7 +821,7 @@ $( document ).ready(function() {
 								
 								 	JsonArr.push(tempJson);
 								 	 masterJson.demo = JsonArr;
-								 	console.log(masterJson);
+//								 	console.log(masterJson);
 								 	
 						   return 1;
 					   }

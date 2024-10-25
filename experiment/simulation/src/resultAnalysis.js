@@ -80,7 +80,7 @@ $("#pdfDownload").on("click", function(){
 
 
 $("#pdfDownload").on("click", function(){
-	console.log("click event generated");
+//	console.log("click event generated");
 	generatePDF();
 })	
 
@@ -97,7 +97,7 @@ var faultPercent = 0;
 var correctVal = (mainJson.questionary.correctAnswer/6).toFixed(2);
 	 quesPercent = (correctVal*100).toFixed(1);
 	quesPercent = parseFloat(quesPercent);
-    console.log(quesPercent);
+//    console.log(quesPercent);
     
  
 var conf = (mainJson.config.MaterialExpectedclick+mainJson.config.ExpectedMeterConstantCounter);
@@ -105,12 +105,12 @@ var wrongConf = (mainJson.config.MaterialActualclick+mainJson.config.ActualMeter
       
 var conPer = ((conf/(wrongConf+conf))*100).toFixed(1);
     confPercent = parseFloat(conPer);
-    console.log(confPercent);
+//    console.log(confPercent);
     
     
 var mimicCal = ((mainJson.mimic.ExptAnsSubmit/(mainJson.mimic.ExptAnsSubmit+mainJson.mimic.ActualAnsSubmit))*100).toFixed(1);
   mimicPercent = parseFloat(mimicCal);
-   console.log(mimicPercent);
+//   console.log(mimicPercent);
 
 
 var totCount = mainJson.mimic.ExptZeroErrorCounter + mainJson.mimic.ExptspanErrorCounter + mainJson.mimic.ExptAccurancyCounter+mainJson.mimic.ExptlineralityCounter;
@@ -119,13 +119,13 @@ var actualCount = mainJson.mimic.actualZeroErrorCounter + mainJson.mimic.spanErr
 
 var perCal =  ((totCount/(actualCount+totCount))*100).toFixed(1);
    calibratePercent = parseFloat(perCal);
-     console.log(calibratePercent);
+//     console.log(calibratePercent);
 
 
 var fault = (3/(mainJson.mimic.faultFinding + 3)*100).toFixed(1);
 
 faultPercent = parseFloat(fault);
-console.log(calibratePercent);
+//console.log(calibratePercent);
 
     var zeroCnt = parseInt(mainJson.mimic.actualZeroErrorCounter)-parseInt(1);
     
