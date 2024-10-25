@@ -1487,7 +1487,7 @@ var intFact3 = 0;
 		for (var i = 0; i < masterJson.demo.length; i++) {
 		pulses[i]= masterJson.demo[i].tp; 
 		}
-		console.log("pulses  "+pulses);
+//		console.log("pulses  "+pulses);
 		$("#tableDesign").html("");
 		masterJson.demo.sort(function(a, b){
 		    return a.tp - b.tp;
@@ -1782,7 +1782,7 @@ var intFact3 = 0;
 
 			});
 			
-			console.log(masterJson);
+//			console.log(masterJson);
 		
 	}
 	
@@ -1991,14 +1991,14 @@ var intFact3 = 0;
 			var TPC=parseInt(masterJson.demo[0].wtc);
 			var TP=parseInt(masterJson.demo[0].pulwt);
 			var error=parseInt(masterJson.demo[0].err1);
-			 console.log("TPC "+TPC+" TP "+TP);
+//			 console.log("TPC "+TPC+" TP "+TP);
 			
 			 
 			 
 				for(i=0;i< masterJson.demo.length;i++){
 						 if(TP==TPC ||TP==TPC-1 || TP==TPC-2 || TP==TPC-3 || TP==TPC+4 ||TP==TPC+1 || TP==TPC+2 || TP==TPC+3|| TP==TPC-4)
 						 {
-							    console.log("TPC "+TPC+" TP "+TP);
+//							    console.log("TPC "+TPC+" TP "+TP);
 							   $("#plusMinusCalibrationZero").html("");
 							   $("#plusMinusCalibrationSpan").show();
 							   $("#errorZeroAlert").show();
@@ -2169,7 +2169,7 @@ var intFact3 = 0;
 				 	var ydataPulse=[];
 					var ydataTurbine=[];
 					minusZeroValue=parseInt(masterJson.demo[0].err1/5);
-					 console.log("TPC "+TPC+" TP "+TP);
+//					 console.log("TPC "+TPC+" TP "+TP);
 					$("#canvas-div").html(" ");
 					$("#knobZero2").css({ transform: 'rotate('+rotate+'deg)' });
 					
@@ -2264,7 +2264,7 @@ var intFact3 = 0;
 
 			
 			 rotate+=10;
-			 console.log(" After Span And Zero " +masterJson);
+//			 console.log(" After Span And Zero " +masterJson);
 				 
 			 
 		});
@@ -2286,14 +2286,14 @@ var intFact3 = 0;
 					 greaterCounter++;
 					 }
 			}
-			console.log("greaterCounter "+greaterCounter);
+//			console.log("greaterCounter "+greaterCounter);
 			for(i=0;i< masterJson.demo.length;i++){
 				
 				 TPC=parseInt(masterJson.demo[i].wtc);
 				 TP=parseInt(masterJson.demo[i].pulwt);
 				 var minusValue=parseInt(TP/50);
 				 var error =parseInt(masterJson.demo[i].err1);
-				console.log("algo 1 TPC "+TPC+" TP "+TP);
+//				console.log("algo 1 TPC "+TPC+" TP "+TP);
 				if(i==0)
 				{
 					ydataPulse[i]=masterJson.demo[i].pulwt=parseInt(masterJson.demo[i].wtc);
@@ -2316,7 +2316,7 @@ var intFact3 = 0;
 					{
 						ydataPulse[i]=masterJson.demo[i].pulwt=TPC;
 						greaterCounter--;
-						console.log("greaterCounter "+greaterCounter);
+//						console.log("greaterCounter "+greaterCounter);
 					}	
 			    
 			    }
@@ -2326,7 +2326,8 @@ var intFact3 = 0;
 			    	ydataPulse[i]=masterJson.demo[i].pulwt=temp;
 		    	}
 				if(greaterCounter==0)
-				{console.log("greaterCounter "+greaterCounter);
+				{
+//					console.log("greaterCounter "+greaterCounter);
 					$("#linearAlgo1").hide();
 					$("#linearAlgo2").show();
 					$("#algorithmAlert1").show();
@@ -2455,7 +2456,7 @@ var intFact3 = 0;
 					 greaterCounter++;
 					 }
 			}
-			console.log("greaterCounter "+greaterCounter);
+//			console.log("greaterCounter "+greaterCounter);
 			for(i=0;i< masterJson.demo.length;i++){
 				
 				 TPC=parseInt(masterJson.demo[i].wtc);
@@ -2485,7 +2486,7 @@ var intFact3 = 0;
 					{
 						ydataPulse[i]=masterJson.demo[i].pulwt=TPC;
 						greaterCounter--;
-						console.log("greaterCounter "+greaterCounter);
+//						console.log("greaterCounter "+greaterCounter);
 					}	
 			    
 			    }
@@ -2496,7 +2497,7 @@ var intFact3 = 0;
 		    	}
 				if(greaterCounter==0)
 				{
-					console.log("greaterCounter "+greaterCounter);
+//					console.log("greaterCounter "+greaterCounter);
 						$("#linearAlgo2").hide();
 						$("#linearAlgo3").show();
 						$("#algorithmAlert2").show();
@@ -2529,7 +2530,7 @@ var intFact3 = 0;
 					 greaterCounter++;
 					 }
 			}
-			console.log("greaterCounter "+greaterCounter);
+//			console.log("greaterCounter "+greaterCounter);
 			for(i=0;i< masterJson.demo.length;i++){
 				
 				 TPC=parseInt(masterJson.demo[i].wtc);
@@ -2559,7 +2560,7 @@ var intFact3 = 0;
 					{
 						ydataPulse[i]=masterJson.demo[i].pulwt=TPC;
 						greaterCounter--;
-						console.log("greaterCounter "+greaterCounter);
+//						console.log("greaterCounter "+greaterCounter);
 					}	
 			    
 			    }
@@ -2568,7 +2569,8 @@ var intFact3 = 0;
 					ydataPulse[i]=masterJson.demo[i].pulwt=TPC;
 		    	}
 				if(greaterCounter==0)
-							{console.log("greaterCounter "+greaterCounter);
+							{
+//								console.log("greaterCounter "+greaterCounter);
 							$("#linearAlgo3").hide();
 							$("#algorithmAlert3").show();
 							$("#success").hide();
@@ -2713,7 +2715,7 @@ var intFact3 = 0;
 								var reading=[];
 								var expectedPulses=[];
 								var actualPulses=[];
-								console.log( masterResultJson);
+//								console.log( masterResultJson);
 //								var errorSolveNo[0]=4;
 								
 								
@@ -2841,7 +2843,7 @@ var intFact3 = 0;
 													$("#nextLevelResultDiv").prop("disabled", true);
 													$("#correctError").html(" Select Error type");
 													$(".alert").css("background-color", "blue");
-													console.log(" zero");
+//													console.log(" zero");
 													
 											}
 										else
@@ -2849,7 +2851,7 @@ var intFact3 = 0;
 											$("#nextLevelResultDiv").prop("disabled", true);
 											$("#correctError").html(" Selected Error type is wrong ");
 											$(".alert").css("background-color", "red");
-											console.log(" wrong");
+//											console.log(" wrong");
 											faultCnt++;
 											
 											}
@@ -2887,7 +2889,7 @@ var intFact3 = 0;
 						resultArrayJson.push(resultJson);
 						masterResultJson.demo = resultArrayJson;
 						mainJson.mimic=resultJson;
-						console.log( masterResultJson);
+//						console.log( masterResultJson);
 											
 											resultAnalysis();
 										});
@@ -3088,7 +3090,7 @@ var intFact3 = 0;
 		});
 		AnswerCounter=0;
 		var accurance=parseFloat( Math.floor(Math.random() * (80 - 30)) + 30);
-		console.log(" accurance"+accurance);
+//		console.log(" accurance"+accurance);
 		
 		$("#lineralitySubmit").click(function() {
 			
