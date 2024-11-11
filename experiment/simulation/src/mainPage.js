@@ -868,7 +868,7 @@ $( document ).ready(function() {
 	  
 	   $( "#showGraph").click(function() {
 		   
-		  
+		  $("#animateSimulation").prop('disabled',false);
 		   
 		   $("#canvas-div").html("");
             $("#centerText2").html('CHARACTERISATION CURVE FOR FLOW METER');
