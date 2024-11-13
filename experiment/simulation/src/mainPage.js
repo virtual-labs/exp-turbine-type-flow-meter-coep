@@ -4,6 +4,9 @@ var masterJson = {};
 var mainJson = {};
 var JsonArr = [];
 function mainPage(){
+	$("#canvas-div").html('');
+	turbineFlowMeter1();
+	$("#centerText1").html("CONFIGURATION");
                         tempJson={};
  
  
@@ -503,7 +506,7 @@ $( document ).ready(function() {
 		
 		$( "#armodel").click(function() {
 			   $("#centerText2").html("AR MODEL (QR CODE)"); 
-			   $("#canvas-div").html("");
+			   //$("#canvas-div").html("");
 			 
 			   var qrCode='<div class="container col-sm-4">'
 				 +  '<div class="panel-body" id="qrCode" >'

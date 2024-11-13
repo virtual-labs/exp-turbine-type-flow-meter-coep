@@ -5,7 +5,7 @@ function Questions(){
 
 			$("#main-div-conf").html('');
 			
-			 $("#centerText1").html('BASIC KNOWLEDGE');
+			 $("#centerText2").html('BASIC KNOWLEDGE');
 			var questions = '';
 			questions += ''
 				+ '<div id = "questionDiv">'
@@ -69,7 +69,7 @@ function Questions(){
 				+ ' </div>'
 				+ '</div>';
 
-			$("#main-div-conf").html(questions);
+			$("#canvas-div").html(questions);
 
 			$('#testSubmit').on('click', function() {		
 
