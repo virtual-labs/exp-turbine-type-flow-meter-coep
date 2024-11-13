@@ -1,6 +1,8 @@
-function turbineFlowMeter(){
+function turbineFlowMeter1 (){
 var w = 1000;
 var h = 800;
+
+$("#centerText2").html("TURBINE FLOW METER DIAGRAM");
 
 var width = $(window).width();
 
@@ -12,8 +14,41 @@ if ($(window).width() < 500) {
 } else{
 	paper = new Raphael(document.getElementById('canvas-div'), '85%', '95%');
 	paper.setViewBox(0, 0, w, h, true);
+	paper.setSize('85%', '95%');	
+}	
+
+ x = 150;
+ y = 50;
+turbineFlowMeterRender();
+
+
+}
+
+function turbineFlowMeter(){
+var w = 1000;
+var h = 800;
+$("#centerText1").html("TURBINE FLOW METER DIAGRAM");
+var width = $(window).width();
+
+if ($(window).width() < 500) {
+	width = $(this).width();
+	paper = new Raphael(document.getElementById('main-div-conf'), '100%', '100%');
+	paper.setViewBox(0, 0, w, h, true);
+	paper.setSize('100%', '100%');
+} else{
+	paper = new Raphael(document.getElementById('main-div-conf'), '85%', '95%');
+	paper.setViewBox(0, 0, w, h, true);
 	paper.setSize('85%', '95%');
 }
+
+x = 150;
+ y = 50;
+turbineFlowMeterRender();
+
+ 
+}
+
+function turbineFlowMeterRender(){
 
 //$("#canvas-div").html('');
 // paper = new Raphael(document.getElementById('canvas-div'));
@@ -29,8 +64,7 @@ if ($(window).width() < 500) {
 //	}
 
 
- x = 150;
- y = 50;
+
  
  
  
@@ -47,7 +81,7 @@ if ($(window).width() < 500) {
   	
   	paper.path('M'+(x+450)+' '+(y+50)+'l 100 0 l 0 50 l 10 -10 l -10 10 l -10 -10 l 10 10').attr({'stroke':'black', 'stroke-width':'1'});
   	
-  	 window.onload = function()  {
+  	// window.onload = function()  {
 	 
 	var lt_txtLabel = paper.text(x+680,y+430, "Level Transmitter").attr({'font-size': 20});
 	var wt_txtLabel = paper.text(x+720,y+300, "Weight Transmitter").attr({'font-size': 20});
@@ -59,7 +93,7 @@ if ($(window).width() < 500) {
 		conection_WT(x,y);
 		drain_valve(x,y-40);
 		pump_control(x,y);
-	}
+	//}
 	
   function tank(x,y){
   	paper.path('M'+(x+525)+' '+(y+100)+ 'l 50 0 l 0 30 l 40 30 l 0 150 l -130 0 l 0 -150 l 40 -30 z').attr({'stroke':'black', 'stroke-width':'3'});}
