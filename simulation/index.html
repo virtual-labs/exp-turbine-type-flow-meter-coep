@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title> Turbine flow meter  </title>
+<meta charset="ISO-8859-1">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" > -->
+    <link rel="stylesheet" href=" https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/analysis.css">
+	<link rel="stylesheet" href="css/mainPage.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/header.css">
+	<link rel="stylesheet" href="css/header.css">
+	
+	
+</head>
+
+<style>
+@font-face{
+ font-family:'digital-clock-font';
+ src: url('font/digital-7.ttf');
+}
+
+#zeroPanel {
+    padding-right: 2px;
+    padding-left: 10px;
+}
+
+.blink {
+            animation: blinker 1.5s linear infinite;
+            color: #fff;
+            font-family: sans-serif;
+			font-weight: bold;
+			background: green;
+			padding: 7px 20px;
+			border-radius: 15px;
+        }
+        @keyframes blinker {
+            70% {
+                opacity: 0.2;
+            }
+        }
+.modal-header1{
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+     background-color: #001f3f; /* Navy blue background */
+    color: white; /* White text color */
+   
+    }
+#canvas-div {
+      width: 100%;
+/*       height: 100vh; */
+    }
+.responsive-button {
+            padding: 4px 5px;
+            font-size: 13px;
+/*            	background-color: #4CAF50; */
+/*             color: white; */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .responsive-button:hover {
+/*             background-color: #45a049; */
+        }
+
+        /* Media query for small screens (less than 600px) */
+        @media (max-width: 600px) {
+            .responsive-button {
+                font-size: 12px;
+                padding: 4px 5px;
+                width: 90%; /* Full width for small screens */
+            }
+        }
+
+        /* Media query for medium screens (600px to 900px) */
+        @media (min-width: 600px) and (max-width: 900px) {
+            .responsive-button {
+                font-size: 12px;
+                padding: 4px 5px;
+            }
+        }
+
+        /* Media query for large screens (greater than 900px) */
+        @media (min-width: 900px) {
+            .responsive-button {
+                font-size: 13px;
+                padding: 4px 5px;
+            }
+        }
+        
+  .button1 {
+  background-color: #004A7F;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Arial;
+  font-size: 15px;
+ padding: 5px 10px; 
+  text-align: center;
+  text-decoration: none;
+  -webkit-animation: glowing 1500ms infinite;
+  -moz-animation: glowing 1500ms infinite;
+  -o-animation: glowing 1500ms infinite;
+  animation: glowing 1500ms infinite;
+}
+@-webkit-keyframes glowing {
+  0% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; -webkit-box-shadow: 0 0 20px #FF0000; }
+  100% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+}
+
+@-moz-keyframes glowing {
+  0% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; -moz-box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
+}
+
+@-o-keyframes glowing {
+  0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+}
+
+@keyframes glowing {
+  0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+} 
+
+ .btn1 {
+        margin-left:10px;
+        margin-right: 10px;
+        margin-top:7px;
+        float:right;
+        margin-bottom:10px;
+        padding: 7px; 
+        border:none; 
+        border-radius: 5px;
+        }     
+</style>
+<body >
+
+	<header>
+		<img class="COEPLogo" src='images/COEPlogo1.png' />
+		<img class="VlabLogo" src='images/vlablogo.jpg' />
+		<span id="colgName"><b id="colgNamebold">COEP TECHNOLOGICAL UNIVERSITY PUNE</b></span>		
+	</header>
+
+
+ <div class="row container-fluid">
+	 <div  class="col-sm-12">
+		<button type="button" class="btn btn-danger btn1" id = "pdfDownload" hidden>Download Result </button>
+   
+<!--       <button type="button" id="refer1" class="btn btn-danger btn1"  data-toggle="modal" data-target="#exampleModal12" >Configuration</button> -->
+    
+   
+   <button type="button" class="btn btn-danger btnMarin responsive-button button1 btn1" data-toggle="modal" data-target="#exampleModal1" id = "btnForModal"> Procedure</button>
+     
+     <button type="button" class="btn btn-danger btn1" data-toggle="modal"  data-target="#readProcedureModal1" id = "simDemo">Simulation Demo</button>
+     </div>
+      </div>
+
+
+	
+	<div  class="row container-fluid" id="mainDiv" >
+	
+	
+	<div class="col-lg-5" id="main-div" style="margin-top:-20px;width:100%;">
+				<div class="panel panel-primary">
+	      			<div class="panel-heading bg-info" id="panelHeading1"><center id="centerText1">CONFIGURATION OF TURBINE FLOW METER</center>
+	      			</div>
+	     			<div class="panel-body" id="main-div-conf">
+	     			
+	     			</div>
+
+<!-- <br><button type="submit" id="result" style="margin-top:17px;width:100%;" class=" btn btn-success"  >RESULT</button> -->
+										
+					
+	   			</div>
+	</div>
+	        <div class="col-lg-7" id="canvas">
+	             <div class="panel panel-primary">
+	      			<div class="panel-heading bg-info" id="panelHeading2"><center id="centerText2">TURBINE FLOW METER DIAGRAM</center>
+	      			</div>
+	      			
+	      			<div class="container panel-body" id="canvas-div"  >
+	      			
+	      			</div>
+<!-- 	      			<hr> -->
+	      			
+	      			<div class="container" id="container-graph1" >
+					</div>
+	      			<br>
+	      			<div class="container" id="container-graph2" >
+					</div>
+	   			</div>
+	       </div>
+	        
+	</div>
+
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header1" >
+        <h3 class="modal-title1" id="exampleModalLabel">Procedure</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body11" style="    overflow-y: scroll;height:600px; margin-left: -21px; font-size: 18px; ">
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+<!--         <button type="button" class="btn btn-primary">OK</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- 	Model Start -->
+	<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+		<h4 class="modal-title" style="font-weight: 600;"></h4>
+          <button type="button" class="close" data-dismiss="modal" style="color: black;">&times;</button>
+          
+        </div>
+        <div class="modal-body">
+          <p id="MsgModal"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="btnModal" class="btn" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+<!--   Model end -->
+
+<div id="readProcedureModal1" class="modal fade" role="dialog">
+  <div class="modal-dialog  modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header1">
+        <h3 class="modal-title12">DEMO</h3>
+<!--         <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+      </div>
+      <div class="modal-body12">
+ 
+<!--     <video width="90%" id="simVideo" controls> -->
+<!--   <source src="images/simulation.mp4" type="video/mp4"> -->
+  
+<!-- </video> -->
+<center><video id="simVideo" width="90%" controls>
+    <source src="images/simulation.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video></center>
+  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<footer>
+Copyrights &copy; COEP - Virtual Lab
+</footer>
+
+<script src="../assets/js/iframeResize.js"></script></body>
+
+<!-- https://code.jquery.com/jquery-3.5.1.js -->
+
+
+
+
+<script type="text/javascript" src="lib/jquery.js"></script>
+
+
+<script type="text/javascript" src="lib/googlechart.js"></script>
+<script type="text/javascript" src="lib/raphael.js"></script>
+<script type="text/javascript" src="lib/raphael.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script src="src/QuestionJson.js"></script>
+<script src="src/Questions.js"></script>
+<script type="text/javascript" src="src/turbine_flow_meter.js"></script>
+<script type="text/javascript" src="src/mainPage.js"></script>
+
+<script type="text/javascript" src="src/mimc.js"></script>
+<script type="text/javascript" src="src/animate.js"></script>
+<script type="text/javascript" src="src/resultAnalysis.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
+
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
+
+
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+
+<script>
+var htm = '';
+htm += '<ol>'
+ 
+ 
+  +'  <h3>Basic Knowledge</h3>'
+  +'  <ul>'
+  +'      <li>Answer all the questions and click on "Submit Test" button</li>'
+  +'  </ul>'
+  
+ 
+  +' <h3>Configuration:</h3>'
+  +'  <ul>'
+  +'      <li>Configure your turbine flow meter by selecting fluid type, material type of blade, blade type, pipe size, time in sec and enter the meter constant. Below fig. shows the type of blade and number of blades</li>'
+  +'     <img src="images/blades_type.png" class="img-responsive" alt="Cinque Terre">'
+  +'      <li>Min and Max speed range will be displayed. Here, readings can be taken by changing speed of VFD that you have configured</li>'
+  +'      <li>Observe the reading</li>'
+  +'      <li>Plot the graph</li>'
+  +'     <li>After this click on the next simulation step</li>'
+  +'  </ul>'
+  
+  
+  +' <h3>Simulation:</h3>'
+  +' <h4>Standard Table and Graph:</h4>'
+  +' <ul>'
+  +'    <li>Select any Random range and click on submit</li>'
+  +'    <li>Take at least 5 readings and click on Graph</li>'
+  +' </ul>'
+
+  +'  <h4>Animation:</h4>'
+  +'  <ul>'
+  +'     <li>Click on Start process</li>'
+  +'     <li>Instantaneous flow observed by total pulses</li>'
+  +' </ul>'
+
+  +'<h4>Mimic:</h4>'
+  +' <ul>'
+  +' <li>First step is to reset the tare weight</li>'
+  +'  <li>Adjust the VFD speed by clicking on plus and minus buttons. Select minimum and maximum speed of flow</li>'
+  +'    <li>Click on the suction valve(V1), after clicking its color turns to green which indicates it is ON and liquid supply to pump</li>'
+  +'   <li>To start the pump, click on the pump, it turns green and liquid flow through pump with selected speed for sec of time which is configured in earlier stage</li>'
+  +'    <li>Observe the reading of LT weight, Turbine flow meter, Magnetic flow meter, and WT weight</li>'
+  +'     <li>After the process, the pump will stop, then you must click on V2 valve, it will turn green to drain tank 2 and fill tank 1</li>'
+  +'      <li>Follow the same process for at least 10 times and note all readings including speed range in min and max flow</li>'
+  +'      <li>After completing all processes, click on V3 drain valve to drain tank 1</li>'
+  +'    <li>The simulation is finished, and you can click on next for Calibration</li>'
+  +' </ul>'
+
+  
+  +'<h3>Calibration:</h3>'
+  +'<ul>'
+  +' <li>Observe the Minimum reading and calculate zero error and submit the answer</li>'
+  +'  <li>Observe Maximum reading and calculate span error and submit the answer</li>'
+  +'   <li>Similarly, observe all the intermediate points on the graph and calculate Linearity and Accuracy</li>'
+  +'    <li>Click on Calibrate and calibrate points on graph (using plus and minus buttons)</li>'
+  +'    <li>Follow the instructions and adjust the points on the graph to make it linear</li>'
+  +' </ul>'
+ 
+  
+  +' <h3>Fault Finding:</h3>'
+  +'<ul>'
+  +'   <li>Observe the shown table and select the fault accordingly</li>'
+  +'   <li>After selecting the correct fault, the result will be displayed</li>'
+  +'</ul>'
+  
+  +'</ol>'
+
+  $(".modal-body11").html(htm);
+  $(".modal-title1").html("Procedure");
+
+</script>
+
+<script>
+$('#readProcedureModal1').click(function(){
+	 $('video').each(function(){
+		    $(this).get(0).pause();
+		  })
+	})
+
+$("#simDemo").on("click", function(){
+	
+	var video = document.getElementById("simVideo");
+
+	// Define the start and end skip times (in seconds)
+	var skipStart = 0;  // Skip the first 5 seconds
+	var skipEnd = 6;    // Skip the last 5 seconds
+
+//	video.onloadedmetadata = function() { 
+	    // Get the duration of the video
+	    var videoDuration = video.duration;
+
+	    // Ensure the video plays between skipStart and (duration - skipEnd)
+	    video.currentTime = skipStart;
+
+	    // Event listener to pause the video when it reaches the end limit (video duration - skipEnd)
+	    video.ontimeupdate = function() {
+	        if (video.currentTime >= videoDuration - skipEnd) {
+	            video.pause();
+				video.currentTime = skipStart;
+	        }
+	    };
+
+	    // Prevent seeking outside the allowed time range
+	    video.addEventListener('seeking', function(event) {
+	        // If seeking before the start time or after the allowed end time, reset the current time
+	        if (video.currentTime < skipStart) {
+	            video.currentTime = skipStart;
+	        } else if (video.currentTime > videoDuration - skipEnd) {
+	            //video.currentTime = videoDuration - skipEnd;
+				video.currentTime = skipStart;
+	        }
+	    });
+//	};
+	
+	video.play();
+})
+
+
+
+</script>
+
+
+</html>

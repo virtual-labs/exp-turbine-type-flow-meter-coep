@@ -1,0 +1,543 @@
+<!DOCTYPE html><html lang="en"><head>
+      <!--Google Tag Manager-->
+      <script class="gtm">
+        var dataLayer = [{
+        'labName': 'Virtual Lab',
+        'discipline': 'Test',
+        'college': 'COEP',
+        'phase': 'Testing',
+        'expName': 'MEASUREMENT OF FLOW USING A TURBINE TYPE FLOW METER FOR VARIOUS FLUID TYPE',
+        'expShortName': 'turbine-type-flow-meter'
+        }];
+    
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5NMQ9NQ');
+      </script>
+      <!--End Google Tag Manager-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    
+    	<meta name="experiment-short-name" content="turbine-type-flow-meter">
+    	<meta name="developer-institute" content="COEP">
+    	<meta name="learning-unit" content="MEASUREMENT OF FLOW USING A TURBINE TYPE FLOW METER FOR VARIOUS FLUID TYPE">
+    	<meta name="task-name" content="Theory">
+    
+    <!-- For iPhone -->
+    <meta name="msapplication-TileColor" content="#4076e0">
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#4076e0">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#4076e0">
+    <title>Virtual Labs</title>
+    <link rel="shortcut icon" href="./assets/images/favicon.ico">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&amp;family=Raleway&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/github-markdown.min.css">
+    <link rel="stylesheet" href="./assets/css/vlabs-style.css">
+    <link rel="stylesheet" href="./assets/css/toast.css">
+    <link rel="stylesheet" href="./assets/katex_assets/katex.min.css">
+    
+    <script src="./assets/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      h1 {
+      font-size: 1.8rem;
+      }
+      h2 {
+      font-size: 1.4rem;
+      }
+      h3 {
+      font-size: 1.2rem;
+      }
+
+      h2, h3 {
+      font-weight: 800;
+      }
+    </style>
+    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"></head>
+  <body class="p-0 container-fluid vlabs-page d-flex flex-column justify-content-between">
+      <!--Google Tag Manager (noscript)-->
+      <noscript class="gtm">
+        <iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-5NMQ9NQ" style="display:none;visibility:hidden" width="0">
+        </iframe>
+      </noscript>
+      <!--End Google Tag Manager (noscript)-->
+  
+      <header class="vlabs-header sticky-top bg-white">
+        <nav class="p-0 navbar navbar-light d-flex align-items-stretch">
+          
+          <button class="navbar-toggler px-4" type="button" onclick="toggle()">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="d-flex justify-content-center">        
+            <a href="https://vlab.co.in" class="navbar-brand">
+              <img src="./assets/images/vlabs-color-small-moe.jpg" alt="vlabs logo" class="vlabs-logo">
+            </a>
+          </div>
+          
+          <div id="headerNavbar" class="d-none border-top flex-grow-1 d-lg-flex align-items-center justify-content-end">
+            <div class="svc-rating-display">
+                <rating-display spreadsheetid="1x12nhpp0QvnsA6x-O1sV4IA9SAbfVsq_wiexWkutOmU" sheetname="Experiment-Database" columnname="Experiment Short Name" columnvalue="turbine-type-flow-meter" imagesdirectory="./plugins/svc-rating/images/">
+                </rating-display>
+            </div>      <div class="svc-rating-submit">
+                <rating-submit title="Rate" this="" experiment="">
+                </rating-submit>
+            </div>      <bug-report id="bug-report" title="[BUG REPORT] MEASUREMENT OF FLOW USING A TURBINE TYPE FLOW METER FOR VARIOUS FLUID TYPE" page-type="text" context-info="{&quot;organisation&quot;:&quot;Virtual Labs&quot;,&quot;developer_institute&quot;:&quot;COEP&quot;,&quot;expname&quot;:&quot;MEASUREMENT OF FLOW USING A TURBINE TYPE FLOW METER FOR VARIOUS FLUID TYPE&quot;,&quot;labname&quot;:&quot;Virtual Lab&quot;,&quot;phase&quot;:&quot;Testing&quot;}" checkbox-json="{&quot;text&quot;:[&quot;Insufficient Content&quot;],&quot;video&quot;:[&quot;Insufficient Content&quot;],&quot;assesment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;assessment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;simulation&quot;:[&quot;Simulation Not Working&quot;,&quot;Incorrect Results/Observations&quot;,&quot;Insufficient/Incorrect Instructions&quot;],&quot;DEFAULT&quot;:[&quot;Page Not Loading&quot;,&quot;Content Not Visible&quot;,&quot;Incorrect Content&quot;]}" button_style="border: none; color: #fff; background-color: #288ec8; text-align: center; font-size: 1.05rem; border-radius: 1em;padding: 0.6em 1.2em; margin: 0 10px" position="override" custom_button_class="v-button"></bug-report>
+          </div>
+        </nav>
+      </header>
+      <div class="container-fluid flex-fill d-flex flex-column vlabs-page-main">
+        <div class="row d-flex justify-content-between">
+          <div class="flex-column">
+          <div class="row py-4 px-4 breadcrumbs">
+          	<div class="title is-4 tools">Tools</div>
+          	<span class="mx-2">
+          		<i aria-hidden="true" class="fa fa-angle-right"></i>
+          	</span>
+          	<a href="performance-report.html" class="my-2 mx-3" target="_blank">
+          		<button class="v-button">Performance Tool</button>
+          	</a>
+          	<a href="validator-report.html" class="my-2 mx-3" target="_blank">
+          		<button class="v-button">Validation Tool</button>
+          	</a>
+          </div>
+          </div>
+        </div>
+        <div class="row flex-grow-1 d-flex flex-nowrap flex-column flex-lg-row">
+          <div class="modal fade popupmenu" id="popupMenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">
+                              <a href="https://vlab.co.in" class="navbar-brand">
+                                  <img src="./assets/images/vlabs-color-small-moe.jpg" alt="vlabs logo" class="vlabs-logo">
+                              </a>
+                          </h5>
+                          <button type="button" class="btn-close align-self-center" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body nav-menu">
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="index.html" class="p-2 ">
+                                      Aim
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="theory.html" class="p-2  current-item ">
+                                      Theory
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="pretest.html" class="p-2 ">
+                                      Pretest
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="procedure.html" class="p-2 ">
+                                      Procedure
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="simulation.html" class="p-2 ">
+                                      Simulation
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="posttest.html" class="p-2 ">
+                                      Posttest
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="references.html" class="p-2 ">
+                                      References
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="feedback.html" class="p-2 ">
+                                      Feedback
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="nav flex-column sidebar nav-menu flex-shrink-0 px-lg-4 align-items-center align-items-lg-start hidden d-none d-lg-flex" id="menu">
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="index.html" class="p-2 ">
+                        Aim
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="theory.html" class="p-2  current-item ">
+                        Theory
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="pretest.html" class="p-2 ">
+                        Pretest
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="procedure.html" class="p-2 ">
+                        Procedure
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="simulation.html" class="p-2 ">
+                        Simulation
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="posttest.html" class="p-2 ">
+                        Posttest
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="references.html" class="p-2 ">
+                        References
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="feedback.html" class="p-2 ">
+                        Feedback
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+          </div>          <div class="vlabs-page-content px-5 pb-4 flex-grow-1 markdown-body">
+            <div class="text-center fix-spacing">
+              <h2 id="measurement-of-flow-using-a-turbine-type-flow-meter-for-various-fluid-type">Measurement of flow using a turbine type flow meter for various fluid type</h2>
+          
+            </div>
+              <h1 id="introduction">Introduction</h1>
+          <p>Turbine type flow meters are similar to a propeller held against the wind when we keep the propeller against wind it rotates, and if you observe carefully there exists a relation between velocity of wind and rotational speed of turbine, the rate of rotation increases as the wind velocity increases. These observations suggest that the flow velocity in a pipe can be measured by placing a freely rotating propeller inside a pipe section, but it needs calibration. These type of flow meters are more commonly known as "Turbine Type Flow meters". A cut section of the turbine type flow meter is as shown in figure 1 and 2. The construction is similar to a mini wind mill.</p>
+          <p><img src="images/Turbine_intro.png" alt=" *Turbine_intro*">
+          <img src="images/Turbine_read.png" alt=" *Turbine_read*"></p>
+          <p>Turbine flow meters are used in many industrial applications to measure the flow of liquid and gas. It consists of a multi-blade rotor mounted with a pipe perpendicular to the fluid flow. When the liquid passes through the blades, the rotor will spin. The speed of the rotor depends on the flow rate, the rotational movement can be measured either using gears or the opto-couplers. 
+          This flow meter would convert the mechanical action of the turbine as the fluid flow rate. This device would rotate according to the flow in which it is placed, the number of revolutions is proportional to the flow.
+          A turbine flow meter is used for volumetric total flow and/or instantaneous flow rate measurement and has a relatively simple working principle. As fluid flows through the turbine meter, it impinges upon turbine blades that are free to rotate about an axis along the centre line of the turbine housing.
+          Turbine flow meters use the mechanical energy of the liquid to rotate a rotor within the flow stream. The rotational speed is directly proportional to the velocity of the fluid traveling through the meter. These meters are generally recommended for multiple industries to reliably measure liquids, gases and vapours. Typically, these are found across various industries such as petroleum, automotive, laboratory and water treatment.</p>
+          <h2 id="construction">Construction</h2>
+          <p>A major part of this device is a multi-blade rotor, and this rotor is mounted at an angle that the fluid flow can rotate the rotor. A ball bearing supports the rotor on a shaft which is retained in the flow meter housing by shaft support section. A magnetic pick up is mounted to the turbine wheel, and the sensor would record the voltage pulse that is created. The pulses so generated are counted to arrive at flow reading. While installing these flow meters care has to be taken that the foreign particles are not deposited on the blade or in the path. The rotor should be checked for free rotational movement. All upstream fluid lines should also be cleaned for any debris. 
+          The flow meter must be installed with the flow direction arrow pointing in the direction of fluid flow as marked by the manufacturer. These  flow meters can work in any orientation but generally they are installed in horizontal lines. A filter at the upstream  is recommended before the flow meter to trap the floating particles.  The picture shows the recommended scheme for installation of the flow meter in the pipe line. The bypass valve is provided to ensure “no disturbance” in case the turbine type flow meter is sent for maintainance.</p>
+          <p><img src="images/Turbine_constr1.png" alt="*Turbine_constr1*"></p>
+          <p>The arrangement allows meter inspection and repair without interrupting flow,  as well as the ability to cycle the fluid through the system filter before diverting to the flow meter. If a bypass line is not used, it is important that all flow control valves be located downstream of the flow meter. A straight distance of 10 time pipe diameter and 5 times pipe diameter up-stream and down stream respectively is recommended as shown in the figure..</p>
+          <p><img src="images/Turbine_constr2.png" alt="*Turbine_constr2*"></p>
+          <p>This helps to eliminate turbulence in the fluid. Having shorter pipe lengths, other system components and elbows to close to the flow meter may adversely affect the accuracy and repeatability of the flow meter. Piping should be the same size as the meter bore or port size.
+          Do not locate the flow meter or the connection cable close to electric motors, transformers, sparking devices, high voltage lines or place connecting cable in a conduit with wire supplying power for such devices. These devices can induce false signals in the flow meter coil or cable, causingthe meter to read inaccurately.
+          The fundamental design goal of a turbine flow meter is to make the turbine element as free spinning as possible, so no torque will be required to sustain the turbine’s rotation. If this goal is achieved, the turbine blades will achieve a rotating (tip) velocity directly proportional to the linear velocity of the fluid, whether that fluid is a gas or a liquid.</p>
+          <p><img src="images/Turbine_constr3.png" alt="*Turbine_constr3* "></p>
+          <p>The mathematical relationship between fluid velocity and turbine tip velocity – assuming frictionless conditions – is a ratio defined by the tangent of the turbine blade angle.</p>
+          <p><img src="images/Turbine_constr4.png" alt="*Turbine_constr4* "></p>
+          <p>For a 45 deg blade angle, the relationship is 1:1, with tip velocity equalling fluid velocity. Smaller blade angles (each blade closer to parallel with the fluid velocity vector) result in the tip velocity being a fractional proportion of fluid velocity.
+          By using proximity sensor the turbine tip velocity can be  sensed. The proximity sensor will generate voltage which is equivalent to the velocity of the turbine blade. Generally, the proximity sensor is nothing more than a coil of wire in proximity to a stationary magnet, called a pickup coil or pick-off coil because it “picks” (senses) the passing of the turbine blades.
+          Magnetic flux through the coil’s centre increases and decreases as the passing of the steel turbine blades presents a varying reluctance (“resistance” to magnetic flux), causing voltage pulses equal in frequency to the number of blades passing by each second. It is the frequency of this signal that represents fluid velocity, and therefore volumetric flow rate.</p>
+          <h2 id="working-principle">Working Principle</h2>
+          <p>A turbine flow meter unit is constructed of a multiple-bladed rotor installed (as shown in the simulator) with a pipe in a perpendicular direction to the fluid flow. As the liquid flows through the blades, the rotor rotates. The rotational speed of the rotor is correlated to the flow rate of the liquid. The speed of the rotor can be sensed by various mechanisms such as magnetic pick-up, photoelectric cell, or gears. After proper installation, turbine meters offer good accuracy, mainly with low-viscosity liquids. Hence, turbine meters are widely deployed in applications where accurate measurements are required. When a turbine flowmeter is calibrated (As shown the calibration set-up) and operated for a single fluid, constant conditions, its turndown ratio can go beyond 100:1. Moreover, accuracy of a turbine flowmeter can be as good as +/-0.1%. The major problem associated with the usage of turbine meters is bearing wear.</p>
+          <p><img src="images/working_priciple.png" alt="*working_priciple* "></p>
+          <p> To prevent this problem, a “bearing less” turbine meter design has been introduced recently. Various turbine flowmeter designs have been manufactured. However, they all operate on the same basic principle which says “If a fluid moves through a pipe and acts on the vanes of a turbine, the turbine will start to spin and rotate. The rate of spin is measured to calculate the flow”.</p>
+          <p> Below table shows standard range of flow rate according to pipe size in Litre Per Hour (l/h):</p>
+          <table>
+          <thead>
+          <tr>
+          <th>Pipe size (mm)</th>
+          <th>15</th>
+          <th>25</th>
+          <th>40</th>
+          <th>50</th>
+          </tr>
+          </thead>
+          <tbody><tr>
+          <td>Min</td>
+          <td>200</td>
+          <td>800</td>
+          <td>1900</td>
+          <td>3500</td>
+          </tr>
+          <tr>
+          <td>Max</td>
+          <td>2100</td>
+          <td>8000</td>
+          <td>19000</td>
+          <td>3500</td>
+          </tr>
+          <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          </tr>
+          </tbody></table>
+          <h2 id="general-specifications">General Specifications</h2>
+          <h5 id="services">Services:</h5>
+          <ul>
+          <li>Relatively clean liquids, gases, and vapours (some units for gas service are also covered).</li>
+          </ul>
+          <h5 id="sizes">Sizes:</h5>
+          <ul>
+          <li>3/16 to 24 in. (5 to 610 mm) in flow-through designs.</li>
+          </ul>
+          <h5 id="outputs">Outputs:</h5>
+          <ul>
+          <li>Generally, linear frequency outputs are provided, but 4- to 20-mA DC can also be obtained through conversion.</li>
+          </ul>
+          <h5 id="operating-pressure">Operating Pressure:</h5>
+          <ul>
+          <li>1500 PSIG (10.3 MPa) in standard and 5000 PSIG (34.5 MPa) in special designs.</li>
+          </ul>
+          <h5 id="pressure-drops">Pressure Drops:</h5>
+          <ul>
+          <li>Usually, one velocity head or about 3 to 5 PSIG (20 to 35 kPa).</li>
+          </ul>
+          <h5 id="operating-temperature">Operating Temperature:</h5>
+          <ul>
+          <li>− 58 to 300 ° F (− 50 to 150 ° C) in standard and − 328 to 840 ° F (− 200 to 450 ° C) in extended pickup designs.</li>
+          </ul>
+          <h4 id="advantage-of-turbine-flow-meter">Advantage of turbine flow meter</h4>
+          <ul>
+          <li>Good level of accuracy at an economic price </li>
+          <li>Simple, durable construction </li>
+          <li>Easy to install and maintain.</li>
+          <li>Flexible connection to flow instruments for flow control.</li>
+          <li>Wide flow rangeability including low flow rates.</li>
+          <li>Wide variety of process connections</li>
+          <li>Turndown ratio is up to 35:1.</li>
+          <li>Turbine meters can operate over a wide range of temperatures and pressures.</li>
+          <li>Low pressure drops across the turbine.</li>
+          <li>Provides a convenient signal output.</li>
+          </ul>
+          <h4 id="disadvantage-of-turbine-flow-meter">Disadvantage of turbine flow meter</h4>
+          <ul>
+          <li>High cost</li>
+          <li>Problems caused by non-lubricating fluids. </li>
+          <li>Limited use for slurry applications</li>
+          <li>Sensitive to flow profile </li>
+          <li>It cannot be operated at high velocity.</li>
+          <li>Less accurate at low flow rates </li>
+          <li>Moving parts</li>
+          <li>The bearing is depended on the cleanliness and lubricity of the process fluid. </li>
+          <li>Interchangeability from unit to unit is very poor.</li>
+          <li>Wear and tear could happen to the turbine blades, and it needs to be calibrated frequently.</li>
+          <li>For certain liquid applications, there could be problems such as cavitation, specific gravity, and viscosity.</li>
+          </ul>
+          <h4 id="turbine-flow-meter-limitations">Turbine flow Meter Limitations</h4>
+          <ul>
+          <li>Turbine meters can be used with clean liquids and gases only (may need to install a strainer upstream to prevent damage from particulates) </li>
+          <li>Requires constant backpressure to prevent cavitation. </li>
+          <li>Accuracy adversely affected by bubbles in liquids.</li>
+          <li>Not applicable for measuring corrosive fluids.</li>
+          <li>Sensitive to changes in fluid viscosity </li>
+          <li>Requires a turbulent flow profile (consistent fluid velocity across the pipe diameter) for accuracy</li>
+          <li>Require a straight run of pipe before and after the turbine meter to allow swirl patterns in the flow stream to dissipate</li>
+          <li>May not function properly with high viscosity fluids where the flow profile is laminar.</li>
+          </ul>
+          <h4 id="turbine-flow-meter-application">Turbine Flow Meter Application</h4>
+          <ul>
+          <li>It is used in the blending system of the petroleum industry</li>
+          <li>Airborne applications for energy fuel and cryogenic flow measurement</li>
+          <li>Chemical industries</li>
+          <li>Food and beverage</li>
+          <li>Oil and gas</li>
+          <li>Refining</li>
+          <li>Agricultural</li>
+          <li>Pharmaceutical</li>
+          <li>Photo development</li>
+          <li>Process control</li>
+          <li>Food beverage dispensing</li>
+          <li>The turbine meters are widely used for military applications.</li>
+          <li>They are particularly useful in blending systems for the petroleum industry.</li>
+          </ul>
+          
+          </div>
+          <div class="bug-report-mobile">
+              <bug-report id="bug-report" title="[BUG REPORT] MEASUREMENT OF FLOW USING A TURBINE TYPE FLOW METER FOR VARIOUS FLUID TYPE" page-type="text" context-info="{&quot;organisation&quot;:&quot;Virtual Labs&quot;,&quot;developer_institute&quot;:&quot;COEP&quot;,&quot;expname&quot;:&quot;MEASUREMENT OF FLOW USING A TURBINE TYPE FLOW METER FOR VARIOUS FLUID TYPE&quot;,&quot;labname&quot;:&quot;Virtual Lab&quot;,&quot;phase&quot;:&quot;Testing&quot;}" checkbox-json="{&quot;text&quot;:[&quot;Insufficient Content&quot;],&quot;video&quot;:[&quot;Insufficient Content&quot;],&quot;assesment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;assessment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;simulation&quot;:[&quot;Simulation Not Working&quot;,&quot;Incorrect Results/Observations&quot;,&quot;Insufficient/Incorrect Instructions&quot;],&quot;DEFAULT&quot;:[&quot;Page Not Loading&quot;,&quot;Content Not Visible&quot;,&quot;Incorrect Content&quot;]}" position="override" button_style="
+                          position: fixed; 
+                          bottom: 20px;
+                          right: 20px;
+                          z-index: 1;
+                          font-size: 0;
+                          padding: 25px;
+                          border-radius: 50%;
+                          border: none;
+                          background-color: #0fc0ff;
+                          background-image: url(data:image/png;base64,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);
+                          background-repeat: no-repeat;
+                          background-position: center;
+                          background-size: 30px;
+                          filter: invert(1);">
+              </bug-report>
+          </div>        </div>
+      </div>
+      <footer class="text-light pt-2 vlabs-footer d-flex flex-column">
+        <div class="row px-5 mx-0">
+          <div class="col d-flex flex-column">
+            <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Community Links</span>
+            <a href="https://www.sakshat.ac.in/" class="text-light">Sakshat Portal</a>
+            <a href="http://outreach.vlabs.ac.in/" class="text-light">Outreach Portal</a>
+            <a href="https://vlab.co.in/faq" class="text-light">FAQ: Virtual Labs</a>
+          </div>
+          <div class="col d-flex flex-column">
+            <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Contact Us</span>
+            <span> Phone: General Information: 011-26582050 </span>
+            <span> Email: support@vlabs.ac.in </span>
+          </div>
+          <div class="col d-flex flex-column">
+            <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Follow Us</span>
+            <div class="social-links">
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #55acee;" href="https://twitter.com/TheVirtualLabs">
+      	  <i class="fab fa-twitter"></i>
+      	</a>
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #3b5998;" href="https://www.facebook.com/Virtual-Labs-IIT-Delhi-301510159983871/">
+      	  <i class="fab fa-facebook"></i>
+      	</a>
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #e52d27;" href="https://www.youtube.com/watch?v=asxRaOgk6a0">
+      	  <i class="fab fa-youtube"></i>
+      	</a>
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #2867B2;" href="https://in.linkedin.com/in/virtual-labs-008ba9136">
+      	  <i class="fab fa-linkedin"></i>
+      	</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-0 py-2 text-center" style="font-family: &quot;Open Sans&quot;, sans-serif; background: #212121;">
+          <a class="text-primary font-weight-bold" href="https://www.gnu.org/licenses/agpl-3.0.en.html"> AGPL 3.0 </a>
+          &nbsp;&amp;&nbsp;
+          <a class="text-primary font-weight-bold" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"> Creative Commons (CC BY-NC-SA 4.0) </a>
+        </div>
+      </footer>
+    <script src="./assets/js/toggleSidebar.js"></script>
+    <script src="./assets/js/event-handler.js"></script>
+
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register("sw.js");
+        });
+      }
+    </script>
+  
+
+<script type="module" src="https://virtual-labs.github.io/svc-bug-report/client/src/bug-report.js"></script><script type="module" src="plugins/svc-rating/index.js"></script><script type="module" src="plugins/svc-rating/config.js"></script><script type="module" src="https://apis.google.com/js/api.js"></script></body></html>
